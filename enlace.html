@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Psiquiatría de Enlace · CMN 20 de Noviembre</title>
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1A3A5C;
+      --navy-dark: #0F2440;
+      --navy-mid: #2C5A8A;
+      --crimson: #7D1535;
+      --crimson-dark: #5A0F25;
+      --gold: #C9A45A;
+      --gold-light: #E8D5A3;
+      --cream: #F4F7FB;
+      --cream-warm: #F8F4EE;
+      --dark: #1A1A1A;
+      --gray: #5A6A7A;
+      --light: #EBF2FA;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Lato', sans-serif; color: var(--dark); background: #fff; overflow-x: hidden; }
+
+    /* ── NAVBAR ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-bottom: 3px solid var(--navy); box-shadow: 0 2px 20px rgba(26,58,92,0.12); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 70px; }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-logo img { height: 46px; width: auto; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .nav-logo-text strong { font-size: 0.78rem; font-weight: 700; color: var(--navy-dark); letter-spacing: 0.04em; }
+    .nav-logo-text span { font-size: 0.65rem; color: var(--gray); letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-links { display: flex; list-style: none; align-items: center; gap: 0; }
+    .nav-links > li > a { display: flex; align-items: center; gap: 4px; padding: 0.55rem 0.85rem; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--navy-dark); transition: color 0.2s; }
+    .nav-links > li > a:hover { color: var(--gold); }
+    .nav-back { background: var(--navy); color: #fff !important; border-radius: 6px; padding: 0.45rem 1rem !important; }
+    .nav-back:hover { background: var(--navy-dark) !important; color: #fff !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { width: 26px; height: 2px; background: var(--navy); border-radius: 2px; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(150deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-mid) 100%);
+      display: flex; align-items: center;
+      padding: 100px 2rem 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* diagonal accent */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 50%, rgba(201,164,90,0.07) 50%);
+      pointer-events: none;
+    }
+
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 1; }
+
+    .hero-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(201,164,90,0.2); border: 1px solid rgba(201,164,90,0.4); border-radius: 100px; padding: 0.4rem 1rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.25rem; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 0.75rem; }
+    .hero-title span { color: var(--gold-light); font-style: italic; }
+    .hero-subtitle { font-size: 0.9rem; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.5rem; }
+    .hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.82); line-height: 1.8; margin-bottom: 2rem; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .hero-visual { position: relative; }
+    .hero-logo-wrap {
+      width: 260px; height: 260px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(8px);
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    .hero-logo-wrap img { width: 200px; height: 200px; object-fit: contain; }
+
+    .hero-since {
+      position: absolute; bottom: -10px; right: -10px;
+      background: var(--gold);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .hero-since strong { display: block; font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; line-height: 1; }
+    .hero-since span { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.85); }
+
+    /* ── GENERAL ── */
+    section { scroll-margin-top: 70px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; padding: 80px 2rem; }
+    .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--navy-dark); margin-bottom: 1rem; line-height: 1.2; }
+    .divider { width: 50px; height: 3px; background: linear-gradient(90deg, var(--navy), var(--gold)); margin-bottom: 2rem; border-radius: 2px; }
+
+    /* ── STATS BAR ── */
+    .stats-bar { background: var(--navy-dark); }
+    .stats-inner { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .stat { text-align: center; padding: 1rem; border-right: 1px solid rgba(255,255,255,0.1); }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold); display: block; line-height: 1; margin-bottom: 0.3rem; }
+    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* ── SOBRE EL PROGRAMA ── */
+    #programa { background: var(--cream); }
+    .programa-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .competencias { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+    .competencias li { display: flex; gap: 1rem; align-items: flex-start; }
+    .comp-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
+    .comp-text { flex: 1; }
+    .comp-text strong { display: block; font-size: 0.88rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 0.2rem; }
+    .comp-text span { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
+
+    .programa-side { display: flex; flex-direction: column; gap: 1.5rem; }
+    .info-card { background: #fff; border-radius: 12px; padding: 1.5rem; border: 1px solid #D4E0ED; box-shadow: 0 2px 12px rgba(26,58,92,0.06); }
+    .info-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--navy-dark); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .info-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.7; }
+
+    .unam-badge { background: linear-gradient(135deg, #002366, #0033A0); border-radius: 12px; padding: 1.5rem; color: #fff; display: flex; align-items: center; gap: 1rem; }
+    .unam-badge-icon { font-size: 2rem; flex-shrink: 0; }
+    .unam-badge-text strong { display: block; font-size: 0.9rem; margin-bottom: 0.25rem; }
+    .unam-badge-text span { font-size: 0.78rem; color: rgba(255,255,255,0.78); line-height: 1.5; }
+
+    /* ── PERFIL DEL EGRESADO ── */
+    #egresado { background: #fff; }
+    .egresado-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+    .eg-card { background: var(--cream); border-radius: 12px; padding: 1.5rem; border-left: 4px solid var(--navy); transition: transform 0.25s, box-shadow 0.25s; }
+    .eg-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(26,58,92,0.1); }
+    .eg-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--navy); opacity: 0.25; font-weight: 700; line-height: 1; margin-bottom: 0.5rem; }
+    .eg-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 0.4rem; }
+    .eg-card p { font-size: 0.83rem; color: var(--gray); line-height: 1.6; }
+
+    /* ── ROTACIONES ── */
+    #rotaciones { background: linear-gradient(160deg, var(--navy-dark), var(--navy)); }
+    #rotaciones .section-label { color: var(--gold-light); }
+    #rotaciones .section-title { color: #fff; }
+
+    .rotaciones-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+    .rot-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .rot-item { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .rot-item:last-child { border-bottom: none; }
+    .rot-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    .rot-item span { font-size: 0.9rem; color: rgba(255,255,255,0.85); line-height: 1.5; }
+
+    .diagnosticos-block { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 2rem; }
+    .diagnosticos-block h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold-light); margin-bottom: 1.25rem; }
+    .diag-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .diag-tag { background: rgba(201,164,90,0.15); border: 1px solid rgba(201,164,90,0.35); border-radius: 100px; padding: 0.4rem 0.9rem; font-size: 0.78rem; color: var(--gold-light); font-weight: 600; }
+
+    /* ── ALTA ESPECIALIDAD ── */
+    #alta-esp { background: var(--cream); }
+    .alta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+    .alta-card { background: #fff; border-radius: 16px; padding: 1.75rem; text-align: center; border: 1px solid #D4E0ED; box-shadow: 0 2px 12px rgba(26,58,92,0.06); transition: transform 0.25s, box-shadow 0.25s; }
+    .alta-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(26,58,92,0.12); }
+    .alta-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .alta-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--navy-dark); line-height: 1.4; }
+    .alta-card p { font-size: 0.78rem; color: var(--gray); margin-top: 0.3rem; line-height: 1.5; }
+
+    /* ── DOCUMENTOS ── */
+    #documentos { background: #fff; }
+    .docs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+    .doc-card { background: var(--cream); border-radius: 16px; padding: 2rem; border: 1px solid #D4E0ED; display: flex; gap: 1.25rem; align-items: flex-start; transition: transform 0.25s, box-shadow 0.25s; text-decoration: none; }
+    .doc-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(26,58,92,0.1); }
+    .doc-icon { width: 52px; height: 52px; background: var(--navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .doc-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 0.3rem; line-height: 1.4; }
+    .doc-info p { font-size: 0.8rem; color: var(--gray); line-height: 1.5; }
+    .doc-info .doc-dl { display: inline-flex; align-items: center; gap: 5px; margin-top: 0.6rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy); }
+
+    /* ── CONVOCATORIA ── */
+    #convocatoria { background: linear-gradient(135deg, var(--navy-dark), var(--navy)); }
+    #convocatoria .section-label { color: var(--gold-light); }
+    #convocatoria .section-title { color: #fff; }
+    .conv-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .conv-steps { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem; }
+    .conv-step { display: flex; gap: 1.25rem; align-items: flex-start; }
+    .step-num { width: 38px; height: 38px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: #fff; flex-shrink: 0; }
+    .step-body h4 { font-size: 0.92rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; }
+    .step-body p { font-size: 0.83rem; color: rgba(255,255,255,0.72); line-height: 1.6; }
+    .step-body a { color: var(--gold-light); word-break: break-all; }
+    .conv-right { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 2rem; }
+    .conv-right h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--gold-light); margin-bottom: 1.25rem; }
+    .req-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .req-list li { display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.88rem; color: rgba(255,255,255,0.82); line-height: 1.5; }
+    .req-list li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .conv-cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: #fff; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; padding: 0.9rem 2rem; border-radius: 8px; margin-top: 2rem; transition: background 0.2s, transform 0.2s; }
+    .conv-cta-btn:hover { background: #A87C35; transform: translateY(-2px); }
+
+    /* ── CONTACTO ── */
+    #contacto { background: var(--cream); }
+    .contacto-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .contact-items { display: flex; flex-direction: column; gap: 1.25rem; }
+    .ci { display: flex; gap: 1rem; align-items: flex-start; }
+    .ci-icon { width: 44px; height: 44px; background: var(--navy); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1rem; flex-shrink: 0; }
+    .ci h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray); margin-bottom: 0.2rem; }
+    .ci p { font-size: 0.92rem; color: var(--dark); line-height: 1.6; }
+    .ci a { color: var(--navy); }
+    .map-wrap { border-radius: 16px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.1); border: 1px solid #D4E0ED; }
+    .map-wrap iframe { display: block; width: 100%; height: 360px; border: none; }
+
+    /* ── BTN ── */
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 0.7rem 1.6rem; border-radius: 7px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+    .btn-navy { background: var(--navy); color: #fff; }
+    .btn-navy:hover { background: var(--navy-dark); }
+    .btn-gold { background: var(--gold); color: #fff; }
+    .btn-gold:hover { background: #A87C35; }
+    .btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.5); }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy-dark); color: rgba(255,255,255,0.65); text-align: center; padding: 2.5rem 2rem; }
+    .footer-logos { display: flex; gap: 1.5rem; align-items: center; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .footer-logo { width: 52px; height: 52px; border-radius: 50%; overflow: hidden; background: rgba(255,255,255,0.9); padding: 4px; display: flex; align-items: center; justify-content: center; }
+    .footer-logo img { width: 100%; height: 100%; object-fit: contain; }
+    footer p { font-size: 0.82rem; line-height: 1.9; }
+    footer a { color: var(--gold-light); text-decoration: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 70px; left: 0; right: 0; background: #fff; padding: 1rem 0 2rem; border-top: 2px solid var(--navy); box-shadow: 0 8px 30px rgba(0,0,0,0.1); z-index: 999; align-items: stretch; }
+      .nav-links.open > li > a { padding: 0.8rem 1.5rem; border-bottom: 1px solid #eef2f8; }
+      .hero-inner, .programa-layout, .rotaciones-layout, .conv-layout, .contacto-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero { min-height: auto; padding: 100px 2rem 60px; }
+      .hero-logo-wrap { width: 180px; height: 180px; }
+      .hero-logo-wrap img { width: 140px; height: 140px; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .stat:nth-child(2n) { border-right: none; }
+      .docs-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20menu.png" alt="Psiquiatría CMN 20 Nov" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#programa">El Programa</a></li>
+      <li><a href="#egresado">Perfil del Egresado</a></li>
+      <li><a href="#rotaciones">Rotaciones</a></li>
+      <li><a href="#alta-esp">Alta Especialidad</a></li>
+      <li><a href="#documentos">Documentos</a></li>
+      <li><a href="#convocatoria">Convocatoria</a></li>
+      <li><a href="index.html" class="btn nav-back">← Inicio</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag">🏥 Alta Especialidad · UNAM · ISSSTE</div>
+      <h1 class="hero-title">Psiquiatría<br/>de <span>Enlace</span></h1>
+      <p class="hero-subtitle">Centro Médico Nacional "20 de Noviembre"</p>
+      <p class="hero-desc">
+        Sede de formación especializada en salud mental hospitalaria. Formamos psiquiatras con competencias avanzadas para la atención integral de pacientes con comorbilidad médico-psiquiátrica en contextos clínicos complejos.
+      </p>
+      <div class="hero-cta">
+        <a href="#programa" class="btn btn-gold">Conocer el programa</a>
+        <a href="#convocatoria" class="btn btn-outline-white">Convocatoria 2026–2027</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-logo-wrap">
+        <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/enlace.png" alt="Psiquiatría de Enlace CMN 20 Nov" />
+      </div>
+      <div class="hero-since">
+        <strong>2018</strong>
+        <span>Desde</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <span class="stat-num">&gt;1,100</span>
+      <span class="stat-label">Interconsultas hospitalarias (2024)</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">&gt;13,000</span>
+      <span class="stat-label">Consultas externas (2024)</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">2018</span>
+      <span class="stat-label">Año de fundación del programa</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">4</span>
+      <span class="stat-label">Sedes en México con este programa</span>
+    </div>
+  </div>
+</div>
+
+<!-- SOBRE EL PROGRAMA -->
+<section id="programa">
+  <div class="section-inner">
+    <div class="section-label">Alta Especialidad en Medicina</div>
+    <h2 class="section-title">Sobre el Programa</h2>
+    <div class="divider"></div>
+    <div class="programa-layout">
+      <div>
+        <p style="font-size:1.02rem;color:var(--gray);line-height:1.85;margin-bottom:2rem;">
+          El Curso de Alta Especialidad en Psiquiatría de Enlace forma especialistas con competencias avanzadas para la atención integral de pacientes con comorbilidad médico-psiquiátrica en un hospital de alta especialidad, integrando evaluación, diagnóstico, manejo psicofarmacológico y psicoterapéutico breve en contextos clínicos complejos.
+        </p>
+        <p style="font-size:0.95rem;color:var(--gray);line-height:1.8;margin-bottom:2rem;">
+          El programa se desarrolla en el CMN "20 de Noviembre", sede de referencia nacional en medicina de alta complejidad y formación médica de posgrado. Con el objetivo de formar especialistas capaces de ejercer la psiquiatría en un hospital general de forma integral, con enfoque científico, ético y humanista.
+        </p>
+
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy-dark);margin-bottom:1rem;">Competencias que desarrollamos:</h3>
+        <ul class="competencias">
+          <li>
+            <div class="comp-icon">🧠</div>
+            <div class="comp-text">
+              <strong>Diagnóstico y manejo médico-quirúrgico</strong>
+              <span>Trastornos mentales en contexto de enfermedad somática, unidades de hospitalización y cuidados críticos.</span>
+            </div>
+          </li>
+          <li>
+            <div class="comp-icon">⚡</div>
+            <div class="comp-text">
+              <strong>Intervención en urgencias psiquiátricas</strong>
+              <span>Delirium, riesgo suicida, síntomas afectivos y trastornos adaptativos en enfermedad orgánica.</span>
+            </div>
+          </li>
+          <li>
+            <div class="comp-icon">⚖️</div>
+            <div class="comp-text">
+              <strong>Evaluación de capacidad y adherencia</strong>
+              <span>Capacidad de decisión, adherencia terapéutica y conducta en pacientes con condiciones críticas.</span>
+            </div>
+          </li>
+          <li>
+            <div class="comp-icon">🤝</div>
+            <div class="comp-text">
+              <strong>Trabajo interdisciplinario</strong>
+              <span>Comunicación clínica avanzada y coordinación con equipos médico-quirúrgicos en hospitales de alta especialidad.</span>
+            </div>
+          </li>
+          <li>
+            <div class="comp-icon">💊</div>
+            <div class="comp-text">
+              <strong>Psicofarmacología segura en comorbilidad</strong>
+              <span>Prescripción segura en pacientes con enfermedad médica activa, trasplantados y oncológicos.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="programa-side">
+        <div class="unam-badge">
+          <div class="unam-badge-icon">🏛️</div>
+          <div class="unam-badge-text">
+            <strong>Aval Universitario UNAM</strong>
+            <span>Programa avalado por la Facultad de Medicina de la Universidad Nacional Autónoma de México desde 2018. Egresados activos en instituciones públicas y privadas del país.</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h4>🏥 Sede Clínica</h4>
+          <p>Centro Médico Nacional "20 de Noviembre" – ISSSTE, hospital de tercer nivel y referencia nacional en medicina de alta complejidad. Torre de Consulta Externa, Piso 8.</p>
+        </div>
+
+        <div class="info-card">
+          <h4>📍 Lugar en México</h4>
+          <p>El CMN "20 de Noviembre" es una de <strong>cuatro sedes en el país</strong> que ofrecen el Curso de Alta Especialidad en Psiquiatría de Enlace avalado por la UNAM, junto al INCMNSZ, HU Tec de Monterrey y Hospital Ángeles Pedregal.</p>
+        </div>
+
+        <div class="info-card">
+          <h4>🎓 Requisito de Ingreso</h4>
+          <p>Contar con especialidad en <strong>Psiquiatría</strong> o estar en el último año de residencia al momento de la solicitud. Para extranjeros, documentación equivalente validada.</p>
+        </div>
+
+        <div class="info-card">
+          <h4>📊 Productividad Asistencial 2024</h4>
+          <p>Más de <strong>1,100 interconsultas hospitalarias</strong> y más de <strong>13,000 consultas externas</strong>. Diagnósticos frecuentes: delirium, depresión, ansiedad orgánica, insomnio y trastornos adaptativos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERFIL DEL EGRESADO -->
+<section id="egresado">
+  <div class="section-inner">
+    <div class="section-label">Al concluir el programa</div>
+    <h2 class="section-title">Perfil del Egresado</h2>
+    <div class="divider"></div>
+    <p style="font-size:1rem;color:var(--gray);line-height:1.8;max-width:680px;margin-bottom:2.5rem;">
+      El médico egresado de la Alta Especialidad en Psiquiatría de Enlace del CMN "20 de Noviembre" cuenta con las siguientes competencias distintivas:
+    </p>
+    <div class="egresado-grid">
+      <div class="eg-card">
+        <div class="eg-num">01</div>
+        <h4>Modelo Biopsicosocial en Hospital</h4>
+        <p>Integra el modelo biopsicosocial en el contexto hospitalario, articulando la dimensión psicológica con la enfermedad somática.</p>
+      </div>
+      <div class="eg-card">
+        <div class="eg-num">02</div>
+        <h4>Abordaje de Síntomas en Pacientes Somáticos</h4>
+        <p>Aborda síntomas psiquiátricos en pacientes con enfermedades médicas activas, complicaciones posquirúrgicas y condiciones críticas.</p>
+      </div>
+      <div class="eg-card">
+        <div class="eg-num">03</div>
+        <h4>Participación en Comités Éticos</h4>
+        <p>Participa en comités clínicos y decisiones éticas hospitalarias, incluyendo evaluación de capacidad y consentimiento informado.</p>
+      </div>
+      <div class="eg-card">
+        <div class="eg-num">04</div>
+        <h4>Psicoterapia Breve en Entorno Hospitalario</h4>
+        <p>Aplica técnicas de psicoterapia breve adaptadas al contexto hospitalario: intervención en crisis, soporte emocional y técnicas cognitivas.</p>
+      </div>
+      <div class="eg-card">
+        <div class="eg-num">05</div>
+        <h4>Investigación en Salud Mental Hospitalaria</h4>
+        <p>Realiza investigación aplicada en salud mental hospitalaria con metodología rigurosa y publicación de resultados.</p>
+      </div>
+      <div class="eg-card" style="background:var(--navy-dark);border-color:var(--gold);">
+        <div class="eg-num" style="color:var(--gold);opacity:0.5;">+</div>
+        <h4 style="color:#fff;">Egresados activos</h4>
+        <p style="color:rgba(255,255,255,0.72);">Egresados de este programa ejercen en instituciones públicas y privadas de alto nivel a lo largo de todo el país.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROTACIONES Y EXPOSICIÓN CLÍNICA -->
+<section id="rotaciones">
+  <div class="section-inner">
+    <div class="section-label">Exposición clínica</div>
+    <h2 class="section-title">Rotaciones Clínicas</h2>
+    <div class="divider" style="background:linear-gradient(90deg,var(--gold),var(--gold-light));"></div>
+    <div class="rotaciones-layout">
+      <div>
+        <p style="font-size:1rem;color:rgba(255,255,255,0.8);line-height:1.8;margin-bottom:2rem;">
+          Durante la alta especialidad, los fellows rotan por las áreas de mayor demanda de interconsulta psiquiátrica dentro del CMN "20 de Noviembre", adquiriendo experiencia clínica real en entornos de alta complejidad.
+        </p>
+        <ul class="rot-list">
+          <li class="rot-item"><span class="rot-dot"></span><span>Medicina Interna y Unidad de Agudos</span></li>
+          <li class="rot-item"><span class="rot-dot"></span><span>Oncología y Cuidados Paliativos</span></li>
+          <li class="rot-item"><span class="rot-dot"></span><span>Cirugía General y Unidades Quirúrgicas</span></li>
+          <li class="rot-item"><span class="rot-dot"></span><span>Terapias Intensivas (UCI)</span></li>
+          <li class="rot-item"><span class="rot-dot"></span><span>Urgencias y Emergencias</span></li>
+          <li class="rot-item"><span class="rot-dot"></span><span>Geriatría</span></li>
+          <li class="rot-item"><span class="rot-dot"></span><span>Nefrología y Trasplantes</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="diagnosticos-block">
+          <h4>🔍 Motivos Frecuentes de Interconsulta</h4>
+          <div class="diag-tags">
+            <span class="diag-tag">Delirium</span>
+            <span class="diag-tag">Depresión en enfermedad médica</span>
+            <span class="diag-tag">Ansiedad orgánica</span>
+            <span class="diag-tag">Insomnio</span>
+            <span class="diag-tag">Trastornos adaptativos</span>
+            <span class="diag-tag">Alteraciones conductuales</span>
+            <span class="diag-tag">Evaluación de capacidad</span>
+            <span class="diag-tag">Riesgo suicida</span>
+            <span class="diag-tag">Síntomas afectivos</span>
+          </div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:2rem;margin-top:1.5rem;">
+          <h4 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold-light);margin-bottom:1rem;">📊 Productividad 2024</h4>
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:0.75rem;">
+              <span style="font-size:0.85rem;color:rgba(255,255,255,0.75);">Interconsultas hospitalarias</span>
+              <span style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold);font-weight:700;">&gt;1,100</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:0.85rem;color:rgba(255,255,255,0.75);">Consultas externas</span>
+              <span style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold);font-weight:700;">&gt;13,000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÁREAS DE ALTA ESPECIALIDAD -->
+<section id="alta-esp">
+  <div class="section-inner">
+    <div class="section-label">Programas especiales</div>
+    <h2 class="section-title">Áreas de Alta Especialidad en las que Participamos</h2>
+    <div class="divider"></div>
+    <p style="font-size:1rem;color:var(--gray);line-height:1.8;max-width:680px;margin-bottom:0.5rem;">
+      El Servicio de Psiquiatría de Enlace participa de forma activa en los programas de alta especialidad del CMN "20 de Noviembre", aportando evaluación psiquiátrica protocolizada y seguimiento en:
+    </p>
+    <div class="alta-grid">
+      <div class="alta-card">
+        <div class="alta-icon">🫀</div>
+        <h4>Trasplantes</h4>
+        <p>Hígado, riñón y médula ósea. Evaluación pretrasplante y seguimiento psiquiátrico.</p>
+      </div>
+      <div class="alta-card">
+        <div class="alta-icon">⚖️</div>
+        <h4>Cirugía Bariátrica</h4>
+        <p>Evaluación psiquiátrica protocolizada pre y posquirúrgica. Psiquiatría en obesidad.</p>
+      </div>
+      <div class="alta-card">
+        <div class="alta-icon">🧬</div>
+        <h4>Neurocirugía Funcional</h4>
+        <p>Trastornos del movimiento y procedimientos neuromodulativos.</p>
+      </div>
+      <div class="alta-card">
+        <div class="alta-icon">🌿</div>
+        <h4>Reproducción Asistida</h4>
+        <p>Apoyo psicológico y psiquiátrico en procesos de fertilidad y reproducción asistida.</p>
+      </div>
+      <div class="alta-card">
+        <div class="alta-icon">🎗️</div>
+        <h4>Oncología y Paliativos</h4>
+        <p>Psicooncología, manejo del duelo y atención al final de la vida. Acompañamiento integral.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTOS -->
+<section id="documentos">
+  <div class="section-inner">
+    <div class="section-label">Recursos académicos</div>
+    <h2 class="section-title">Documentos del Programa</h2>
+    <div class="divider"></div>
+    <p style="font-size:1rem;color:var(--gray);line-height:1.8;margin-bottom:2rem;">
+      Descarga el programa operativo y los documentos académicos del Curso de Alta Especialidad en Psiquiatría de Enlace.
+    </p>
+    <div class="docs-grid">
+      <a href="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/Programa_operativo_psiquiatri%CC%81a_2025-2026.pdf" target="_blank" class="doc-card">
+        <div class="doc-icon">📄</div>
+        <div class="doc-info">
+          <h4>Programa Operativo Psiquiatría de Enlace 2025–2026</h4>
+          <p>Objetivos, rotaciones, actividades académicas y evaluación del curso de alta especialidad.</p>
+          <span class="doc-dl">⬇ Descargar PDF</span>
+        </div>
+      </a>
+      <a href="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/PSIQUIATRI%CC%81A_DE_ENLACE_PAEM_OPERATIVO_2026.docx" target="_blank" class="doc-card">
+        <div class="doc-icon">📋</div>
+        <div class="doc-info">
+          <h4>PAEM Operativo Psiquiatría de Enlace 2026</h4>
+          <p>Plan Anual de Evaluación y Mejora (PAEM) del programa de alta especialidad, ciclo 2026.</p>
+          <span class="doc-dl">⬇ Descargar DOCX</span>
+        </div>
+      </a>
+    </div>
+
+    <div style="background:var(--cream);border-radius:12px;padding:2rem;border-left:5px solid var(--navy);display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;justify-content:space-between;">
+      <div>
+        <p style="font-size:0.95rem;font-weight:700;color:var(--navy-dark);margin-bottom:0.3rem;">¿Necesitas más información?</p>
+        <p style="font-size:0.85rem;color:var(--gray);">Escríbenos para recibir el programa académico completo, plan de rotaciones o cualquier duda sobre el proceso de admisión.</p>
+      </div>
+      <a href="mailto:psiq.2022@gmail.com" class="btn btn-navy">✉ psiq.2022@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONVOCATORIA -->
+<section id="convocatoria">
+  <div class="section-inner">
+    <div class="section-label">Proceso de admisión · Alta Especialidad 2026–2027</div>
+    <h2 class="section-title">Convocatoria</h2>
+    <div class="divider" style="background:linear-gradient(90deg,var(--gold),var(--gold-light));"></div>
+    <div class="conv-layout">
+      <div>
+        <p style="font-size:1rem;color:rgba(255,255,255,0.8);line-height:1.8;margin-bottom:0.5rem;">
+          El ingreso a la Alta Especialidad en Psiquiatría de Enlace se realiza a través del proceso institucional del ISSSTE. El programa admite médicos <strong style="color:var(--gold-light);">psiquiatras nacionales y extranjeros</strong>.
+        </p>
+        <div class="conv-steps">
+          <div class="conv-step">
+            <div class="step-num">I</div>
+            <div class="step-body">
+              <h4>Convocatoria Institucional ISSSTE</h4>
+              <p>Consulta la convocatoria oficial de Alta Especialidad 2026–2027 en el portal institucional.<br/>
+              <a href="https://www.gob.mx/issste/documentos/ingreso-a-cursos-de-alta-especialidad-en-medicina" target="_blank">gob.mx/issste → Alta Especialidad en Medicina</a></p>
+            </div>
+          </div>
+          <div class="conv-step">
+            <div class="step-num">II</div>
+            <div class="step-body">
+              <h4>Pre-registro Interno</h4>
+              <p>Realiza tu pre-registro interno con el Servicio de Psiquiatría del CMN "20 de Noviembre" para orientación y seguimiento del proceso.<br/>
+              <a href="mailto:psiq.2022@gmail.com">psiq.2022@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="conv-step">
+            <div class="step-num">III</div>
+            <div class="step-body">
+              <h4>Documentación requerida</h4>
+              <p>Currículum vitae · Constancia de calificaciones · Certificado de Especialista en Psiquiatría · Documentación adicional según convocatoria oficial</p>
+            </div>
+          </div>
+          <div class="conv-step">
+            <div class="step-num">IV</div>
+            <div class="step-body">
+              <h4>Entrega de documentos y entrevista</h4>
+              <p>Presencial en el CMN "20 de Noviembre". Se notificará por correo electrónico a los candidatos que cumplan los requisitos.</p>
+            </div>
+          </div>
+        </div>
+        <a href="https://www.gob.mx/issste/documentos/ingreso-a-cursos-de-alta-especialidad-en-medicina" target="_blank" class="conv-cta-btn">
+          🏥 Ver Convocatoria Oficial ISSSTE →
+        </a>
+      </div>
+
+      <div class="conv-right">
+        <h3>Requisitos de Ingreso</h3>
+        <ul class="req-list">
+          <li>Título y cédula de especialista en Psiquiatría o estar en último año de residencia</li>
+          <li>Currículum vitae actualizado</li>
+          <li>Constancia de calificaciones de la especialidad</li>
+          <li>Carta de motivos (exposición de interés en psiquiatría de enlace)</li>
+          <li>Identificación oficial vigente</li>
+          <li>CURP (nacionales) o documentación migratoria (extranjeros)</li>
+          <li>Documentación adicional según convocatoria institucional vigente</li>
+        </ul>
+
+        <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.15);">
+          <p style="font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.6;">
+            📞 <strong style="color:rgba(255,255,255,0.85);">Dudas sobre el proceso:</strong><br/>
+            55 5200 5003 ext. 14575<br/>
+            Horario: 8:00 – 14:00 h (días hábiles)
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-inner">
+    <div class="section-label">Encuéntranos</div>
+    <h2 class="section-title">Contacto y Ubicación</h2>
+    <div class="divider"></div>
+    <div class="contacto-layout">
+      <div class="contact-items">
+        <div class="ci">
+          <div class="ci-icon">📍</div>
+          <div>
+            <h4>Dirección</h4>
+            <p>Torre de Consulta Externa, Piso 8<br/>Eje 3 Pte 1344, Col. del Valle Sur<br/>Benito Juárez, 03104 CDMX</p>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">📞</div>
+          <div>
+            <h4>Teléfono</h4>
+            <p>55 5200 5003 ext. 14575<br/><span style="font-size:0.8rem;color:var(--gray);">Horario: 8:00 – 14:00 h</span></p>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">✉️</div>
+          <div>
+            <h4>Correo electrónico</h4>
+            <p><a href="mailto:psiq.2022@gmail.com">psiq.2022@gmail.com</a></p>
+          </div>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:0.5rem;">
+          <a href="https://www.instagram.com/psiquiacmn20nov" target="_blank" style="display:flex;align-items:center;gap:7px;padding:0.6rem 1.2rem;border-radius:8px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;text-decoration:none;font-size:0.82rem;font-weight:700;">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @psiquiacmn20nov
+          </a>
+          <a href="https://www.facebook.com/psiquiatriacmn20denoviembre" target="_blank" style="display:flex;align-items:center;gap:7px;padding:0.6rem 1.2rem;border-radius:8px;background:#1877F2;color:#fff;text-decoration:none;font-size:0.82rem;font-weight:700;">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.1!2d-99.1749!3d19.3847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff9e1f31b265%3A0xf2b79dc66da0ea87!2sCentro%20M%C3%A9dico%20Nacional%2020%20de%20Noviembre%20ISSSTE!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logos">
+    <div class="footer-logo">
+      <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/enlace.png" alt="Enlace" />
+    </div>
+    <div class="footer-logo">
+      <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" alt="Psiquiatría" />
+    </div>
+  </div>
+  <p>
+    <strong style="color:#fff;">Alta Especialidad en Psiquiatría de Enlace</strong><br/>
+    Servicio de Psiquiatría · Centro Médico Nacional "20 de Noviembre" · ISSSTE · CDMX<br/>
+    <a href="mailto:psiq.2022@gmail.com">psiq.2022@gmail.com</a> · 55 5200 5003 ext. 14575<br/>
+    <a href="index.html">← Volver al sitio principal</a><br/>
+    <span style="font-size:0.72rem;opacity:0.4;display:block;margin-top:0.5rem;">© 2025 Servicio de Psiquiatría CMN 20 de Noviembre</span>
+  </p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+</script>
+</body>
+</html>
