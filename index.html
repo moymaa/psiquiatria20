@@ -42,9 +42,10 @@
     /* HERO */
     #inicio { min-height: 100vh; background: linear-gradient(160deg, var(--crimson-dark) 0%, var(--crimson) 45%, #A0243B 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 2rem 60px; position: relative; overflow: hidden; }
     #inicio::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-    .hero-logos { display: flex; gap: 2rem; align-items: center; justify-content: center; margin-bottom: 2.5rem; flex-wrap: wrap; }
-    .hero-logo-item { width: 110px; height: 110px; border-radius: 50%; background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; padding: 8px; backdrop-filter: blur(4px); animation: fadeInDown 0.8s ease both; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.35)); }
-    .hero-logo-item.enlace-item { background: rgba(255,255,255,0.9); border-color: rgba(255,255,255,0.6); }
+    .hero-logos { display: flex; gap: 1.75rem; align-items: center; justify-content: center; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .hero-logo-item { border-radius: 50%; background: #fff; border: 3px solid rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: center; padding: 10px; animation: fadeInDown 0.8s ease both; box-shadow: 0 6px 24px rgba(0,0,0,0.3); }
+    .hero-logo-item.logo-side { width: 100px; height: 100px; }
+    .hero-logo-item.logo-center { width: 132px; height: 132px; border-width: 4px; box-shadow: 0 8px 32px rgba(0,0,0,0.35); }
     .hero-logo-item img { width: 100%; height: 100%; object-fit: contain; }
     .hero-logo-item:nth-child(2) { animation-delay: 0.15s; }
     .hero-logo-item:nth-child(3) { animation-delay: 0.3s; }
@@ -258,13 +259,13 @@
 <!-- HERO -->
 <section id="inicio">
   <div class="hero-logos">
-    <div class="hero-logo-item">
-      <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" alt="Psiquiatría CMN 20 Nov" />
-    </div>
-    <div class="hero-logo-item enlace-item">
+    <div class="hero-logo-item logo-side">
       <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/enlace.png" alt="Psiquiatría de Enlace" />
     </div>
-    <div class="hero-logo-item">
+    <div class="hero-logo-item logo-center">
+      <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" alt="Psiquiatría CMN 20 Nov" />
+    </div>
+    <div class="hero-logo-item logo-side">
       <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/paido.png" alt="Paidopsiquiatría" />
     </div>
   </div>
@@ -815,8 +816,90 @@
         </div>
       </div>
     </div>
+
+    <!-- GALERÍA DE FOTOS -->
+    <div style="margin-top:3rem;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#fff;margin-bottom:0.5rem;text-align:center;">📸 Galería de Rotaciones</h3>
+      <p style="text-align:center;font-size:0.85rem;color:rgba(255,255,255,0.65);margin-bottom:1.5rem;">Haz clic en una imagen para verla completa</p>
+      <div id="galeria-ext" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;">
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;padding:1rem;">
+  <button onclick="event.stopPropagation();moveLightbox(-1)" style="position:absolute;left:1.5rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:2.5rem;width:50px;height:50px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;">‹</button>
+  <img id="lb-img" src="" style="max-width:90vw;max-height:88vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.5);object-fit:contain;" />
+  <button onclick="event.stopPropagation();moveLightbox(1)" style="position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:2.5rem;width:50px;height:50px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;">›</button>
+  <button onclick="closeLightbox()" style="position:absolute;top:1rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1;">✕</button>
+  <div id="lb-counter" style="position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.6);font-size:0.85rem;"></div>
+</div>
+
+<script>
+(function(){
+  const rawBase = 'https://raw.githubusercontent.com/moymaa/psiquiatria20/fotosextranjero/';
+  const files = [
+    '510984912_10233823907610771_7663434949067936563_n.jpg',
+    '532164371_18498310498065936_3467123263552032921_n.jpeg',
+    '532936453_18498310450065936_8077658771219929675_n.jpeg',
+    '609186067_18524080339065936_4391428977988531598_n.jpeg',
+    'APaQ0SQnhnMix6ANhkqU2B-vAtY-qJ-r0jHzgG_aXI-x0EGaMCVhG3VbnHJN6thYgQ0uiLm4X76eIn3e0b1lrc_KgGp9h_ATJvCbT0ibJkWYpyFka-526EWhvYP6iK0s6H8_Kga4RE3hMJPOYJu2wYUmasTEilP7fFjLIPWRAiWdCsOaxj3mT-ro439Q%3Dw16383.jpeg',
+    'APaQ0SR645LwvQRQ8uXijqoh7P4h-kOH3kQ7jWsGXgdkCa5crWVjGFaaegGPcsqInIN4UcFPeIPyS3GUyUV4oJ3tFwQrW2mojAeBb26ddS52OlXK1WDadFm99EAcFCfm7z33oWHJkSunFalVCPak97LsQyjfr6CzGnJxbIdHwP_7olUM_1Sm9NpFMUJf%3Dw16383.jpeg',
+    'APaQ0SRNTp5COK3s5n_WHYlqDLVS6IA7lHTrXsewukiw9KDJObikpVY2dXRnjpAFzhi56t8AOnAqa141-Go34OXOD9U5Muf6qSgZEs9IeXA2g3mCcnMNqDPbaFHve8HVQpXdk5ESrqQUKnL3aDzGL6OQy07y4QSk3WGNAg1Jmo9eHlWf3jba0oF9H1zgcA4%3Dw16383.jpeg',
+    'APaQ0SSbgBEua49c1Qlu26qLZxkDAUUZK3lWhAAWlc2HEPI04JLmxrfuawIDUR7lm2TXyVc-BS-fx0GHbxVEpDd6CBGtaMJqvyxbD9A0cUtrNKjUmATMbq1sS9yJB2-h-jz468asRIfsj_I2EDbwDvKM0r0uW6QNOqdWXNLm80ZVrRwxiogViY4aJNl3so0%3Dw16383.jpeg',
+    'APaQ0STf8O9eRdV-Vq2Tuyb-YHFfAGEP8isOQ-tAmHavjJLO-3h8_wufLY6ZLqnHXX0DTkN-5MR9oddfiHYkDh9XlC3GNd3-Nhr_d0nqLwH8kUYeC1ohoq9yoqE2xbNDfYApBe06Xn7ASgrMFAAZiHszSTzVkwH4OWiY3FESG7KpsK8DEMBQKt7DuNTqtyQ%3Dw16383.jpeg',
+    'APaQ0SThVyjF-DlY_28fIn5djI3TbwYTegW5AAmKQPFGOnG4UqqPY-YvAgzHIx8CvQELnXwzASGVcJaGF3lCSYcMUV1ZeG1tqmVbbRGQ11Rk0cfCeHNgqW60rBqHOFu6szmcjSuRO0Tpq4J2acojwdzJA1roKlZ9yyoyWFq2mC-kRSSZP9gxilketcga%3Dw16383.jpeg',
+  ];
+  // Last image from different branch
+  const extraImg = 'https://raw.githubusercontent.com/moymaa/psiquiatria20/dac482098b7dc8037ea7a78b04070125615ab537/APaQ0STo0NGrNtTksDXPzbFoXDpago2S-G8FQpOQ5l6RZQiEM-1nXDJm3uuBY2ADD3jQESUJqa7hLPVRuGh2WsnZY_vjvzicKFqQ1jNhFlyH_G3c4zk3oHBmJzWZMwZr_LVF4Il2GiBuRvba7Ba_01kNrn3BfXnxT1x1_lTwKd9K8%3Dw16383.jpeg';
+  const urls = files.map(f => rawBase + f);
+  urls.push(extraImg);
+
+  let current = 0;
+  const grid = document.getElementById('galeria-ext');
+  urls.forEach((url, i) => {
+    const div = document.createElement('div');
+    div.style.cssText = 'overflow:hidden;border-radius:10px;cursor:pointer;aspect-ratio:1;background:#1A3A5C;';
+    const img = document.createElement('img');
+    img.src = url;
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;transition:transform 0.3s;';
+    img.onerror = () => { div.style.display='none'; };
+    div.addEventListener('mouseenter', () => img.style.transform='scale(1.07)');
+    div.addEventListener('mouseleave', () => img.style.transform='scale(1)');
+    div.addEventListener('click', () => openLightbox(i));
+    div.appendChild(img);
+    grid.appendChild(div);
+  });
+
+  window.openLightbox = function(i) {
+    current = i;
+    const lb = document.getElementById('lightbox');
+    lb.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    showLbImg();
+  };
+  window.closeLightbox = function() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.body.style.overflow = '';
+  };
+  window.moveLightbox = function(dir) {
+    current = (current + dir + urls.length) % urls.length;
+    showLbImg();
+  };
+  function showLbImg() {
+    document.getElementById('lb-img').src = urls[current];
+    document.getElementById('lb-counter').textContent = (current+1) + ' / ' + urls.length;
+  }
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('lightbox');
+    if (lb.style.display === 'none') return;
+    if (e.key === 'ArrowLeft') moveLightbox(-1);
+    if (e.key === 'ArrowRight') moveLightbox(1);
+    if (e.key === 'Escape') closeLightbox();
+  });
+})();
+</script>
 
 <!-- CÓDIGO MORADO -->
 <section id="codigo-morado" style="background:#fff;">
