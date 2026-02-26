@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Código Morado — Psiquiatría CMN 20 de Noviembre</title>
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --crimson: #7D1535;
+      --crimson-dark: #5A0F25;
+      --gold: #C9A45A;
+      --gold-light: #E8D5A3;
+      --cream: #F8F4EE;
+      --dark: #1A1A1A;
+      --gray: #6B6B6B;
+      --light-gray: #F0EDE8;
+      --morado: #6B21A8;
+      --morado-dark: #4C1572;
+      --morado-light: #EDE9F6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Lato', sans-serif; color: var(--dark); background: #fff; overflow-x: hidden; }
+
+    /* NAVBAR */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-bottom: 2px solid var(--crimson); box-shadow: 0 2px 20px rgba(125,21,53,0.1); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 1.5rem; height: 70px; }
+    .nav-logo img { height: 48px; width: auto; }
+    .nav-links { display: flex; list-style: none; gap: 0; align-items: center; }
+    .nav-links > li > a { display: flex; align-items: center; gap: 4px; padding: 0.55rem 0.75rem; font-family: 'Lato', sans-serif; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--crimson-dark); transition: color 0.2s; white-space: nowrap; }
+    .nav-links > li > a:hover { color: var(--gold); }
+    .nav-links > li > a.active { color: var(--morado); }
+    .nav-back { background: var(--crimson); color: #fff !important; border-radius: 6px; padding: 0.5rem 1.1rem !important; }
+    .nav-back:hover { background: var(--crimson-dark); color: #fff !important; }
+
+    /* HERO */
+    .hero { min-height: 100vh; background: linear-gradient(160deg, var(--morado-dark) 0%, var(--morado) 55%, #7E2AB2 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 2rem 60px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+    .hero-badge-top { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.35); border-radius: 100px; padding: 0.5rem 1.4rem; color: rgba(255,255,255,0.9); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.5rem; backdrop-filter: blur(6px); animation: fadeInDown 0.8s ease both; }
+    .hero-code { display: inline-block; background: rgba(255,255,255,0.18); border: 2px solid rgba(255,255,255,0.5); border-radius: 16px; padding: 1rem 2.5rem; margin-bottom: 1.5rem; animation: fadeInDown 0.8s 0.1s ease both; }
+    .hero-code-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 0.25rem; }
+    .hero-code-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; color: #fff; letter-spacing: 0.03em; line-height: 1; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 3vw, 1.9rem); font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.3; margin-bottom: 1.25rem; animation: fadeInUp 0.8s ease 0.2s both; }
+    .hero-desc { max-width: 680px; font-size: 1.05rem; color: rgba(255,255,255,0.78); line-height: 1.8; margin-bottom: 2.5rem; animation: fadeInUp 0.8s ease 0.35s both; }
+    .hero-stats { display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; animation: fadeInUp 0.8s ease 0.5s both; }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; color: #fff; line-height: 1; }
+    .stat-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 0.25rem; }
+    .stat-sep { width: 1px; background: rgba(255,255,255,0.2); align-self: stretch; }
+    .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.8s ease 0.65s both; }
+    .hero-logos { display: flex; gap: 1.5rem; align-items: center; justify-content: center; margin-bottom: 2.5rem; animation: fadeInDown 0.8s 0.3s ease both; }
+    .hero-logo-item { width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.88); border: 2px solid rgba(255,255,255,0.5); display: flex; align-items: center; justify-content: center; padding: 8px; }
+    .hero-logo-item img { width: 100%; height: 100%; object-fit: contain; }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* BTN */
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 0.75rem 1.75rem; border-radius: 8px; font-size: 0.83rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+    .btn-white { background: #fff; color: var(--morado); }
+    .btn-white:hover { background: #f0e8ff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .btn-outline-w { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.5); }
+    .btn-outline-w:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
+    .btn-morado { background: var(--morado); color: #fff; }
+    .btn-morado:hover { background: var(--morado-dark); transform: translateY(-2px); }
+    .btn-crimson { background: var(--crimson); color: #fff; }
+    .btn-crimson:hover { background: var(--crimson-dark); }
+
+    /* SECTIONS */
+    section { scroll-margin-top: 70px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; padding: 80px 2rem; }
+    .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--morado); margin-bottom: 0.5rem; }
+    .section-label.gold { color: var(--gold); }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: var(--crimson-dark); margin-bottom: 1rem; line-height: 1.2; }
+    .section-lead { font-size: 1.05rem; color: var(--gray); line-height: 1.8; max-width: 700px; margin-bottom: 2.5rem; }
+    .divider { width: 60px; height: 3px; background: linear-gradient(90deg, var(--morado), var(--crimson)); margin-bottom: 2rem; border-radius: 2px; }
+
+    /* QUÉ ES */
+    #que-es { background: var(--cream); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .img-rounded { border-radius: 20px; overflow: hidden; box-shadow: 0 12px 50px rgba(107,33,168,0.2); }
+    .img-rounded img { width: 100%; height: 380px; object-fit: cover; display: block; }
+    .definition-box { background: linear-gradient(135deg, var(--morado-dark), var(--morado)); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+    .definition-box p { font-size: 1.1rem; color: #fff; line-height: 1.7; font-style: italic; }
+    .definition-box strong { color: #E9D5FF; }
+    .info-items { display: flex; flex-direction: column; gap: 1rem; }
+    .info-item { display: flex; align-items: flex-start; gap: 1rem; }
+    .info-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--morado); flex-shrink: 0; margin-top: 6px; }
+    .info-item p { font-size: 0.95rem; color: var(--dark); line-height: 1.7; }
+
+    /* DETECCIÓN */
+    #deteccion { background: #fff; }
+    .grados-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
+    .grado-card { border-radius: 16px; overflow: hidden; box-shadow: 0 6px 30px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; }
+    .grado-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(107,33,168,0.15); }
+    .grado-head { padding: 2rem 1.5rem; text-align: center; }
+    .grado-head.g1 { background: linear-gradient(135deg, #FFF7E6, #FEF0C7); border-bottom: 3px solid #F59E0B; }
+    .grado-head.g2 { background: linear-gradient(135deg, #FEF2F2, #FEE2E2); border-bottom: 3px solid #EF4444; }
+    .grado-head.g3 { background: linear-gradient(135deg, var(--morado-dark), var(--morado)); border-bottom: 3px solid var(--morado-dark); }
+    .grado-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; line-height: 1; }
+    .grado-num.g1c { color: #B45309; }
+    .grado-num.g2c { color: #B91C1C; }
+    .grado-num.g3c { color: rgba(255,255,255,0.9); }
+    .grado-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 0.3rem; }
+    .grado-label.g1c { color: #92400E; }
+    .grado-label.g2c { color: #991B1B; }
+    .grado-label.g3c { color: rgba(255,255,255,0.7); }
+    .grado-body { background: #fff; padding: 1.5rem; }
+    .grado-emoji { font-size: 2rem; margin-bottom: 0.75rem; text-align: center; display: block; }
+    .grado-body h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--dark); margin-bottom: 0.5rem; }
+    .grado-body p { font-size: 0.9rem; color: var(--gray); line-height: 1.7; }
+    .mnemotecnia { background: linear-gradient(135deg, var(--morado-dark), var(--morado)); border-radius: 20px; padding: 3rem; text-align: center; color: #fff; }
+    .mnemotecnia h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: rgba(255,255,255,0.75); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; }
+    .mnemotecnia-code { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; color: #E9D5FF; letter-spacing: 0.15em; margin-bottom: 1rem; }
+    .mnemotecnia p { font-size: 0.93rem; color: rgba(255,255,255,0.75); line-height: 1.8; }
+    .mnemotecnia strong { color: #E9D5FF; font-size: 1rem; }
+
+    /* ACTIVACIÓN */
+    #activacion { background: var(--cream); }
+    .activacion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
+    .activacion-col { border-radius: 16px; overflow: hidden; }
+    .activacion-head { padding: 1.25rem 1.75rem; }
+    .activacion-head.si { background: linear-gradient(135deg, #064E3B, #059669); }
+    .activacion-head.no { background: linear-gradient(135deg, #7F1D1D, #DC2626); }
+    .activacion-head h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; display: flex; align-items: center; gap: 0.5rem; }
+    .activacion-body { background: #fff; padding: 1.5rem; border: 1px solid #E8E0D8; border-top: none; border-radius: 0 0 16px 16px; }
+    .activacion-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .activacion-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--dark); line-height: 1.6; }
+    .activacion-list li .ic { font-size: 1.1rem; flex-shrink: 0; }
+    .flujo-diagram { background: #fff; border-radius: 20px; border: 1px solid #E8E0D8; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.06); }
+    .flujo-header { background: linear-gradient(135deg, var(--morado-dark), var(--morado)); padding: 1.5rem 2rem; }
+    .flujo-header h3 { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.1rem; }
+    .flujo-steps { padding: 2rem; display: flex; flex-direction: column; gap: 0; }
+    .flujo-step { display: flex; align-items: flex-start; gap: 1.25rem; position: relative; padding-bottom: 1.5rem; }
+    .flujo-step:last-child { padding-bottom: 0; }
+    .flujo-step::after { content: ''; position: absolute; left: 19px; top: 44px; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--morado), transparent); }
+    .flujo-step:last-child::after { display: none; }
+    .flujo-num { width: 40px; height: 40px; border-radius: 50%; background: var(--morado); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; z-index: 1; }
+    .flujo-content h4 { font-weight: 700; font-size: 0.95rem; color: var(--dark); margin-bottom: 0.25rem; }
+    .flujo-content p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+    .flujo-branches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; padding: 1.5rem 2rem; border-top: 1px solid #F0EDE8; background: var(--cream); }
+    .flujo-branch { background: #fff; border-radius: 10px; padding: 1rem; border: 1px solid #E8E0D8; text-align: center; }
+    .flujo-branch .branch-icon { font-size: 1.5rem; display: block; margin-bottom: 0.4rem; }
+    .flujo-branch p { font-size: 0.78rem; color: var(--dark); font-weight: 700; }
+    .flujo-branch small { font-size: 0.7rem; color: var(--gray); }
+
+    /* EQUIPO */
+    #equipo { background: #fff; }
+    .equipo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .equipo-card { border-radius: 16px; border: 1px solid #E8E0D8; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+    .equipo-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(107,33,168,0.1); }
+    .equipo-head { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
+    .equipo-head.medico { background: linear-gradient(135deg, var(--crimson-dark), var(--crimson)); }
+    .equipo-head.enfermeria { background: linear-gradient(135deg, #065F46, #059669); }
+    .equipo-head.seguridad { background: linear-gradient(135deg, var(--morado-dark), var(--morado)); }
+    .equipo-head.social { background: linear-gradient(135deg, #1E40AF, #3B82F6); }
+    .equipo-icon { font-size: 2rem; }
+    .equipo-head h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #fff; }
+    .equipo-head small { font-size: 0.72rem; color: rgba(255,255,255,0.7); display: block; margin-top: 2px; }
+    .equipo-body { padding: 1.25rem 1.5rem; background: #fff; }
+    .equipo-body ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .equipo-body ul li { font-size: 0.87rem; color: var(--dark); display: flex; gap: 0.5rem; }
+    .equipo-body ul li::before { content: '›'; color: var(--morado); font-weight: 700; }
+
+    /* FASES */
+    #fases { background: linear-gradient(160deg, var(--morado-dark) 0%, var(--morado) 100%); color: #fff; }
+    #fases .section-label { color: #C4B5FD; }
+    #fases .section-title { color: #fff; }
+    #fases .section-lead { color: rgba(255,255,255,0.75); }
+    .fases-track { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; margin-bottom: 3rem; }
+    .fase-card { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 1.5rem 1rem; text-align: center; transition: background 0.3s; position: relative; }
+    .fase-card:hover { background: rgba(255,255,255,0.18); }
+    .fase-card:not(:last-child)::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.4); font-size: 1.2rem; z-index: 1; }
+    .fase-num { font-family: 'Playfair Display', serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 0.35rem; }
+    .fase-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #fff; font-weight: 700; margin-bottom: 0.5rem; }
+    .fase-detail { font-size: 0.75rem; color: rgba(255,255,255,0.65); line-height: 1.5; }
+    .seguridad-box { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 16px; padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+    .seguridad-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .seguridad-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: rgba(255,255,255,0.85); line-height: 1.6; }
+    .seguridad-list li::before { content: '✦'; color: #C4B5FD; font-size: 0.7rem; flex-shrink: 0; margin-top: 5px; }
+    .seguridad-img { border-radius: 12px; overflow: hidden; }
+    .seguridad-img img { width: 100%; height: 260px; object-fit: cover; display: block; }
+
+    /* FARMACOLOGÍA */
+    #farmacologia { background: var(--cream); }
+    .botiquin-intro { background: #fff; border-radius: 16px; border-left: 5px solid var(--morado); padding: 1.75rem 2rem; margin-bottom: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    .botiquin-intro p { font-size: 0.95rem; color: var(--dark); line-height: 1.8; }
+    .farma-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+    .farma-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); border: 1px solid #E8E0D8; }
+    .farma-head { padding: 1.25rem 1.5rem; }
+    .farma-head.nopsiq { background: linear-gradient(135deg, #1E40AF, #2563EB); }
+    .farma-head.orgpsiq { background: linear-gradient(135deg, var(--morado-dark), var(--morado)); }
+    .farma-head h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: #fff; }
+    .farma-body { padding: 1.5rem; }
+    .farma-pauta { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px dashed #E8E0D8; }
+    .farma-pauta:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .farma-pauta h4 { font-size: 0.83rem; font-weight: 700; color: var(--dark); margin-bottom: 0.35rem; }
+    .farma-pauta p { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
+    .botiquin-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .botiquin-item { background: #fff; border-radius: 10px; padding: 0.85rem 1.1rem; border: 1px solid #E8E0D8; display: flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; color: var(--dark); }
+    .botiquin-item::before { content: '💊'; font-size: 1rem; flex-shrink: 0; }
+    .botiquin-note { background: linear-gradient(135deg, var(--morado-dark), var(--morado)); border-radius: 12px; padding: 1.25rem 1.75rem; color: rgba(255,255,255,0.85); font-size: 0.88rem; line-height: 1.7; margin-top: 1.5rem; }
+
+    /* CIFRAS IMPACTO */
+    #impacto { background: var(--crimson-dark); }
+    #impacto .section-inner { padding: 60px 2rem; }
+    .impacto-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .impacto-stat { text-align: center; }
+    .impacto-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--gold-light); line-height: 1; margin-bottom: 0.5rem; }
+    .impacto-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+    .impacto-desc { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-top: 0.25rem; }
+
+    /* DOCS */
+    #documentos { background: #fff; }
+    .docs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .doc-card { background: var(--cream); border-radius: 16px; padding: 2rem; border: 1px solid #E8E0D8; display: flex; gap: 1.5rem; align-items: flex-start; transition: transform 0.3s, box-shadow 0.3s; }
+    .doc-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(107,33,168,0.1); }
+    .doc-icon { font-size: 2.5rem; flex-shrink: 0; }
+    .doc-content h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--crimson-dark); margin-bottom: 0.5rem; }
+    .doc-content p { font-size: 0.87rem; color: var(--gray); line-height: 1.6; margin-bottom: 1rem; }
+    .doc-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .doc-tag { font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.65rem; border-radius: 100px; background: var(--morado-light); color: var(--morado); }
+
+    /* PRENSA */
+    #prensa { background: var(--cream); }
+    .prensa-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .prensa-card { background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid #E8E0D8; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+    .prensa-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(107,33,168,0.1); }
+    .prensa-img { height: 180px; overflow: hidden; }
+    .prensa-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .prensa-card:hover .prensa-img img { transform: scale(1.04); }
+    .prensa-body { padding: 1.25rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .prensa-source { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--morado); margin-bottom: 0.4rem; }
+    .prensa-body h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--dark); margin-bottom: 0.6rem; line-height: 1.4; }
+    .prensa-body p { font-size: 0.83rem; color: var(--gray); line-height: 1.6; flex: 1; }
+    .prensa-foot { padding: 1rem 1.5rem; border-top: 1px solid #F0EDE8; display: flex; align-items: center; justify-content: space-between; }
+    .prensa-date { font-size: 0.73rem; color: var(--gray); }
+    .prensa-link { font-size: 0.76rem; font-weight: 700; color: var(--morado); text-decoration: none; display: flex; align-items: center; gap: 4px; }
+    .prensa-link:hover { color: var(--morado-dark); }
+
+    /* FOOTER */
+    footer { background: var(--dark); color: rgba(255,255,255,0.6); padding: 2.5rem; text-align: center; font-size: 0.85rem; }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .two-col, .grados-grid, .activacion-grid, .farma-grid, .equipo-grid, .prensa-grid, .docs-grid { grid-template-columns: 1fr; }
+      .fases-track { grid-template-columns: 1fr 1fr; }
+      .impacto-grid { grid-template-columns: repeat(2, 1fr); }
+      .flujo-branches { grid-template-columns: repeat(2, 1fr); }
+      .seguridad-box { grid-template-columns: 1fr; }
+      .botiquin-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .fases-track { grid-template-columns: 1fr; }
+      .impacto-grid { grid-template-columns: 1fr 1fr; }
+      .hero-stats .stat-sep { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" alt="Psiquiatría CMN 20 de Noviembre" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="psiq.html">Residencia</a></li>
+      <li><a href="index.html#publicaciones">Publicaciones</a></li>
+      <li><a href="index.html#social">Redes</a></li>
+      <li><a href="index.html#ubicacion">Contacto</a></li>
+      <li><a href="codigomorado.html" class="active">🟣 Código Morado</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-logos">
+    <div class="hero-logo-item">
+      <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" alt="Psiquiatría CMN" />
+    </div>
+    <div class="hero-logo-item">
+      <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/issste-logo.png" alt="ISSSTE" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/ISSSTE_logo.svg/200px-ISSSTE_logo.svg.png'" />
+    </div>
+  </div>
+  <div class="hero-badge-top">🟣 Protocolo Institucional ISSSTE</div>
+  <div class="hero-code">
+    <div class="hero-code-label">Protocolo de Urgencias en Salud Mental</div>
+    <div class="hero-code-title">Código Morado</div>
+  </div>
+  <h1 class="hero-title">Guía Operativa para el Manejo Integral<br>de Urgencias en Salud Mental</h1>
+  <p class="hero-desc">El Centro Médico Nacional "20 de Noviembre" del ISSSTE es institución pionera y parte fundamental del Grupo Técnico que desarrolló e implementa el Código Morado — protocolo nacional de atención inmediata y con pleno apego a los Derechos Humanos para personas en descompensación psiquiátrica aguda.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">+5,000</div>
+      <div class="stat-label">Casos atendidos</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <div class="stat-num">92</div>
+      <div class="stat-label">Unidades ISSSTE</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat">
+      <div class="stat-num">Versión 3</div>
+      <div class="stat-label">Abril 2024</div>
+    </div>
+  </div>
+  <div class="hero-ctas">
+    <a href="https://github.com/moymaa/psiquiatria20/raw/4d7ec38188b4cf80fdc561a672aa33be8fff21d9/20_Gui%CC%81a%20Operativa%20Co%CC%81digo%20Morado.pdf" target="_blank" class="btn btn-white">📄 Descargar Guía Operativa</a>
+    <a href="#que-es" class="btn btn-outline-w">Conocer más ↓</a>
+  </div>
+</section>
+
+<!-- QUÉ ES -->
+<section id="que-es">
+  <div class="section-inner">
+    <div class="two-col">
+      <div>
+        <div class="section-label">Definición</div>
+        <h2 class="section-title">¿Qué es el Código Morado?</h2>
+        <div class="divider"></div>
+        <div class="definition-box">
+          <p>Protocolo de <strong>atención inmediata y multidisciplinaria</strong> de la persona psiquiátricamente descompensada que se encuentre en riesgo o pudiera representar un riesgo a terceros — con pleno apego a los Derechos Humanos.</p>
+        </div>
+        <div class="info-items">
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <p>Las urgencias en salud mental comprenden cualquier alteración emocional y de la conducta que puede producir daños a otras personas o a sí mismo, requiriendo atención inmediata y eficaz.</p>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <p>El Código Morado retoma la denominación del Sistema Nacional de Protección Civil, donde dicho código se asocia a la conducta violenta (Orellana, 2016; CNDH, 2022).</p>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <p>Desde su primera edición en 2021, ha sido implementado en los tres niveles de atención del ISSSTE: Centro Médico Nacional, 14 Hospitales Regionales, 26 Hospitales Generales y 52 Clínicas Hospitales.</p>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <p>El CMN "20 de Noviembre" —a través de la Dra. Marta Georgina Ochoa Madrigal— forma parte del Grupo Técnico Interinstitucional que desarrolló y actualiza esta guía.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="img-rounded">
+          <img src="https://www.saludiario.com/wp-content/uploads/2022/10/codigo-morado-salud-mental.jpg" 
+               onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&auto=format&fit=crop'"
+               alt="Código Morado — Urgencias en Salud Mental ISSSTE" />
+        </div>
+        <div style="background: var(--morado-light); border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem; border-left: 4px solid var(--morado);">
+          <p style="font-size: 0.9rem; color: var(--dark); line-height: 1.7;"><strong style="color: var(--morado);">Dra. Marta Georgina Ochoa Madrigal</strong><br>Jefa del Servicio de Psiquiatría, Paidopsiquiatría, Psicología y Neuropsicología del CMN "20 de Noviembre" — miembro del Grupo Técnico autor de la Guía Operativa Código Morado (ISSSTE, 2024).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETECCIÓN -->
+<section id="deteccion">
+  <div class="section-inner">
+    <div class="section-label">Identificación</div>
+    <h2 class="section-title">¿Cómo detectar un Código Morado?</h2>
+    <div class="divider"></div>
+    <p class="section-lead">El personal de salud identifica tres grados de escalada mediante la mnemotecnia HI GI GA, que permite una activación rápida y estandarizada en toda unidad médica del ISSSTE.</p>
+
+    <div class="grados-grid">
+      <div class="grado-card">
+        <div class="grado-head g1">
+          <div class="grado-num g1c">I</div>
+          <div class="grado-label g1c">Grado I — Alerta Temprana</div>
+        </div>
+        <div class="grado-body">
+          <span class="grado-emoji">😠</span>
+          <h3>Hostil, Irritable</h3>
+          <p>El paciente muestra hostilidad marcada e irritabilidad. Actitud tensa pero sin conducta abiertamente agresiva. Es el momento ideal para iniciar técnicas de de-escalada verbal.</p>
+        </div>
+      </div>
+      <div class="grado-card">
+        <div class="grado-head g2">
+          <div class="grado-num g2c">II</div>
+          <div class="grado-label g2c">Grado II — Escalada Activa</div>
+        </div>
+        <div class="grado-body">
+          <span class="grado-emoji">🗣️</span>
+          <h3>Grita, Insulta</h3>
+          <p>Gritos, insultos y lenguaje amenazante hacia el personal o hacia sí mismo. Se requiere activar al equipo multidisciplinario. Preparar el entorno y las opciones farmacológicas.</p>
+        </div>
+      </div>
+      <div class="grado-card">
+        <div class="grado-head g3">
+          <div class="grado-num g3c">III</div>
+          <div class="grado-label g3c">Grado III — Crisis Activa</div>
+        </div>
+        <div class="grado-body">
+          <span class="grado-emoji">⚠️</span>
+          <h3>Golpea, Amenaza</h3>
+          <p>Agresión física activa o amenaza inminente. Activación inmediata del voceo institucional. Intervención coordinada de todo el equipo, incluyendo personal de seguridad.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mnemotecnia">
+      <h3>Mnemotecnia de Activación</h3>
+      <div class="mnemotecnia-code">HI · GI · GA</div>
+      <p><strong>HI</strong>stil, irritable &nbsp;|&nbsp; <strong>GI</strong>rita, insulta &nbsp;|&nbsp; <strong>GA</strong>golpea, amenaza</p>
+      <p style="margin-top: 1rem; font-size: 0.85rem;">Al identificar cualquier grado, el personal activa verbalmente el Código Morado y, de contar con sistema de alarma en urgencias, medicina interna o consulta externa, activa la señal acústica de alerta.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVACIÓN Y FLUJO -->
+<section id="activacion">
+  <div class="section-inner">
+    <div class="section-label">Protocolo</div>
+    <h2 class="section-title">Activación y Flujo de Atención</h2>
+    <div class="divider"></div>
+
+    <div class="activacion-grid" style="margin-bottom: 2.5rem;">
+      <div class="activacion-col">
+        <div class="activacion-head si">
+          <h3>✅ &nbsp;Debe activarse cuando hay…</h3>
+        </div>
+        <div class="activacion-body">
+          <ul class="activacion-list">
+            <li><span class="ic">🔴</span> Amenaza verbal creíble con escalamiento progresivo</li>
+            <li><span class="ic">🔴</span> Agresión física activa contra personas o mobiliario</li>
+            <li><span class="ic">🔴</span> Destrucción de mobiliario o bienes materiales</li>
+            <li><span class="ic">🔴</span> Intento de autolesión con riesgo inmediato</li>
+            <li><span class="ic">🔴</span> Agitación psicomotriz severa no contenible verbalmente</li>
+          </ul>
+        </div>
+      </div>
+      <div class="activacion-col">
+        <div class="activacion-head no">
+          <h3>❌ &nbsp;NO debe activarse por…</h3>
+        </div>
+        <div class="activacion-body">
+          <ul class="activacion-list">
+            <li><span class="ic">🟡</span> Paciente demandante pero sin agresión real</li>
+            <li><span class="ic">🟡</span> Paciente verbalmente incómodo pero no violento</li>
+            <li><span class="ic">🟡</span> Conflicto administrativo o de atención</li>
+            <li><span class="ic">🟡</span> Molestia o inconformidad expresada con calma</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="flujo-diagram">
+      <div class="flujo-header">
+        <h3>🟣 Diagrama de Manejo Inicial — Código Morado</h3>
+      </div>
+      <div class="flujo-steps">
+        <div class="flujo-step">
+          <div class="flujo-num">1</div>
+          <div class="flujo-content">
+            <h4>Identificación y Activación</h4>
+            <p>Personal detecta conducta en alguno de los 3 grados. Activa verbalmente el Código Morado. Se difunde por voceo indicando "Código Morado" y su ubicación exacta.</p>
+          </div>
+        </div>
+        <div class="flujo-step">
+          <div class="flujo-num">2</div>
+          <div class="flujo-content">
+            <h4>Respuesta Multidisciplinaria Inmediata</h4>
+            <p>Convergencia simultánea de personal sanitario (médico + enfermería), personal de seguridad y trabajo social. Cada equipo asume su rol predefinido sin superposición.</p>
+          </div>
+        </div>
+        <div class="flujo-step">
+          <div class="flujo-num">3</div>
+          <div class="flujo-content">
+            <h4>De-escalada Verbal (Primera Línea)</h4>
+            <p>Técnicas verbales y no verbales: calma, respeto, espacio personal, empatía, límites claros. Objetivo: tranquilizar al paciente sin restricción física ni farmacológica.</p>
+          </div>
+        </div>
+        <div class="flujo-step">
+          <div class="flujo-num">4</div>
+          <div class="flujo-content">
+            <h4>Contención Farmacológica (si persiste agitación)</h4>
+            <p>Uso de agentes del botiquín Código Morado según etiología identificada. Preferencia por vía oral; parenteral solo si es necesario. Consentimiento informado al paciente o familiar.</p>
+          </div>
+        </div>
+        <div class="flujo-step">
+          <div class="flujo-num">5</div>
+          <div class="flujo-content">
+            <h4>Evaluación Psiquiátrica y Destino</h4>
+            <p>Médico o profesional autorizado evalúa dentro de la primera hora. Determina: egreso a domicilio con seguimiento, o pasa a hospitalización de corta estancia (6-8 días).</p>
+          </div>
+        </div>
+      </div>
+      <div class="flujo-branches">
+        <div class="flujo-branch">
+          <span class="branch-icon">💊</span>
+          <p>Contención<br>Farmacológica</p>
+          <small>Personal sanitario</small>
+        </div>
+        <div class="flujo-branch">
+          <span class="branch-icon">👨‍👩‍👧</span>
+          <p>Intervención<br>Familiar</p>
+          <small>Trabajo Social</small>
+        </div>
+        <div class="flujo-branch">
+          <span class="branch-icon">🏥</span>
+          <p>Hospitalización<br>o Egreso</p>
+          <small>Psiquiatría</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section id="equipo">
+  <div class="section-inner">
+    <div class="section-label">Roles y Responsabilidades</div>
+    <h2 class="section-title">Equipo Multidisciplinario</h2>
+    <div class="divider"></div>
+    <p class="section-lead">La atención del Código Morado es inmediata y multidisciplinaria. Cada integrante tiene un rol predefinido que garantiza eficacia y seguridad para el paciente y el personal.</p>
+
+    <div class="equipo-grid">
+      <div class="equipo-card">
+        <div class="equipo-head medico">
+          <span class="equipo-icon">👨‍⚕️</span>
+          <div>
+            <h3>Personal Médico</h3>
+            <small>Líder clínico del protocolo</small>
+          </div>
+        </div>
+        <div class="equipo-body">
+          <ul>
+            <li>Evalúa la etiología de la agitación psicomotriz</li>
+            <li>Prescribe la contención farmacológica según pauta</li>
+            <li>Autoriza y documenta la sujeción terapéutica</li>
+            <li>Realiza evaluación psiquiátrica y determina el destino</li>
+            <li>Obtiene el consentimiento informado del paciente o familiar</li>
+          </ul>
+        </div>
+      </div>
+      <div class="equipo-card">
+        <div class="equipo-head enfermeria">
+          <span class="equipo-icon">👩‍⚕️</span>
+          <div>
+            <h3>Personal de Enfermería</h3>
+            <small>Soporte clínico y monitoreo</small>
+          </div>
+        </div>
+        <div class="equipo-body">
+          <ul>
+            <li>Administra la medicación indicada por el médico</li>
+            <li>Monitorea signos vitales y respiración durante la contención</li>
+            <li>Prepara el botiquín Código Morado</li>
+            <li>Mantiene vigilancia continua del paciente sujeto</li>
+            <li>Documenta en bitácora de seguimiento de sujeción</li>
+          </ul>
+        </div>
+      </div>
+      <div class="equipo-card">
+        <div class="equipo-head seguridad">
+          <span class="equipo-icon">👮</span>
+          <div>
+            <h3>Personal de Seguridad</h3>
+            <small>Control ambiental — rol NO punitivo</small>
+          </div>
+        </div>
+        <div class="equipo-body">
+          <ul>
+            <li>Llega de manera inmediata y visible al área</li>
+            <li>Evalúa riesgos ambientales: objetos, salidas, mobiliario</li>
+            <li>Controla accesos y despeja el área de personas ajenas</li>
+            <li>Espera indicación verbal del líder clínico para contención física</li>
+            <li>Participa en la sujeción terapéutica de forma coordinada</li>
+          </ul>
+        </div>
+      </div>
+      <div class="equipo-card">
+        <div class="equipo-head social">
+          <span class="equipo-icon">🤝</span>
+          <div>
+            <h3>Trabajo Social y Administrativo</h3>
+            <small>Intervención familiar y gestión</small>
+          </div>
+        </div>
+        <div class="equipo-body">
+          <ul>
+            <li>Inicia la intervención con la familia del paciente</li>
+            <li>Notifica a familiares y obtiene datos para el expediente</li>
+            <li>Coordina gestiones para la hospitalización si se requiere</li>
+            <li>Apoya la difusión del código por voceo institucional</li>
+            <li>Vincula con redes de apoyo externas e institucionales</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FASES DE INTERVENCIÓN -->
+<section id="fases">
+  <div class="section-inner">
+    <div class="section-label gold">Fases de Intervención</div>
+    <h2 class="section-title" style="color: #fff;">De la Prevención a la Resolución</h2>
+    <div class="divider" style="background: linear-gradient(90deg, #C4B5FD, var(--gold));"></div>
+    <p class="section-lead">El protocolo contempla cinco fases escalonadas. Solo se avanza a la siguiente si la agitación persiste, privilegiando siempre el mínimo nivel de intervención necesario.</p>
+
+    <div class="fases-track">
+      <div class="fase-card">
+        <div class="fase-num">Fase 0</div>
+        <div class="fase-name">Prevención</div>
+        <div class="fase-detail">Reducción de estímulos, ambiente seguro, detección temprana</div>
+      </div>
+      <div class="fase-card">
+        <div class="fase-num">Fase 1</div>
+        <div class="fase-name">Primer Contacto</div>
+        <div class="fase-detail">Aproximación respetuosa, rapport, evaluación de necesidades básicas</div>
+      </div>
+      <div class="fase-card">
+        <div class="fase-num">Fase 2</div>
+        <div class="fase-name">De-escalada Verbal</div>
+        <div class="fase-detail">Estrategias verbales y no verbales, límites claros, empatía activa</div>
+      </div>
+      <div class="fase-card">
+        <div class="fase-num">Fase 3</div>
+        <div class="fase-name">Tratamiento Farmacológico</div>
+        <div class="fase-detail">Contención química según etiología: psiquiátrica, orgánica o tóxica</div>
+      </div>
+      <div class="fase-card">
+        <div class="fase-num">Fase 4</div>
+        <div class="fase-name">Sujeción Terapéutica</div>
+        <div class="fase-detail">Último recurso. Mínimo 5 personas, coordinada, con monitoreo continuo</div>
+      </div>
+    </div>
+
+    <div class="seguridad-box">
+      <div>
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #E9D5FF; margin-bottom: 1rem;">Principios de la Sujeción Terapéutica</h3>
+        <ul class="seguridad-list">
+          <li>Indicada únicamente por el médico tratante con justificación clínica documentada</li>
+          <li>Equipo mínimo de 5 personas con líder designado, idealmente mixto en género</li>
+          <li>Jamás como sustituto del tratamiento ni como castigo o respuesta a comportamiento desagradable</li>
+          <li>Monitoreo continuo de circulación, respiración y posición durante todo el procedimiento</li>
+          <li>Retirar la sujeción lo antes posible; seguimiento con retroalimentación al paciente</li>
+          <li>Documentación en consentimiento, bitácora y nota médica conforme a NOM-025-SSA2-2014</li>
+        </ul>
+      </div>
+      <div class="seguridad-img">
+        <img src="https://www.fmc.es/images/contenciones-mecanicas-paciente-agitado.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=600&auto=format&fit=crop'"
+             alt="Contención terapéutica coordinada — protocolo Código Morado" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FARMACOLOGÍA -->
+<section id="farmacologia">
+  <div class="section-inner">
+    <div class="section-label">Estrategia Farmacológica</div>
+    <h2 class="section-title">Botiquín y Pautas de Tratamiento</h2>
+    <div class="divider"></div>
+
+    <div class="botiquin-intro">
+      <p>🧳 Se requieren <strong>dos botiquines Código Morado</strong> por unidad: uno en urgencias y otro en hospitalización de medicina interna. La selección del fármaco depende de la etiología identificada de la agitación psicomotriz. Se privilegia <strong>siempre la vía oral</strong>; la parenteral se emplea únicamente cuando el paciente no acepta la vía oral o el grado de agitación lo requiere.</p>
+    </div>
+
+    <div class="farma-grid">
+      <div class="farma-card">
+        <div class="farma-head nopsiq">
+          <h3>🧠 Agitación Psiquiátrica No Psicótica</h3>
+        </div>
+        <div class="farma-body">
+          <div class="farma-pauta">
+            <h4>Pauta 1 — Primera línea</h4>
+            <p>Alprazolam 0.5–2 mg VO. Iniciar con 0.5 mg.</p>
+          </div>
+          <div class="farma-pauta">
+            <h4>Pauta 2</h4>
+            <p>Lorazepam 2–5 mg VO. Iniciar con 1 mg vía oral.</p>
+          </div>
+          <div class="farma-pauta">
+            <h4>Pauta 3 — Si no acepta VO</h4>
+            <p>Diazepam 5–10 mg IM o IV cada 6–8 min hasta mejoría. Máximo 100 mg/día.</p>
+          </div>
+        </div>
+      </div>
+      <div class="farma-card">
+        <div class="farma-head orgpsiq">
+          <h3>🔬 Agitación Orgánica o Psicótica</h3>
+        </div>
+        <div class="farma-body">
+          <div class="farma-pauta">
+            <h4>Pauta 1 — Primera línea</h4>
+            <p>Olanzapina tabletas 5–30 mg/día. Iniciar con 10 mg en adultos (5 mg en adultos mayores). IM si rechaza VO.</p>
+          </div>
+          <div class="farma-pauta">
+            <h4>Pauta 2</h4>
+            <p>Haloperidol 5–10 mg cada 30–45 min hasta mejoría. Máximo 100 mg/día. Adultos mayores: mitad de dosis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-bottom: 0.75rem;">Contenido del Botiquín Código Morado</div>
+    <div class="botiquin-grid">
+      <div class="botiquin-item">Clonazepam solución oral 2.5 mg/ml — 1 frasco 10 ml</div>
+      <div class="botiquin-item">Lorazepam 1 mg tabletas — 40 tabletas</div>
+      <div class="botiquin-item">Alprazolam 2 mg tabletas — 30 tabletas</div>
+      <div class="botiquin-item">Haloperidol 5 mg tabletas — 20 tabletas</div>
+      <div class="botiquin-item">Clonazepam 2 mg tabletas — 30 tabletas</div>
+      <div class="botiquin-item">Olanzapina 10 mg tabletas — 4 tabletas</div>
+      <div class="botiquin-item">Olanzapina inyectable 10 mg/2 ml — 1 ámpula</div>
+      <div class="botiquin-item">Diazepam inyectable 10 mg/2 ml — 5 ámpulas</div>
+      <div class="botiquin-item">Haloperidol inyectable 5 mg/ml — 6 ámpulas</div>
+      <div class="botiquin-item">Equipo homologado de sujeción terapéutica</div>
+    </div>
+    <div class="botiquin-note">
+      💡 <strong>Importante:</strong> Para la adquisición de estos insumos, realizar gestiones con los Jefes de Farmacia de cada unidad médica. La disponibilidad del botiquín es responsabilidad de cada servicio con camas designadas para Código Morado.
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO -->
+<section id="impacto">
+  <div class="section-inner">
+    <div class="impacto-grid">
+      <div class="impacto-stat">
+        <div class="impacto-num">+5,000</div>
+        <div class="impacto-label">Casos Atendidos</div>
+        <div class="impacto-desc">En urgencias de salud mental a nivel nacional desde 2021</div>
+      </div>
+      <div class="impacto-stat">
+        <div class="impacto-num">92</div>
+        <div class="impacto-label">Unidades Médicas</div>
+        <div class="impacto-desc">Implementación en 3 niveles de atención ISSSTE</div>
+      </div>
+      <div class="impacto-stat">
+        <div class="impacto-num">+140</div>
+        <div class="impacto-label">Camas Habilitadas</div>
+        <div class="impacto-desc">Unidades médicas especializadas en salud mental</div>
+      </div>
+      <div class="impacto-stat">
+        <div class="impacto-num">2024</div>
+        <div class="impacto-label">Plan Sectorial</div>
+        <div class="impacto-desc">Modelo referente para el sector salud en México</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTOS -->
+<section id="documentos">
+  <div class="section-inner">
+    <div class="section-label">Recursos Oficiales</div>
+    <h2 class="section-title">Documentos para Descarga</h2>
+    <div class="divider"></div>
+
+    <div class="docs-grid">
+      <div class="doc-card">
+        <div class="doc-icon">📘</div>
+        <div class="doc-content">
+          <h3>Guía Operativa — Versión 3 (2024)</h3>
+          <div class="doc-meta">
+            <span class="doc-tag">Versión 3 — Abril 2024</span>
+            <span class="doc-tag">42 páginas</span>
+            <span class="doc-tag">ISSSTE · Dirección Médica</span>
+          </div>
+          <p>Guía completa para el manejo integral de urgencias en salud mental. Incluye protocolo de activación, fases de intervención, farmacología, manejo pediátrico, sujeción terapéutica y anexos.</p>
+          <a href="https://github.com/moymaa/psiquiatria20/raw/4d7ec38188b4cf80fdc561a672aa33be8fff21d9/20_Gui%CC%81a%20Operativa%20Co%CC%81digo%20Morado.pdf" target="_blank" class="btn btn-morado">⬇️ Descargar PDF</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon">🛡️</div>
+        <div class="doc-content">
+          <h3>Código Morado — Personal de Seguridad</h3>
+          <div class="doc-meta">
+            <span class="doc-tag">Capacitación</span>
+            <span class="doc-tag">CMN 20 de Noviembre</span>
+          </div>
+          <p>Presentación educativa específica para el personal de seguridad con las acciones concretas a realizar durante una activación de Código Morado: rol, técnicas de contención y protección legal.</p>
+          <a href="Co_digo_MORADO_-_Personal_de_Seguridad__1_.pdf" target="_blank" class="btn btn-crimson">⬇️ Descargar Presentación</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRENSA -->
+<section id="prensa">
+  <div class="section-inner">
+    <div class="section-label">Cobertura Mediática</div>
+    <h2 class="section-title">Código Morado en los Medios</h2>
+    <div class="divider"></div>
+
+    <div class="prensa-grid">
+      <div class="prensa-card">
+        <div class="prensa-img">
+          <img src="https://www.saludiario.com/wp-content/uploads/2022/10/codigo-morado-salud-mental.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&auto=format&fit=crop'"
+               alt="Código Morado ISSSTE Saludiario" />
+        </div>
+        <div class="prensa-body">
+          <div class="prensa-source">Saludiario</div>
+          <h3>ISSSTE Código Morado: pionero en atención integral de urgencias en salud mental</h3>
+          <p>Análisis del impacto del protocolo y su implementación progresiva en todas las unidades médicas del Instituto.</p>
+        </div>
+        <div class="prensa-foot">
+          <span class="prensa-date">2022</span>
+          <a href="https://www.saludiario.com/issste-codigo-morado-salud-mental/" target="_blank" class="prensa-link">Leer artículo →</a>
+        </div>
+      </div>
+      <div class="prensa-card">
+        <div class="prensa-img">
+          <img src="https://revistafortuna.com.mx/wp-content/uploads/2025/10/codigo-morado-issste.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1576671081837-49000212a370?w=600&auto=format&fit=crop'"
+               alt="Código Morado ISSSTE Revista Fortuna" />
+        </div>
+        <div class="prensa-body">
+          <div class="prensa-source">Revista Fortuna</div>
+          <h3>Código Morado del ISSSTE, protocolo pionero nacional para urgencias en salud mental</h3>
+          <p>Crónica del desarrollo e implementación del protocolo como modelo referente para el sector salud en México y Latinoamérica.</p>
+        </div>
+        <div class="prensa-foot">
+          <span class="prensa-date">Octubre 2025</span>
+          <a href="https://revistafortuna.com.mx/2025/10/12/codigo-morado-del-issste-protocolo-pionero-nacional-para-urgencias-en-salud-mental/" target="_blank" class="prensa-link">Leer artículo →</a>
+        </div>
+      </div>
+      <div class="prensa-card">
+        <div class="prensa-img">
+          <img src="https://www.gob.mx/cms/uploads/image/file/800000/ISSSTE_salud_mental_latinoamerica.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&auto=format&fit=crop'"
+               alt="ISSSTE Red de Salud Mental Latinoamérica" />
+        </div>
+        <div class="prensa-body">
+          <div class="prensa-source">Gobierno de México — ISSSTE</div>
+          <h3>Consolida ISSSTE la mayor red de atención en urgencias de salud mental en Latinoamérica</h3>
+          <p>El ISSSTE ha implementado más de 140 camas y dos unidades completas de hospitalización de mediana estancia en salud mental a nivel nacional.</p>
+        </div>
+        <div class="prensa-foot">
+          <span class="prensa-date">2024</span>
+          <a href="https://www.gob.mx/issste/prensa/consolida-issste-la-mayor-red-de-atencion-en-urgencias-de-salud-mental-en-latinoamerica" target="_blank" class="prensa-link">Leer comunicado →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Servicio de Psiquiatría, Paidopsiquiatría, Psicología y Neuropsicología &mdash; CMN "20 de Noviembre" ISSSTE</p>
+  <p style="margin-top: 0.5rem;">Protocolo Código Morado — Versión 3, Abril 2024 · <a href="mailto:saludmental@issste.gob.mx">saludmental@issste.gob.mx</a></p>
+  <p style="margin-top: 0.75rem;"><a href="index.html">← Regresar al sitio principal</a></p>
+</footer>
+
+<script>
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
