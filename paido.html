@@ -6,86 +6,141 @@
   <title>Paidopsiquiatría · CMN 20 de Noviembre</title>
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --teal: #1A6B5A; --teal-dark: #114A3E; --teal-mid: #2A8A72;
-      --gold: #C9A45A; --gold-light: #E8D5A3;
-      --cream: #F0F8F5; --dark: #1A1A1A; --gray: #5A6A62;
+      --purple:      #5B2D8E;
+      --purple-dark: #3D1A6B;
+      --purple-mid:  #7A3DB8;
+      --purple-soft: #9B59D0;
+      --purple-light:#F0E8FA;
+      --purple-pale: #F8F2FF;
+      --gold:        #C9A45A;
+      --gold-light:  #E8D5A3;
+      --cream:       #FAF7FF;
+      --dark:        #1A1A2E;
+      --gray:        #5A546A;
+      --border:      #D8C8EF;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body { font-family:'Lato',sans-serif; color:var(--dark); background:#fff; overflow-x:hidden; }
 
-    nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(255,255,255,0.97); backdrop-filter:blur(10px); border-bottom:3px solid var(--teal); box-shadow:0 2px 20px rgba(26,107,90,0.1); }
+    /* ── NAV ──────────────────────────────────────────────────────────── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      background:rgba(255,255,255,0.97); backdrop-filter:blur(10px);
+      border-bottom:3px solid var(--purple); box-shadow:0 2px 20px rgba(91,45,142,.1);
+    }
     .nav-inner { max-width:1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; height:70px; }
     .nav-logo { display:flex; align-items:center; gap:.75rem; text-decoration:none; }
     .nav-logo img { height:46px; width:auto; }
-    .nav-links { display:flex; list-style:none; align-items:center; gap:0; }
-    .nav-links > li > a { display:flex; align-items:center; gap:4px; padding:.55rem .8rem; font-size:.76rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; color:var(--teal-dark); transition:color .2s; }
+    .nav-links { display:flex; list-style:none; align-items:center; }
+    .nav-links > li > a { display:flex; align-items:center; gap:4px; padding:.55rem .8rem; font-size:.76rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; color:var(--purple-dark); transition:color .2s; }
     .nav-links > li > a:hover { color:var(--gold); }
-    .nav-back { background:var(--teal); color:#fff !important; border-radius:6px; padding:.45rem 1rem !important; }
-    .nav-back:hover { background:var(--teal-dark) !important; }
+    .nav-back { background:var(--purple) !important; color:#fff !important; border-radius:6px; padding:.45rem 1rem !important; margin-left:.5rem; }
+    .nav-back:hover { background:var(--purple-dark) !important; }
     .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
-    .hamburger span { width:26px; height:2px; background:var(--teal); border-radius:2px; }
+    .hamburger span { width:26px; height:2px; background:var(--purple); border-radius:2px; }
 
-    .hero { min-height:100vh; background:linear-gradient(150deg,var(--teal-dark) 0%,var(--teal) 55%,var(--teal-mid) 100%); display:flex; align-items:center; padding:100px 2rem 60px; position:relative; overflow:hidden; }
-    .hero::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+    /* ── HERO ─────────────────────────────────────────────────────────── */
+    .hero {
+      min-height:100vh;
+      background:linear-gradient(150deg, var(--purple-dark) 0%, var(--purple) 55%, var(--purple-mid) 100%);
+      display:flex; align-items:center; padding:100px 2rem 60px; position:relative; overflow:hidden;
+    }
+    .hero::before {
+      content:''; position:absolute; inset:0;
+      background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
     .hero-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; position:relative; z-index:1; }
-    .hero-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(201,164,90,0.2); border:1px solid rgba(201,164,90,0.4); border-radius:100px; padding:.4rem 1rem; font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-light); margin-bottom:1.25rem; }
+    .hero-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(201,164,90,.2); border:1px solid rgba(201,164,90,.4); border-radius:100px; padding:.4rem 1rem; font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-light); margin-bottom:1.25rem; }
     .hero-title { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,4vw,3.4rem); font-weight:700; color:#fff; line-height:1.15; margin-bottom:.75rem; }
     .hero-title span { color:var(--gold-light); font-style:italic; }
     .hero-desc { font-size:1.05rem; color:rgba(255,255,255,.82); line-height:1.8; margin-bottom:2rem; }
     .hero-cta { display:flex; gap:1rem; flex-wrap:wrap; }
-    .hero-logo-wrap { width:260px; height:260px; margin:0 auto; background:#fff; border:4px solid rgba(255,255,255,.7); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 40px rgba(0,0,0,.3),0 0 0 8px rgba(255,255,255,.1); position:relative; animation:float 6s ease-in-out infinite; }
+
+    .hero-visual { position:relative; display:flex; justify-content:center; }
+    .hero-logo-wrap {
+      width:260px; height:260px;
+      background:#ffffff;
+      border:4px solid rgba(255,255,255,.8);
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      box-shadow:0 8px 40px rgba(0,0,0,.3), 0 0 0 8px rgba(255,255,255,.12);
+      animation:float 6s ease-in-out infinite;
+    }
     .hero-logo-wrap img { width:200px; height:200px; object-fit:contain; }
     @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
     .hero-badge { position:absolute; bottom:-10px; right:-10px; background:var(--gold); border-radius:12px; padding:1rem 1.25rem; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,.2); }
-    .hero-badge strong { display:block; font-family:'Playfair Display',serif; font-size:1.3rem; color:#fff; line-height:1; }
-    .hero-badge span { font-size:.62rem; text-transform:uppercase; letter-spacing:.1em; color:rgba(255,255,255,.85); }
+    .hero-badge strong { display:block; font-family:'Playfair Display',serif; font-size:1.6rem; color:#fff; line-height:1; }
+    .hero-badge span { font-size:.62rem; text-transform:uppercase; letter-spacing:.1em; color:rgba(255,255,255,.88); }
 
-    .stats-bar { background:var(--teal-dark); }
-    .stats-inner { max-width:1100px; margin:0 auto; padding:2.5rem 2rem; display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
+    /* ── STATS BAR ────────────────────────────────────────────────────── */
+    .stats-bar { background:var(--purple-dark); }
+    .stats-inner { max-width:1100px; margin:0 auto; padding:2.5rem 2rem; display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; }
     .stat { text-align:center; padding:1rem; border-right:1px solid rgba(255,255,255,.1); }
     .stat:last-child { border-right:none; }
-    .stat-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--gold); display:block; line-height:1; margin-bottom:.3rem; }
-    .stat-label { font-size:.75rem; color:rgba(255,255,255,.65); text-transform:uppercase; letter-spacing:.1em; }
+    .stat-num { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; color:var(--gold); display:block; line-height:1; margin-bottom:.3rem; }
+    .stat-label { font-size:.72rem; color:rgba(255,255,255,.65); text-transform:uppercase; letter-spacing:.08em; }
 
+    /* ── GENERAL ──────────────────────────────────────────────────────── */
     section { scroll-margin-top:70px; }
     .section-inner { max-width:1100px; margin:0 auto; padding:80px 2rem; }
     .section-label { font-size:.72rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:.5rem; }
-    .section-title { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.5rem); color:var(--teal-dark); margin-bottom:1rem; line-height:1.2; }
-    .divider { width:50px; height:3px; background:linear-gradient(90deg,var(--teal),var(--gold)); margin-bottom:2rem; border-radius:2px; }
+    .section-title { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.5rem); color:var(--purple-dark); margin-bottom:1rem; line-height:1.2; }
+    .divider { width:50px; height:3px; background:linear-gradient(90deg,var(--purple),var(--gold)); margin-bottom:2rem; border-radius:2px; }
     .two-col { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
 
-    .info-card { background:#fff; border-radius:12px; padding:1.5rem; border:1px solid #C5E0D8; box-shadow:0 2px 12px rgba(26,107,90,.06); margin-bottom:1.25rem; }
-    .info-card h4 { font-family:'Playfair Display',serif; font-size:1rem; color:var(--teal-dark); margin-bottom:.75rem; }
+    /* ── CARDS ────────────────────────────────────────────────────────── */
+    .info-card { background:#fff; border-radius:12px; padding:1.5rem; border:1px solid var(--border); box-shadow:0 2px 12px rgba(91,45,142,.06); margin-bottom:1.25rem; }
+    .info-card h4 { font-family:'Playfair Display',serif; font-size:1rem; color:var(--purple-dark); margin-bottom:.75rem; }
     .info-card p { font-size:.88rem; color:var(--gray); line-height:1.7; }
     .badge-unam { background:linear-gradient(135deg,#002366,#0033A0); border-radius:12px; padding:1.5rem; color:#fff; display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem; }
     .badge-unam span { font-size:.9rem; font-weight:700; display:block; margin-bottom:.2rem; }
     .badge-unam p { font-size:.78rem; color:rgba(255,255,255,.78); line-height:1.5; }
 
+    /* ── COMP LIST ────────────────────────────────────────────────────── */
     .comp-list { display:flex; flex-direction:column; gap:1rem; margin-top:1.5rem; }
     .comp-item { display:flex; gap:1rem; align-items:flex-start; }
-    .comp-icon { width:36px; height:36px; border-radius:8px; background:var(--teal); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem; }
-    .comp-text strong { display:block; font-size:.88rem; font-weight:700; color:var(--teal-dark); margin-bottom:.2rem; }
+    .comp-icon { width:36px; height:36px; border-radius:8px; background:var(--purple); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem; }
+    .comp-text strong { display:block; font-size:.88rem; font-weight:700; color:var(--purple-dark); margin-bottom:.2rem; }
     .comp-text span { font-size:.82rem; color:var(--gray); line-height:1.6; }
 
-    .area-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem; margin-top:2rem; }
-    .area-card { background:var(--cream); border-radius:16px; padding:1.75rem; border:1px solid #C5E0D8; border-top:4px solid var(--teal); transition:transform .25s,box-shadow .25s; }
-    .area-card:hover { transform:translateY(-4px); box-shadow:0 10px 30px rgba(26,107,90,.12); }
-    .area-icon { font-size:2rem; margin-bottom:.75rem; display:block; }
-    .area-card h4 { font-size:.9rem; font-weight:700; color:var(--teal-dark); margin-bottom:.4rem; }
-    .area-card p { font-size:.8rem; color:var(--gray); line-height:1.55; }
+    /* ── CLINIC STATS GRID ────────────────────────────────────────────── */
+    .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(175px,1fr)); gap:1.25rem; margin:2rem 0; }
+    .stats-card { background:var(--purple-pale); border-radius:14px; padding:1.5rem; border:1px solid var(--border); text-align:center; border-top:4px solid var(--purple); }
+    .stats-card .num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--purple); line-height:1; margin-bottom:.35rem; }
+    .stats-card .lbl { font-size:.78rem; color:var(--gray); line-height:1.5; }
 
-    .docs-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:2.5rem; }
-    .doc-card { background:var(--cream); border-radius:16px; padding:2rem; border:1px solid #C5E0D8; display:flex; gap:1.25rem; align-items:flex-start; transition:transform .25s,box-shadow .25s; text-decoration:none; }
-    .doc-card:hover { transform:translateY(-3px); box-shadow:0 8px 30px rgba(26,107,90,.1); }
-    .doc-icon { width:52px; height:52px; background:var(--teal); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
-    .doc-info h4 { font-size:.92rem; font-weight:700; color:var(--teal-dark); margin-bottom:.3rem; line-height:1.4; }
+    /* ── ROTATIONS ────────────────────────────────────────────────────── */
+    .rot-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem; margin-top:1.5rem; }
+    .rot-card { border-radius:14px; padding:1.5rem; border:1px solid var(--border); transition:transform .25s,box-shadow .25s; }
+    .rot-card:hover { transform:translateY(-4px); box-shadow:0 10px 30px rgba(91,45,142,.12); }
+    .rot-card.int { background:var(--purple-pale); border-top:4px solid var(--purple); }
+    .rot-card.ext { background:linear-gradient(135deg,#f0f4ff,#e8f0fa); border-top:4px solid #2A5298; }
+    .rot-card.ins { background:var(--cream); border-top:4px solid var(--gold); }
+    .rot-card .rot-type { font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; margin-bottom:.5rem; }
+    .rot-card .rot-type.t-int { color:var(--purple); }
+    .rot-card .rot-type.t-ext { color:#2A5298; }
+    .rot-card .rot-type.t-ins { color:#8A6000; }
+    .rot-card h4 { font-size:.9rem; font-weight:700; color:var(--dark); margin-bottom:.35rem; }
+    .rot-card .dur { font-size:.78rem; color:var(--gray); }
+
+    /* ── TEMARIO ──────────────────────────────────────────────────────── */
+    .temario-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-top:1.5rem; }
+    .tema-item { background:var(--purple-pale); border-radius:10px; padding:1rem 1.25rem; border-left:3px solid var(--purple); display:flex; gap:.75rem; align-items:flex-start; }
+    .tema-num { width:28px; height:28px; border-radius:50%; background:var(--purple); color:#fff; display:flex; align-items:center; justify-content:center; font-size:.72rem; font-weight:700; flex-shrink:0; }
+    .tema-text { font-size:.84rem; color:var(--dark); line-height:1.5; }
+
+    /* ── DOCS ─────────────────────────────────────────────────────────── */
+    .doc-card { background:var(--cream); border-radius:16px; padding:2rem; border:1px solid var(--border); display:flex; gap:1.25rem; align-items:flex-start; transition:transform .25s,box-shadow .25s; text-decoration:none; }
+    .doc-card:hover { transform:translateY(-3px); box-shadow:0 8px 30px rgba(91,45,142,.1); }
+    .doc-icon { width:52px; height:52px; background:var(--purple); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
+    .doc-info h4 { font-size:.92rem; font-weight:700; color:var(--purple-dark); margin-bottom:.3rem; line-height:1.4; }
     .doc-info p { font-size:.8rem; color:var(--gray); line-height:1.5; }
-    .doc-dl { display:inline-flex; align-items:center; gap:5px; margin-top:.6rem; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--teal); }
+    .doc-dl { display:inline-flex; align-items:center; gap:5px; margin-top:.6rem; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--purple); }
 
+    /* ── CONVOCATORIA ─────────────────────────────────────────────────── */
     #convocatoria .section-label { color:var(--gold-light); }
     #convocatoria .section-title { color:#fff; }
     .conv-steps { display:flex; flex-direction:column; gap:1.25rem; margin-top:1.5rem; }
@@ -93,55 +148,67 @@
     .step-num { width:38px; height:38px; background:var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; color:#fff; flex-shrink:0; }
     .step-body h4 { font-size:.92rem; font-weight:700; color:#fff; margin-bottom:.25rem; }
     .step-body p { font-size:.83rem; color:rgba(255,255,255,.72); line-height:1.6; }
-    .step-body a { color:var(--gold-light); word-break:break-all; }
+    .step-body a { color:var(--gold-light); }
     .req-list { list-style:none; display:flex; flex-direction:column; gap:.75rem; }
-    .req-list li { display:flex; gap:.75rem; align-items:flex-start; font-size:.88rem; color:rgba(255,255,255,.82); line-height:1.5; }
-    .req-list li::before { content:'✓'; color:var(--gold); font-weight:700; flex-shrink:0; margin-top:1px; }
+    .req-list li { display:flex; gap:.75rem; font-size:.87rem; color:rgba(255,255,255,.82); line-height:1.5; }
+    .req-list li::before { content:'✓'; color:var(--gold); font-weight:700; flex-shrink:0; }
 
-    .contact-items { display:flex; flex-direction:column; gap:1.25rem; }
-    .ci { display:flex; gap:1rem; align-items:flex-start; }
-    .ci-icon { width:44px; height:44px; background:var(--teal); border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:1rem; flex-shrink:0; }
+    /* ── CONTACT ──────────────────────────────────────────────────────── */
+    .ci { display:flex; gap:1rem; align-items:flex-start; margin-bottom:1.25rem; }
+    .ci-icon { width:44px; height:44px; background:var(--purple); border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:1rem; flex-shrink:0; }
     .ci h4 { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--gray); margin-bottom:.2rem; }
     .ci p { font-size:.92rem; color:var(--dark); line-height:1.6; }
-    .ci a { color:var(--teal); }
+    .ci a { color:var(--purple); }
     .map-wrap { border-radius:16px; overflow:hidden; box-shadow:0 8px 40px rgba(0,0,0,.1); }
     .map-wrap iframe { display:block; width:100%; height:360px; border:none; }
 
+    /* ── BTNS ─────────────────────────────────────────────────────────── */
     .btn { display:inline-flex; align-items:center; gap:6px; padding:.7rem 1.6rem; border-radius:7px; font-size:.82rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; transition:all .2s; cursor:pointer; border:none; }
-    .btn-teal { background:var(--teal); color:#fff; }
-    .btn-teal:hover { background:var(--teal-dark); }
+    .btn-purple { background:var(--purple); color:#fff; }
+    .btn-purple:hover { background:var(--purple-dark); }
     .btn-gold { background:var(--gold); color:#fff; }
     .btn-gold:hover { background:#A87C35; }
     .btn-outline { background:transparent; color:#fff; border:2px solid rgba(255,255,255,.5); }
     .btn-outline:hover { background:rgba(255,255,255,.1); border-color:#fff; }
+    .btn-ig { background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; }
 
+    /* ── FB ───────────────────────────────────────────────────────────── */
     .fb-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:1.5rem; justify-items:center; }
-    .fb-card { background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,.08); border:1px solid #C5E0D8; width:100%; max-width:500px; }
+    .fb-card { background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,.08); border:1px solid var(--border); width:100%; max-width:500px; }
     .fb-header { background:linear-gradient(135deg,#1877F2,#0D5FCC); padding:.65rem 1.1rem; display:flex; align-items:center; gap:.6rem; }
 
-    footer { background:var(--teal-dark); color:rgba(255,255,255,.65); text-align:center; padding:2.5rem 2rem; }
-    .footer-logo-wrap { width:60px; height:60px; border-radius:50%; background:rgba(255,255,255,.9); padding:4px; display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem; }
+    /* ── HIGHLIGHT BOX ────────────────────────────────────────────────── */
+    .highlight-box { background:linear-gradient(135deg,var(--purple-dark),var(--purple)); border-radius:16px; padding:2rem; color:#fff; margin-bottom:1.5rem; }
+    .highlight-box h4 { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gold-light); margin-bottom:.75rem; }
+    .highlight-box p { font-size:.88rem; color:rgba(255,255,255,.85); line-height:1.75; }
+
+    /* ── FOOTER ───────────────────────────────────────────────────────── */
+    footer { background:var(--purple-dark); color:rgba(255,255,255,.65); text-align:center; padding:2.5rem 2rem; }
+    .footer-logo-wrap { width:70px; height:70px; border-radius:50%; background:rgba(255,255,255,.92); padding:5px; display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem; }
     .footer-logo-wrap img { width:100%; height:100%; object-fit:contain; }
     footer p { font-size:.82rem; line-height:1.9; }
     footer a { color:var(--gold-light); text-decoration:none; }
+    footer strong { color:#fff; }
 
+    /* ── MOBILE ───────────────────────────────────────────────────────── */
     @media(max-width:900px) {
       .nav-links { display:none; }
       .hamburger { display:flex; }
-      .nav-links.open { display:flex; flex-direction:column; position:fixed; top:70px; left:0; right:0; background:#fff; padding:1rem 0 2rem; border-top:2px solid var(--teal); box-shadow:0 8px 30px rgba(0,0,0,.1); z-index:999; align-items:stretch; }
-      .nav-links.open > li > a { padding:.8rem 1.5rem; border-bottom:1px solid #e8f4ef; }
-      .hero-inner,.two-col { grid-template-columns:1fr; gap:2.5rem; }
+      .nav-links.open { display:flex; flex-direction:column; position:fixed; top:70px; left:0; right:0; background:#fff; padding:1rem 0 2rem; border-top:2px solid var(--purple); box-shadow:0 8px 30px rgba(0,0,0,.1); z-index:999; align-items:stretch; }
+      .nav-links.open > li > a { padding:.8rem 1.5rem; border-bottom:1px solid #ede5f8; }
+      .hero-inner, .two-col { grid-template-columns:1fr; gap:2.5rem; }
       .hero { min-height:auto; padding:100px 2rem 60px; }
       .hero-logo-wrap { width:180px; height:180px; }
       .hero-logo-wrap img { width:140px; height:140px; }
       .stats-inner { grid-template-columns:1fr 1fr; }
       .stat { border-right:none; border-bottom:1px solid rgba(255,255,255,.1); }
-      .docs-grid { grid-template-columns:1fr; }
+      .temario-grid, .rot-grid, .stats-grid { grid-template-columns:1fr; }
     }
   </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
@@ -149,12 +216,14 @@
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#programa">El Programa</a></li>
-      <li><a href="#areas">Áreas Clínicas</a></li>
+      <li><a href="#clinica">Clínica</a></li>
+      <li><a href="#rotaciones">Rotaciones</a></li>
+      <li><a href="#temario">Temario</a></li>
       <li><a href="#documentos">Documentos</a></li>
       <li><a href="#convocatoria">Convocatoria</a></li>
       <li><a href="#noticias">Noticias</a></li>
       <li><a href="#contacto">Contacto</a></li>
-      <li><a href="index.html" class="btn nav-back">← Inicio</a></li>
+      <li><a href="index.html" class="nav-back">← Inicio</a></li>
     </ul>
     <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
@@ -164,23 +233,23 @@
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-tag">👶 Subespecialidad · UNAM · ISSSTE · 2025</div>
+      <div class="hero-tag">👶 Subespecialidad · UNAM · ISSSTE · Primera Generación 2025</div>
       <h1 class="hero-title">Psiquiatría<br/>Infantil y de la <span>Adolescencia</span></h1>
       <p class="hero-desc">
-        Primera generación de subespecialistas en Paidopsiquiatría del CMN "20 de Noviembre", iniciada en 2025. Un hito histórico en la formación especializada de salud mental infantil en México, avalado por la UNAM.
+        Primera generación de subespecialistas en Paidopsiquiatría del CMN "20 de Noviembre", iniciada en 2025. Un hito histórico en la formación especializada de salud mental infantil en México, avalado por la UNAM. Programa de 2 años con rotaciones en las principales instituciones nacionales.
       </p>
       <div class="hero-cta">
         <a href="#programa" class="btn btn-gold">Conocer el programa</a>
         <a href="#convocatoria" class="btn btn-outline">Convocatoria</a>
       </div>
     </div>
-    <div style="position:relative;">
+    <div class="hero-visual">
       <div class="hero-logo-wrap">
         <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/paido.png" alt="Paidopsiquiatría CMN 20 Nov" />
       </div>
       <div class="hero-badge">
-        <strong>2025</strong>
-        <span>Primera generación</span>
+        <strong>2 años</strong>
+        <span>Duración</span>
       </div>
     </div>
   </div>
@@ -191,127 +260,159 @@
   <div class="stats-inner">
     <div class="stat">
       <span class="stat-num">2025</span>
-      <span class="stat-label">Inicio de la primera generación</span>
+      <span class="stat-label">Primera generación</span>
     </div>
     <div class="stat">
       <span class="stat-num">UNAM</span>
       <span class="stat-label">Aval Facultad de Medicina</span>
     </div>
     <div class="stat">
-      <span class="stat-num">3</span>
-      <span class="stat-label">Modalidades de atención</span>
+      <span class="stat-num">12,309</span>
+      <span class="stat-label">Consultas anuales 2024–25</span>
     </div>
     <div class="stat">
-      <span class="stat-num">🌿</span>
-      <span class="stat-label">Enfoque familiar e integral</span>
+      <span class="stat-num">462</span>
+      <span class="stat-label">Créditos académicos</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">7</span>
+      <span class="stat-label">Consultorios especializados</span>
     </div>
   </div>
 </div>
 
-<!-- MISIÓN Y VISIÓN -->
+<!-- PROGRAMA -->
 <section id="programa" style="background:var(--cream);">
   <div class="section-inner">
     <div class="section-label">Subespecialidad · Psiquiatría Infantil y de la Adolescencia</div>
-    <h2 class="section-title">El Programa</h2>
+    <h2 class="section-title">Sobre el Programa</h2>
     <div class="divider"></div>
     <div class="two-col">
       <div>
         <p style="font-size:1.02rem;color:var(--gray);line-height:1.85;margin-bottom:1.5rem;">
-          El Servicio de Paidopsiquiatría del CMN "20 de Noviembre" tiene el compromiso de brindar atención especializada, humana y basada en evidencia a niñas, niños y adolescentes con trastornos mentales y del neurodesarrollo.
+          La subespecialidad en <strong>Psiquiatría Infantil y de la Adolescencia</strong> del CMN "20 de Noviembre" (ISSSTE) es un programa de <strong>2 años</strong> avalado por la Facultad de Medicina de la UNAM, con inicio el 1 de marzo de 2026. Se requiere acreditar la especialidad médica en Psiquiatría para el ingreso.
         </p>
         <p style="font-size:.95rem;color:var(--gray);line-height:1.85;margin-bottom:1.5rem;">
-          Reconocemos la importancia de la detección oportuna, el abordaje integral y el trabajo colaborativo con familias y otras disciplinas para favorecer el bienestar emocional y el desarrollo saludable de la infancia y la adolescencia.
+          Según datos de la Encuesta Nacional de Epidemiología Psiquiátrica, aproximadamente el <strong>12% de los niños y adolescentes mexicanos</strong> presentan algún trastorno mental. La escasez de paidopsiquiatras y sedes de formación avaladas por la UNAM resalta la urgencia de fortalecer esta especialidad en México.
         </p>
         <p style="font-size:.95rem;color:var(--gray);line-height:1.85;margin-bottom:2rem;">
-          Tras años de esfuerzo institucional, en <strong>2025 se concretó la formación de la primera generación de médicos subespecialistas en Paidopsiquiatría</strong>, avalados por la Universidad Nacional Autónoma de México. Este hito marca el inicio de una nueva etapa en la formación médica especializada en el país.
+          El CMN "20 de Noviembre" cuenta con infraestructura para atención paidopsiquiátrica en consulta externa (7 consultorios), hospitalización, admisión continua pediátrica y telemedicina para toda la República Mexicana.
         </p>
 
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--teal-dark);margin-bottom:1rem;">Competencias en formación:</h3>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--purple-dark);margin-bottom:1rem;">Objetivos específicos. El/la subespecialista será capaz de:</h3>
         <div class="comp-list">
-          <div class="comp-item"><div class="comp-icon">🧠</div><div class="comp-text"><strong>Trastornos del Neurodesarrollo</strong><span>TDAH, TEA, trastornos del lenguaje, dificultades de aprendizaje y retraso del desarrollo.</span></div></div>
-          <div class="comp-item"><div class="comp-icon">💚</div><div class="comp-text"><strong>Psiquiatría Afectiva Infanto-Juvenil</strong><span>Depresión, trastorno bipolar, ansiedad, TOC y trastornos relacionados con el trauma en niños y adolescentes.</span></div></div>
-          <div class="comp-item"><div class="comp-icon">👥</div><div class="comp-text"><strong>Abordaje Familiar e Integral</strong><span>Trabajo colaborativo con familias, escuelas y equipos interdisciplinarios en el contexto del desarrollo.</span></div></div>
-          <div class="comp-item"><div class="comp-icon">🏥</div><div class="comp-text"><strong>Hospitalización y Telemedicina</strong><span>Atención en consulta externa, hospitalización pediátrica y seguimiento por telemedicina.</span></div></div>
-          <div class="comp-item"><div class="comp-icon">🔬</div><div class="comp-text"><strong>Investigación en Salud Mental Infantil</strong><span>Desarrollo de protocolos de investigación clínica aplicada a la salud mental infantil y del adolescente.</span></div></div>
+          <div class="comp-item"><div class="comp-icon">🧠</div><div class="comp-text"><strong>Evaluación diagnóstica integral</strong><span>Realizar evaluaciones completas de salud mental identificando trastornos psiquiátricos mediante DSM-5 y CIE-11, considerando aspectos biopsicosociales, culturales y dinámica familiar.</span></div></div>
+          <div class="comp-item"><div class="comp-icon">💊</div><div class="comp-text"><strong>Tratamiento individualizado</strong><span>Diseñar y conducir planes de tratamiento específicos utilizando psicofarmacología pediátrica, psicoterapia y enfoques multimodales adaptados a cada paciente.</span></div></div>
+          <div class="comp-item"><div class="comp-icon">👥</div><div class="comp-text"><strong>Atención multidisciplinaria</strong><span>Colaborar con psicólogos, pediatras, trabajadores sociales, neuropediatras, terapistas de lenguaje y educadores para una atención verdaderamente integral.</span></div></div>
+          <div class="comp-item"><div class="comp-icon">🌱</div><div class="comp-text"><strong>Prevención y promoción</strong><span>Implementar estrategias de prevención primaria y secundaria, psicoeducación para familias, terapia familiar y apoyo comunitario en salud mental infantil.</span></div></div>
+          <div class="comp-item"><div class="comp-icon">🔬</div><div class="comp-text"><strong>Investigación y educación</strong><span>Contribuir al avance del conocimiento mediante investigación clínica, participación en congresos y docencia de pregrado y posgrado.</span></div></div>
         </div>
       </div>
       <div>
         <div class="badge-unam">
           <div style="font-size:2rem;flex-shrink:0;">🏛️</div>
           <div>
-            <span>Aval Universitario UNAM</span>
-            <p>La subespecialidad en Psiquiatría Infantil y de la Adolescencia cuenta con aval de la Facultad de Medicina de la UNAM. El CMN "20 de Noviembre" es sede histórica de esta primera generación 2025.</p>
+            <span>Aval Universitario UNAM · Facultad de Medicina</span>
+            <p>División de Estudios de Posgrado · Subdivisión de Especializaciones Médicas. Número de créditos: 462. Fecha de inicio: 01/03/2026.</p>
           </div>
         </div>
 
-        <!-- Hito histórico -->
-        <div style="background:linear-gradient(135deg,var(--teal-dark),var(--teal));border-radius:16px;padding:2rem;color:#fff;margin-bottom:1.25rem;">
-          <h4 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold-light);margin-bottom:1rem;">🌟 Hito histórico: Primera Generación 2025</h4>
-          <p style="font-size:.88rem;color:rgba(255,255,255,.85);line-height:1.75;">Tras años de esfuerzo institucional y del equipo de salud mental, en 2025 se logró concretar la formación de la primera generación de médicos subespecialistas en Paidopsiquiatría en el CMN "20 de Noviembre". Este hito está cimentado sobre la experiencia, la ética y el compromiso de un servicio con trayectoria sólida dentro del tercer nivel de atención en México.</p>
+        <div class="highlight-box">
+          <h4>🌟 Hito histórico: Primera Generación 2025</h4>
+          <p>En 2025 se concretó la formación de la primera generación de médicos subespecialistas en Paidopsiquiatría en el CMN "20 de Noviembre", avalados por la UNAM. Este hito marca el inicio de una nueva etapa en la formación médica especializada en México. La profesora titular es la <strong style="color:var(--gold-light);">Dra. Marta Georgina Ochoa Madrigal</strong>, Jefa del Servicio de Psiquiatría.</p>
         </div>
 
         <div class="info-card">
-          <h4>🏥 Tres Modalidades de Atención</h4>
-          <p>El Servicio de Paidopsiquiatría ofrece un abordaje integral mediante: <strong>consulta externa</strong> (evaluación y seguimiento ambulatorio), <strong>hospitalización</strong> (atención interna en el CMN) y <strong>telemedicina</strong> (acceso a atención especializada a distancia). Esto permite ampliar el alcance de la atención especializada en salud mental infantil.</p>
+          <h4>🏥 Misión</h4>
+          <p>Brindar atención especializada, humana y basada en evidencia a niñas, niños y adolescentes con trastornos mentales y del neurodesarrollo, con enfoque integral que incluye a las familias y a otros profesionales de la salud y educación.</p>
         </div>
-
-        <div class="info-card">
-          <h4>🎯 Misión</h4>
-          <p>Brindar atención especializada, humana y basada en evidencia a niños, niñas y adolescentes con trastornos mentales y del neurodesarrollo, con enfoque integral que incluye a las familias y a otros profesionales de la salud y educación.</p>
-        </div>
-
         <div class="info-card">
           <h4>🔭 Visión</h4>
-          <p>Ser un servicio de referencia nacional en psiquiatría infantil y de la adolescencia, consolidando la excelencia clínica, académica y de investigación. Líderes en la formación de la nueva generación de subespecialistas en México.</p>
+          <p>Ser servicio de referencia nacional en psiquiatría infantil y de la adolescencia, consolidando excelencia clínica, académica y de investigación. Líderes en la formación de la nueva generación de subespecialistas en México.</p>
+        </div>
+        <div class="info-card">
+          <h4>👩‍⚕️ Cuerpo Docente</h4>
+          <p><strong>Profesora Titular:</strong> Dra. Marta Georgina Ochoa Madrigal<br/>
+          <strong>Profesores Asociados:</strong> Dr. Oscar Meneses Luna, Dra. Elia Francisca Espinoza de Ávila, Dr. Wilfrido Aguirre Rivera<br/>
+          <strong>Profesores Invitados:</strong> Dr. Jorge Escotto Morett, Dra. Karina Ramírez Arreola, Dr. Saúl Stepensky Titín, Dr. Gustavo Celis Alcalá y otros especialistas nacionales.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ÁREAS CLÍNICAS -->
-<section id="areas" style="background:linear-gradient(160deg,var(--teal-dark),var(--teal));">
+<!-- CLÍNICA: DATOS Y ÁREAS -->
+<section id="clinica" style="background:linear-gradient(160deg,var(--purple-dark),var(--purple));">
   <div class="section-inner">
-    <div class="section-label" style="color:var(--gold-light);">Atención especializada</div>
-    <h2 class="section-title" style="color:#fff;">Áreas Clínicas y Diagnósticas</h2>
+    <div class="section-label" style="color:var(--gold-light);">Infraestructura y resultados clínicos</div>
+    <h2 class="section-title" style="color:#fff;">Actividad Clínica del Servicio</h2>
     <div class="divider" style="background:linear-gradient(90deg,var(--gold),var(--gold-light));"></div>
-    <p style="font-size:1rem;color:rgba(255,255,255,.82);line-height:1.8;max-width:680px;margin-bottom:0.5rem;">
-      El Servicio de Paidopsiquiatría del CMN aborda de forma especializada los principales trastornos mentales y del neurodesarrollo en la infancia y adolescencia:
-    </p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;margin-top:2rem;">
-      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:1.75rem;transition:background .2s;" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">
-        <div style="font-size:2rem;margin-bottom:.75rem;">🔵</div>
-        <h4 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.4rem;">TDAH</h4>
-        <p style="font-size:.8rem;color:rgba(255,255,255,.75);line-height:1.55;">Trastorno por Déficit de Atención con o sin Hiperactividad. Evaluación diagnóstica, intervención multimodal y seguimiento.</p>
+
+    <div class="stats-grid">
+      <div class="stats-card">
+        <div class="num">12,309</div>
+        <div class="lbl">Consultas externas anuales<br/>(2024–2025)</div>
       </div>
-      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:1.75rem;transition:background .2s;" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">
-        <div style="font-size:2rem;margin-bottom:.75rem;">🌈</div>
-        <h4 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Trastorno del Espectro Autista</h4>
-        <p style="font-size:.8rem;color:rgba(255,255,255,.75);line-height:1.55;">Diagnóstico especializado con enfoque integral, intervención temprana y orientación familiar.</p>
+      <div class="stats-card">
+        <div class="num">35</div>
+        <div class="lbl">Ingresos hospitalarios<br/>por año</div>
       </div>
-      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:1.75rem;transition:background .2s;" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">
-        <div style="font-size:2rem;margin-bottom:.75rem;">😟</div>
-        <h4 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Ansiedad y Depresión</h4>
-        <p style="font-size:.8rem;color:rgba(255,255,255,.75);line-height:1.55;">Trastornos afectivos y ansiosos en niños y adolescentes. Psicofarmacología y psicoterapia adaptada a la edad.</p>
+      <div class="stats-card">
+        <div class="num">7</div>
+        <div class="lbl">Consultorios para<br/>la especialidad</div>
       </div>
-      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:1.75rem;transition:background .2s;" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">
-        <div style="font-size:2rem;margin-bottom:.75rem;">🧩</div>
-        <h4 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.4rem;">TOC y Trauma</h4>
-        <p style="font-size:.8rem;color:rgba(255,255,255,.75);line-height:1.55;">Trastorno obsesivo-compulsivo, TEPT y trastornos relacionados con el estrés y el trauma en infancia.</p>
+      <div class="stats-card">
+        <div class="num">4</div>
+        <div class="lbl">Camas reservadas<br/>(hospitaliz. + adm. continua)</div>
       </div>
-      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:1.75rem;transition:background .2s;" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">
-        <div style="font-size:2rem;margin-bottom:.75rem;">📚</div>
-        <h4 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Neurodesarrollo y Aprendizaje</h4>
-        <p style="font-size:.8rem;color:rgba(255,255,255,.75);line-height:1.55;">Evaluación de retraso del desarrollo, dislexia, discalculia y trastornos del lenguaje en edad escolar.</p>
-      </div>
-      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:1.75rem;transition:background .2s;" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">
-        <div style="font-size:2rem;margin-bottom:.75rem;">🫂</div>
-        <h4 style="font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.4rem;">Crisis en Adolescentes</h4>
-        <p style="font-size:.8rem;color:rgba(255,255,255,.75);line-height:1.55;">Evaluación de riesgo suicida, crisis emocionales y hospitalización psiquiátrica en adolescentes.</p>
+      <div class="stats-card">
+        <div class="num">2×/sem</div>
+        <div class="lbl">Sesiones de telemedicina<br/>para ISSSTE nacional</div>
       </div>
     </div>
 
-    <!-- TDAH link -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem;">
+      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:1.75rem;">
+        <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold-light);margin-bottom:1rem;">📋 Diagnósticos frecuentes — Consulta Externa</h4>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:.7rem;">
+          <li style="display:flex;gap:.75rem;font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.5;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">◆</span><span><strong>Trastorno Hipercinético de la Conducta (TDAH)</strong></span></li>
+          <li style="display:flex;gap:.75rem;font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.5;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">◆</span><span><strong>Autismo Infantil (F84.0)</strong></span></li>
+          <li style="display:flex;gap:.75rem;font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.5;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">◆</span><span><strong>Episodio Depresivo Moderado (F33.2)</strong></span></li>
+        </ul>
+      </div>
+      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:1.75rem;">
+        <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold-light);margin-bottom:1rem;">🏥 Diagnósticos frecuentes — Hospitalización</h4>
+        <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:.7rem;">
+          <li style="display:flex;gap:.75rem;font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.5;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">◆</span><span><strong>Psicosis de Origen No Orgánico</strong></span></li>
+          <li style="display:flex;gap:.75rem;font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.5;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">◆</span><span><strong>Episodio Depresivo Grave sin Síntomas Psicóticos</strong></span></li>
+          <li style="display:flex;gap:.75rem;font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.5;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">◆</span><span><strong>Trastorno Afectivo Bipolar · Episodio Maníaco</strong></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:2.5rem;">
+      <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold-light);margin-bottom:1.25rem;">🔬 Auxiliares diagnósticos disponibles</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
+        <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:1rem;border:1px solid rgba(255,255,255,.12);">
+          <div style="font-weight:700;color:#fff;font-size:.85rem;margin-bottom:.4rem;">🧪 Laboratorio</div>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.72);line-height:1.5;">Perfil tiroideo, niveles de valproato, perfiles hormonales e inmunológicos.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:1rem;border:1px solid rgba(255,255,255,.12);">
+          <div style="font-weight:700;color:#fff;font-size:.85rem;margin-bottom:.4rem;">🧲 Neuroimagen</div>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.72);line-height:1.5;">TAC y resonancia magnética simple y contrastada de cráneo. Electroencefalograma.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:1rem;border:1px solid rgba(255,255,255,.12);">
+          <div style="font-weight:700;color:#fff;font-size:.85rem;margin-bottom:.4rem;">🧩 Neuropsicología</div>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.72);line-height:1.5;">Batería NEUROPSI, detección TDAH y autismo, MMPI, WAIS, WISC.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:1rem;border:1px solid rgba(255,255,255,.12);">
+          <div style="font-weight:700;color:#fff;font-size:.85rem;margin-bottom:.4rem;">⚡ Terapia</div>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.72);line-height:1.5;">Estimulación Transcraneal por Corriente Directa (tDCS). Programa de Neurodesarrollo Infantil.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TDAH PRESS LINK -->
     <div style="margin-top:3rem;">
       <a href="https://www.gob.mx/issste/prensa/destaca-issste-importancia-de-erradicar-mitos-y-estigmas-sobre-el-trastorno-por-deficit-de-atencion-con-hiperactividad" target="_blank"
          style="display:flex;gap:1.25rem;align-items:flex-start;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:1.75rem;text-decoration:none;transition:background .2s;"
@@ -320,10 +421,97 @@
         <div>
           <p style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);margin-bottom:.3rem;">gob.mx/issste · Comunicado institucional</p>
           <h4 style="font-size:.95rem;font-weight:700;color:#fff;margin-bottom:.3rem;">ISSSTE destaca la importancia de erradicar mitos y estigmas sobre el Trastorno por Déficit de Atención con Hiperactividad</h4>
-          <p style="font-size:.83rem;color:rgba(255,255,255,.75);line-height:1.6;">El ISSSTE subraya la importancia de desmitificar el TDAH para garantizar diagnóstico oportuno y tratamiento adecuado en niños y adolescentes. Comunicado oficial que refleja el compromiso institucional con la salud mental infanto-juvenil.</p>
+          <p style="font-size:.83rem;color:rgba(255,255,255,.75);line-height:1.6;">El ISSSTE subraya la importancia de desmitificar el TDAH para garantizar diagnóstico oportuno y tratamiento adecuado en niños y adolescentes.</p>
           <span style="font-size:.73rem;font-weight:700;color:var(--gold-light);display:inline-flex;align-items:center;gap:4px;margin-top:.5rem;">Leer comunicado completo →</span>
         </div>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ROTACIONES -->
+<section id="rotaciones" style="background:#fff;">
+  <div class="section-inner">
+    <div class="section-label">Plan de rotaciones · 2 años</div>
+    <h2 class="section-title">Rotaciones Clínicas</h2>
+    <div class="divider"></div>
+    <p style="font-size:1rem;color:var(--gray);line-height:1.8;max-width:680px;margin-bottom:2rem;">
+      El programa contempla rotaciones internas en el CMN "20 de Noviembre", externas en los principales institutos nacionales de referencia, e institucionales en subsedes del ISSSTE.
+    </p>
+    <div class="rot-grid">
+      <!-- Internas -->
+      <div class="rot-card int">
+        <div class="rot-type t-int">Rotación Interna · CMN 20 de Noviembre</div>
+        <h4>Consulta Externa Paidopsiquiatría</h4>
+        <div class="dur">📍 CMN 20 de Noviembre · Todo el programa</div>
+      </div>
+      <div class="rot-card int">
+        <div class="rot-type t-int">Rotación Interna · 1 mes</div>
+        <h4>Neuropediatría</h4>
+        <div class="dur">📍 CMN 20 de Noviembre · Evaluación neurológica en menores</div>
+      </div>
+      <div class="rot-card int">
+        <div class="rot-type t-int">Rotación Interna · 1 mes</div>
+        <h4>Terapia de Lenguaje</h4>
+        <div class="dur">📍 CMN 20 de Noviembre · Trastornos del lenguaje y comunicación</div>
+      </div>
+      <div class="rot-card int">
+        <div class="rot-type t-int">Rotación Interna · 1 mes</div>
+        <h4>Medicina Paliativa</h4>
+        <div class="dur">📍 CMN 20 de Noviembre · Cuidados paliativos pediátricos</div>
+      </div>
+      <!-- Externas -->
+      <div class="rot-card ext">
+        <div class="rot-type t-ext">Rotación Externa · 3 meses</div>
+        <h4>Instituto Nacional de Pediatría</h4>
+        <div class="dur">📍 Ciudad de México · Referencia nacional en pediatría</div>
+      </div>
+      <div class="rot-card ext">
+        <div class="rot-type t-ext">Rotación Externa · 3 meses</div>
+        <h4>Instituto Nacional de Psiquiatría Ramón de la Fuente Muñiz</h4>
+        <div class="dur">📍 Ciudad de México · Principal instituto de salud mental del país</div>
+      </div>
+      <div class="rot-card ext">
+        <div class="rot-type t-ext">Rotación Externa · 3 meses</div>
+        <h4>Hospital Psiquiátrico Infantil Juan N. Navarro</h4>
+        <div class="dur">📍 Ciudad de México · Hospital de referencia en psiquiatría infantil</div>
+      </div>
+      <!-- Institucionales -->
+      <div class="rot-card ins">
+        <div class="rot-type t-ins">Rotación Institucional ISSSTE · 1 mes</div>
+        <h4>Hospital Regional 1° de Octubre</h4>
+        <div class="dur">📍 ISSSTE · Servicio de Paidopsiquiatría</div>
+      </div>
+      <div class="rot-card ins">
+        <div class="rot-type t-ins">Rotación Institucional ISSSTE · 1 mes</div>
+        <h4>Hospital General ISSSTE Tláhuac</h4>
+        <div class="dur">📍 ISSSTE · Servicio de Paidopsiquiatría</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMARIO -->
+<section id="temario" style="background:var(--cream);">
+  <div class="section-inner">
+    <div class="section-label">Seminario de atención médica · 2 años</div>
+    <h2 class="section-title">Temario del Programa</h2>
+    <div class="divider"></div>
+    <p style="font-size:1rem;color:var(--gray);line-height:1.8;max-width:720px;margin-bottom:1.5rem;">
+      El Seminario de Atención Médica abarca los siguientes módulos temáticos durante los dos años de la subespecialización, con evaluación mensual mediante examen escrito (50%) y presentación de tema en PowerPoint (50%).
+    </p>
+    <div class="temario-grid">
+      <div class="tema-item"><div class="tema-num">1</div><div class="tema-text"><strong>Conceptos generales, clasificación y nosología psiquiátrica infantil</strong> · DSM-5 y CIE-11</div></div>
+      <div class="tema-item"><div class="tema-num">2</div><div class="tema-text"><strong>Desarrollo normal en el niño y adolescente</strong> · Etapas del desarrollo psicomotor, cognitivo y social</div></div>
+      <div class="tema-item"><div class="tema-num">3</div><div class="tema-text"><strong>Desarrollo de la personalidad y de las funciones psíquicas</strong> · Temperamento, apego y carácter</div></div>
+      <div class="tema-item"><div class="tema-num">4</div><div class="tema-text"><strong>Trastornos psiquiátricos</strong> · TDAH, TEA, trastornos del ánimo, ansiedad, psicosis, bipolaridad</div></div>
+      <div class="tema-item"><div class="tema-num">5</div><div class="tema-text"><strong>Clinimetría y pruebas psicológicas</strong> · Escalas diagnósticas, WISC, WAIS, pruebas neuropsicológicas</div></div>
+      <div class="tema-item"><div class="tema-num">6</div><div class="tema-text"><strong>Psicofarmacología pediátrica</strong> · Antipsicóticos, estabilizadores, psicoestimulantes, antidepresivos en menores</div></div>
+      <div class="tema-item"><div class="tema-num">7</div><div class="tema-text"><strong>Estimulación magnética transcraneal y terapia electroconvulsiva</strong> · Indicaciones y contraindicaciones</div></div>
+      <div class="tema-item"><div class="tema-num">8</div><div class="tema-text"><strong>Intervenciones psicosociales en niños y adolescentes</strong> · Psicoterapia, terapia familiar, orientación a padres</div></div>
+      <div class="tema-item"><div class="tema-num">9</div><div class="tema-text"><strong>Psiquiatría legal del niño y del adolescente</strong> · Aspectos éticos, legales y de protección infantil</div></div>
+      <div class="tema-item"><div class="tema-num">10</div><div class="tema-text"><strong>El niño y el adolescente en la comunidad</strong> · Salud mental comunitaria, prevención, entornos educativos</div></div>
+      <div class="tema-item"><div class="tema-num">11</div><div class="tema-text"><strong>Profesionalismo médico</strong> · Ética, comunicación efectiva, relación médico-paciente-familia</div></div>
     </div>
   </div>
 </section>
@@ -334,44 +522,41 @@
     <div class="section-label">Recursos académicos</div>
     <h2 class="section-title">Documentos del Programa</h2>
     <div class="divider"></div>
-    <p style="font-size:1rem;color:var(--gray);line-height:1.8;margin-bottom:2rem;">
-      Descarga los documentos académicos de la Subespecialidad en Psiquiatría Infantil y de la Adolescencia:
-    </p>
-    <div class="docs-grid">
-      <a href="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/PUEM_2026_-_2027__PSIQUIATRI%CC%81A_INFANTIL_Y_DEL_ADOLESCENTE_2.docx" target="_blank" class="doc-card">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;">
+      <a href="https://github.com/moymaa/psiquiatria20/raw/592e4db3be21b8e8b0f5d1a983b98e5c02963b92/PUEM%202026%20-%202027%20%20PSIQUIATRI%CC%81A%20INFANTIL%20Y%20DEL%20ADOLESCENTE%202.docx" target="_blank" class="doc-card">
         <div class="doc-icon">📋</div>
         <div class="doc-info">
           <h4>PUEM Psiquiatría Infantil y del Adolescente 2026–2027</h4>
-          <p>Plan Único de Especializaciones Médicas (PUEM) de la subespecialidad. Objetivos, contenidos y evaluación.</p>
+          <p>Plan Único de Especializaciones Médicas (PUEM) de la subespecialidad. Objetivos, competencias, temario, rotaciones y criterios de evaluación. Aval UNAM · Facultad de Medicina.</p>
           <span class="doc-dl">⬇ Descargar DOCX</span>
         </div>
       </a>
-      <div style="background:var(--cream);border-radius:16px;padding:2rem;border:1px solid #C5E0D8;">
-        <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--teal-dark);margin-bottom:.75rem;">📋 Información adicional</h4>
-        <p style="font-size:.85rem;color:var(--gray);line-height:1.7;">Para recibir el programa académico completo, el plan de rotaciones o información sobre el proceso de admisión, contáctanos directamente. El equipo de Paidopsiquiatría responderá a la brevedad.</p>
-        <a href="/cdn-cgi/l/email-protection#c3b3b0aab2edf1f3f1f183a4aea2aaafeda0acae" style="display:inline-flex;align-items:center;gap:5px;margin-top:.75rem;font-size:.78rem;font-weight:700;color:var(--teal);text-decoration:none;">✉ <span class="__cf_email__" data-cfemail="7303001a025d4143414133141e121a1f5d101c1e">[email&#160;protected]</span></a>
+      <div style="background:var(--purple-pale);border-radius:16px;padding:2rem;border:1px solid var(--border);">
+        <h4 style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--purple-dark);margin-bottom:.75rem;">📋 ¿Necesitas más información?</h4>
+        <p style="font-size:.85rem;color:var(--gray);line-height:1.7;margin-bottom:1rem;">Puedes escribirnos directamente para recibir el programa académico completo, el plan de rotaciones actualizado o información sobre el proceso de admisión.</p>
+        <a href="mailto:psiq.2022@gmail.com" style="display:inline-flex;align-items:center;gap:5px;font-size:.82rem;font-weight:700;color:var(--purple);text-decoration:none;padding:.6rem 1.2rem;background:#fff;border-radius:8px;border:1px solid var(--border);">✉ psiq.2022@gmail.com</a>
       </div>
     </div>
-    <div style="background:var(--cream);border-radius:12px;padding:2rem;border-left:5px solid var(--teal);display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;justify-content:space-between;">
+    <div style="background:var(--purple-pale);border-radius:12px;padding:2rem;border-left:5px solid var(--purple);display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;justify-content:space-between;">
       <div>
-        <p style="font-size:.95rem;font-weight:700;color:var(--teal-dark);margin-bottom:.3rem;">¿Quieres conocer más sobre el programa?</p>
-        <p style="font-size:.85rem;color:var(--gray);">Escríbenos para recibir el programa académico completo o resolver dudas sobre la subespecialidad.</p>
+        <p style="font-size:.95rem;font-weight:700;color:var(--purple-dark);margin-bottom:.3rem;">¿Quieres conocer más sobre el programa?</p>
+        <p style="font-size:.85rem;color:var(--gray);">Escríbenos para recibir información adicional o resolver tus dudas sobre la subespecialidad.</p>
       </div>
-      <a href="/cdn-cgi/l/email-protection#5424273d257a66646666143339353d387a373b39" class="btn btn-teal">✉ Contáctanos</a>
+      <a href="mailto:psiq.2022@gmail.com" class="btn btn-purple">✉ Contáctanos</a>
     </div>
   </div>
 </section>
 
 <!-- CONVOCATORIA -->
-<section id="convocatoria" style="background:linear-gradient(135deg,var(--teal-dark),var(--teal));">
+<section id="convocatoria" style="background:linear-gradient(135deg,var(--purple-dark),var(--purple));">
   <div class="section-inner">
-    <div class="section-label">Proceso de admisión · Subespecialidad 2025</div>
+    <div class="section-label">Proceso de admisión · Generación 2026–2028</div>
     <h2 class="section-title">Convocatoria</h2>
     <div class="divider" style="background:linear-gradient(90deg,var(--gold),var(--gold-light));"></div>
     <div class="two-col">
       <div>
-        <p style="font-size:1rem;color:rgba(255,255,255,.82);line-height:1.8;margin-bottom:.5rem;">
-          La Subespecialidad en Psiquiatría Infantil y de la Adolescencia del CMN "20 de Noviembre" admite <strong style="color:var(--gold-light);">médicos psiquiatras</strong> con título y cédula de especialidad, nacionales y extranjeros.
+        <p style="font-size:1rem;color:rgba(255,255,255,.85);line-height:1.8;margin-bottom:1.5rem;">
+          La subespecialidad en Psiquiatría Infantil y de la Adolescencia del CMN "20 de Noviembre" admite <strong style="color:var(--gold-light);">médicos psiquiatras con título y cédula de especialidad</strong>, nacionales y extranjeros. Inicio: 1 de marzo de 2026.
         </p>
         <div class="conv-steps">
           <div class="conv-step">
@@ -379,44 +564,59 @@
             <div class="step-body">
               <h4>Consulta la Convocatoria Institucional</h4>
               <p>Verifica la convocatoria de subespecialidades en el portal del ISSSTE o en la plataforma de posgrado de la UNAM.<br/>
-              <a href="https://www.gob.mx/issste" target="_blank">gob.mx/issste</a></p>
+              <a href="https://www.gob.mx/issste" target="_blank">gob.mx/issste →</a></p>
             </div>
           </div>
           <div class="conv-step">
             <div class="step-num">II</div>
             <div class="step-body">
-              <h4>Pre-registro Interno</h4>
-              <p>Comunícate directamente con el Servicio de Paidopsiquiatría del CMN para orientación sobre el proceso y requisitos específicos.<br/>
-              <a href="/cdn-cgi/l/email-protection#39494a5048170b090b0b795e54585055175a5654"><span class="__cf_email__" data-cfemail="7c0c0f150d524e4c4e4e3c1b111d1510521f1311">[email&#160;protected]</span></a></p>
+              <h4>Pre-registro y Contacto Directo</h4>
+              <p>Escríbenos para recibir orientación sobre el proceso de admisión, requisitos específicos y fechas.<br/>
+              <a href="mailto:psiq.2022@gmail.com">psiq.2022@gmail.com</a></p>
             </div>
           </div>
           <div class="conv-step">
             <div class="step-num">III</div>
             <div class="step-body">
-              <h4>Entrega de Documentación y Entrevista</h4>
-              <p>Presencial en el CMN "20 de Noviembre", Torre de Consulta Externa Piso 8, Horario: 8–14h días hábiles.</p>
+              <h4>Entrega de Documentación</h4>
+              <p>Presencial en el CMN "20 de Noviembre", Torre de Consulta Externa Piso 8. Horario 8:00–14:00h días hábiles.</p>
+            </div>
+          </div>
+          <div class="conv-step">
+            <div class="step-num">IV</div>
+            <div class="step-body">
+              <h4>Entrevista y Selección</h4>
+              <p>Los candidatos que cumplan requisitos serán convocados a entrevista con el equipo docente del servicio.</p>
             </div>
           </div>
         </div>
-        <a href="https://www.gob.mx/issste" target="_blank" class="btn btn-gold" style="margin-top:2rem;">Ver Convocatoria ISSSTE →</a>
       </div>
-      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:2rem;">
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--gold-light);margin-bottom:1.25rem;">Requisitos</h3>
-        <ul class="req-list">
-          <li>Título de especialista en Psiquiatría (cédula SEP)</li>
-          <li>CURP y documentos oficiales de identidad</li>
-          <li>Currículum vitae completo con documentos probatorios</li>
-          <li>Carta de motivos expresando interés en paidopsiquiatría</li>
-          <li>Dos cartas de recomendación de médicos especialistas</li>
-          <li>Documentación adicional según convocatoria vigente</li>
-        </ul>
-        <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.15);">
-          <p style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.6;">
-            📞 <strong style="color:rgba(255,255,255,.85);">Información:</strong><br/>
-            55 5200 5003 ext. 14575<br/>
-            Lunes a viernes, 8:00–14:00h<br/><br/>
-            ✉ <a href="/cdn-cgi/l/email-protection#fb8b88928ad5c9cbc9c9bb9c969a9297d5989496" style="color:var(--gold-light);"><span class="__cf_email__" data-cfemail="0777746e76293537353547606a666e6b2964686a">[email&#160;protected]</span></a>
-          </p>
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:2rem;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--gold-light);margin-bottom:1.25rem;">Requisitos de Ingreso</h3>
+          <ul class="req-list">
+            <li>Título de especialista en Psiquiatría (cédula SEP)</li>
+            <li>CURP y documentos oficiales de identidad</li>
+            <li>Currículum vitae completo con comprobantes</li>
+            <li>Carta de motivos expresando interés en paidopsiquiatría</li>
+            <li>Dos cartas de recomendación de médicos especialistas</li>
+            <li>Documentación adicional según convocatoria vigente</li>
+          </ul>
+          <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.15);">
+            <p style="font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.7;">
+              📞 <strong style="color:rgba(255,255,255,.9);">Informes:</strong><br/>
+              55 5200 5003 ext. 14575<br/>
+              Lunes a viernes, 8:00–14:00h<br/><br/>
+              ✉ <a href="mailto:psiq.2022@gmail.com" style="color:var(--gold-light);">psiq.2022@gmail.com</a>
+            </p>
+          </div>
+        </div>
+        <!-- Convocatoria Facebook post -->
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;overflow:hidden;">
+          <div style="padding:.75rem 1.25rem;background:rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.1);">
+            <p style="font-size:.72rem;font-weight:700;color:var(--gold-light);text-transform:uppercase;letter-spacing:.1em;">📢 Publicación de convocatoria</p>
+          </div>
+          <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpsiquiatriacmn20denoviembre%2Fposts%2Fpfbid02B2Pky7RVzgqt1m8zhW8QjATvxZKGjAcwiLgmPsSHrTtFxpKGwFy52TTygmvjnCM9l&show_text=true&width=500" width="500" height="731" style="border:none;overflow:hidden;width:100%;display:block;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
         </div>
       </div>
     </div>
@@ -426,40 +626,42 @@
 <!-- NOTICIAS Y FACEBOOK -->
 <section id="noticias" style="background:var(--cream);">
   <div class="section-inner">
-    <div class="section-label">Vida académica y redes sociales</div>
+    <div class="section-label">Redes sociales y vida académica</div>
     <h2 class="section-title">Noticias y Publicaciones</h2>
     <div class="divider"></div>
-
-    <p style="font-size:1rem;color:var(--gray);line-height:1.8;margin-bottom:2rem;">Sigue las actividades académicas, eventos y novedades del servicio en Facebook:</p>
+    <p style="font-size:1rem;color:var(--gray);line-height:1.8;margin-bottom:2rem;">Sigue las actividades académicas, eventos y noticias del servicio en redes sociales:</p>
     <div class="fb-grid">
       <div class="fb-card">
         <div class="fb-header">
           <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          <span style="color:rgba(255,255,255,.88);font-size:.72rem;font-weight:700;">@psiquiatriacmn20denoviembre</span>
+          <span style="color:rgba(255,255,255,.9);font-size:.72rem;font-weight:700;">@psiquiatriacmn20denoviembre</span>
           <a href="https://www.facebook.com/psiquiatriacmn20denoviembre" target="_blank" style="color:#fff;font-size:.7rem;font-weight:700;text-decoration:none;margin-left:auto;opacity:.85;">Ver página →</a>
         </div>
-        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fp%2F1Dx6F9Wxbm%2F&show_text=true&width=500" height="560" style="border:none;overflow:hidden;width:100%;" scrolling="no" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fp%2F1Dx6F9Wxbm%2F&show_text=true&width=500" height="560" style="border:none;overflow:hidden;width:100%;display:block;" scrolling="no" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
       </div>
       <div class="fb-card">
         <div class="fb-header">
           <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          <span style="color:rgba(255,255,255,.88);font-size:.72rem;font-weight:700;">@psiquiatriacmn20denoviembre</span>
+          <span style="color:rgba(255,255,255,.9);font-size:.72rem;font-weight:700;">@psiquiatriacmn20denoviembre</span>
           <a href="https://www.facebook.com/psiquiatriacmn20denoviembre" target="_blank" style="color:#fff;font-size:.7rem;font-weight:700;text-decoration:none;margin-left:auto;opacity:.85;">Ver página →</a>
         </div>
-        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fp%2F1BxypVmoEt%2F&show_text=true&width=500" height="560" style="border:none;overflow:hidden;width:100%;" scrolling="no" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fp%2F1BxypVmoEt%2F&show_text=true&width=500" height="560" style="border:none;overflow:hidden;width:100%;display:block;" scrolling="no" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
       </div>
       <div class="fb-card">
         <div class="fb-header">
           <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          <span style="color:rgba(255,255,255,.88);font-size:.72rem;font-weight:700;">@psiquiatriacmn20denoviembre</span>
+          <span style="color:rgba(255,255,255,.9);font-size:.72rem;font-weight:700;">@psiquiatriacmn20denoviembre</span>
           <a href="https://www.facebook.com/psiquiatriacmn20denoviembre" target="_blank" style="color:#fff;font-size:.7rem;font-weight:700;text-decoration:none;margin-left:auto;opacity:.85;">Ver página →</a>
         </div>
-        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fp%2F1EyTRa4QMz%2F&show_text=true&width=500" height="560" style="border:none;overflow:hidden;width:100%;" scrolling="no" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fp%2F1EyTRa4QMz%2F&show_text=true&width=500" height="560" style="border:none;overflow:hidden;width:100%;display:block;" scrolling="no" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
       </div>
     </div>
     <div style="text-align:center;margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
-      <a href="https://www.facebook.com/psiquiatriacmn20denoviembre" target="_blank" class="btn btn-teal">Ver todas las publicaciones →</a>
-      <a href="https://www.instagram.com/psiquiacmn20nov" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:.7rem 1.6rem;border-radius:7px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;">Instagram →</a>
+      <a href="https://www.facebook.com/psiquiatriacmn20denoviembre" target="_blank" class="btn btn-purple">Ver todas las publicaciones →</a>
+      <a href="https://www.instagram.com/psiquiacmn20nov" target="_blank" class="btn btn-ig">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @psiquiacmn20nov
+      </a>
     </div>
   </div>
 </section>
@@ -471,17 +673,18 @@
     <h2 class="section-title">Contacto y Ubicación</h2>
     <div class="divider"></div>
     <div class="two-col">
-      <div class="contact-items">
+      <div>
         <div class="ci"><div class="ci-icon">📍</div><div><h4>Dirección</h4><p>Torre de Consulta Externa, Piso 8<br/>Eje 3 Pte 1344, Col. del Valle Sur<br/>Benito Juárez, 03104 CDMX</p></div></div>
         <div class="ci"><div class="ci-icon">📞</div><div><h4>Teléfono</h4><p>55 5200 5003 ext. 14575<br/><span style="font-size:.8rem;color:var(--gray);">Horario: 8:00–14:00h</span></p></div></div>
-        <div class="ci"><div class="ci-icon">✉️</div><div><h4>Correo</h4><p><a href="/cdn-cgi/l/email-protection#7e0e0d170f504c4e4c4c3e19131f1712501d1113"><span class="__cf_email__" data-cfemail="fb8b88928ad5c9cbc9c9bb9c969a9297d5989496">[email&#160;protected]</span></a></p></div></div>
+        <div class="ci"><div class="ci-icon">✉️</div><div><h4>Correo</h4><p><a href="mailto:psiq.2022@gmail.com">psiq.2022@gmail.com</a></p></div></div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem;">
-          <a href="https://www.instagram.com/psiquiacmn20nov" target="_blank" style="display:flex;align-items:center;gap:7px;padding:.6rem 1.2rem;border-radius:8px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <a href="https://www.instagram.com/psiquiacmn20nov" target="_blank" class="btn btn-ig">
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             @psiquiacmn20nov
           </a>
-          <a href="https://www.facebook.com/psiquiatriacmn20denoviembre" target="_blank" style="display:flex;align-items:center;gap:7px;padding:.6rem 1.2rem;border-radius:8px;background:#1877F2;color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <a href="https://www.facebook.com/psiquiatriacmn20denoviembre" target="_blank"
+             style="display:flex;align-items:center;gap:7px;padding:.6rem 1.2rem;border-radius:8px;background:#1877F2;color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;">
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             Facebook
           </a>
         </div>
@@ -498,6 +701,19 @@
     <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/paido.png" alt="Paidopsiquiatría" />
   </div>
   <p>
-    <strong style="color:#fff;">Subespecialidad en Psiquiatría Infantil y de la Adolescencia</strong><br/>
+    <strong>Subespecialidad en Psiquiatría Infantil y de la Adolescencia</strong><br/>
     Servicio de Psiquiatría · Centro Médico Nacional "20 de Noviembre" · ISSSTE · CDMX<br/>
-    <a href="/cdn-cgi/l/e
+    <a href="mailto:psiq.2022@gmail.com">psiq.2022@gmail.com</a> · 55 5200 5003 ext. 14575<br/>
+    <a href="index.html">← Volver al sitio principal</a><br/>
+    <span style="font-size:.72rem;opacity:.4;display:block;margin-top:.5rem;">© 2025 Servicio de Psiquiatría CMN 20 de Noviembre</span>
+  </p>
+</footer>
+
+<script>
+  function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+  document.querySelectorAll('#navLinks a:not([href^="http"]):not([href^="mailto"])').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+</script>
+</body>
+</html>
