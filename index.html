@@ -257,7 +257,7 @@
       <li><a href="#sede">Sede</a></li>
       <li><a href="#adscritos">Equipo</a></li>
       <li class="dropdown">
-        <button class="nav-btn" onclick="toggleDropdown(this)">Especialidades ▾</button>
+        <button class="nav-btn" id="dropdownBtn">Especialidades ▾</button>
         <div class="dropdown-menu">
           <a href="#especialidades">Residencia en Psiquiatría</a>
           <a href="paido.html">Subespecialidad: Paidopsiquiatría</a>
@@ -272,7 +272,7 @@
       <li><a href="#social">Noticias</a></li>
       <li><a href="#convocatoria" class="btn btn-p" style="font-size:0.72rem;padding:0.42rem 0.9rem;margin-left:0.5rem;">Convocatoria</a></li>
     </ul>
-    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
   </div>
@@ -967,6 +967,62 @@
   <div id="lb-counter" style="position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.6);font-size:0.85rem;"></div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var ham = document.getElementById('hamburger');
+    var nav = document.getElementById('navLinks');
+    var dropBtn = document.getElementById('dropdownBtn');
+    var dropLi = dropBtn ? dropBtn.closest('.dropdown') : null;
+
+    function openMenu() {
+      nav.classList.add('open');
+      var spans = ham.querySelectorAll('span');
+      spans[0].style.cssText = 'transform:translateY(7px) rotate(45deg);transition:.3s';
+      spans[1].style.cssText = 'opacity:0;transition:.3s';
+      spans[2].style.cssText = 'transform:translateY(-7px) rotate(-45deg);transition:.3s';
+    }
+
+    function closeMenu() {
+      nav.classList.remove('open');
+      if (dropLi) dropLi.classList.remove('open');
+      var spans = ham.querySelectorAll('span');
+      spans[0].style.cssText = 'transition:.3s';
+      spans[1].style.cssText = 'transition:.3s';
+      spans[2].style.cssText = 'transition:.3s';
+    }
+
+    // Hamburger toggle
+    ham.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (nav.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    // Dropdown button
+    if (dropBtn) {
+      dropBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropLi.classList.toggle('open');
+      });
+    }
+
+    // Close when clicking a nav link
+    nav.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', closeMenu);
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!nav.contains(e.target) && !ham.contains(e.target)) {
+        closeMenu();
+      }
+    });
+  });
+</script>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
   const rawBase = 'https://raw.githubusercontent.com/moymaa/psiquiatria20/fotosextranjero/';
@@ -1238,4 +1294,9 @@
     <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60101309114e5250525220070d01090c4e030f0d">[email&#160;protected]</a> · 55 5200 5003 ext. 14575<br/>
     <a href="https://www.instagram.com/psiquiacmn20nov" target="_blank">Instagram</a> ·
     <a href="https://www.facebook.com/psiquiatriacmn20denoviembre" target="_blank">Facebook</a><br/>
-    <span style="font-size:0.73rem;opacity:0.45;display:block;margin-top:0.5rem;">© 2025 Servicio de Psiquiatría CMN 20 de Noviembre · Todos los derechos reservados
+    <span style="font-size:0.73rem;opacity:0.45;display:block;margin-top:0.5rem;">© 2025 Servicio de Psiquiatría CMN 20 de Noviembre · Todos los derechos reservados</span>
+  </p>
+</footer>
+
+</body>
+</html>
