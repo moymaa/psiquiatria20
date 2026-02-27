@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agenda Vespertina · Psiquiatría CMN 20 de Noviembre</title>
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" />
+  <meta name="description" content="Agenda tu cita vespertina en el Servicio de Psiquiatría del CMN 20 de Noviembre, ISSSTE." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --crimson:      #7D1535;
+      --crimson-dark: #5A0F25;
+      --crimson-lt:   #A0243B;
+      --gold:         #C9A45A;
+      --gold-light:   #E8D5A3;
+      --cream:        #F8F4EE;
+      --dark:         #1A1A1A;
+      --gray:         #6B6B6B;
+      --light-gray:   #F0EDE8;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Lato', sans-serif; color: var(--dark); background: #fff; overflow-x: hidden; }
+
+    /* ─── NAVBAR (idéntico al index) ──────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--crimson);
+      box-shadow: 0 2px 20px rgba(125,21,53,0.1);
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 1.5rem; height: 70px;
+    }
+    .nav-logo img { height: 48px; width: auto; }
+    .nav-links { display: flex; list-style: none; gap: 0; align-items: center; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a, .nav-links > li > .nav-btn {
+      display: flex; align-items: center; gap: 4px;
+      padding: 0.55rem 0.75rem;
+      font-family: 'Lato', sans-serif; font-size: 0.76rem;
+      font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      text-decoration: none; color: var(--crimson-dark);
+      border: none; background: none; cursor: pointer;
+      transition: color 0.2s; white-space: nowrap;
+    }
+    .nav-links > li > a:hover, .nav-links > li > .nav-btn:hover { color: var(--gold); }
+    .nav-links > li > a.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+    .dropdown-menu {
+      display: none; position: absolute; top: 100%; left: 0;
+      min-width: 230px; background: #fff;
+      border-top: 3px solid var(--crimson);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      border-radius: 0 0 6px 6px; overflow: hidden; z-index: 200;
+    }
+    .dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a {
+      display: block; padding: 0.75rem 1.25rem;
+      font-size: 0.82rem; color: var(--crimson-dark);
+      text-decoration: none; border-bottom: 1px solid #f0ebe5;
+      transition: background 0.2s, padding-left 0.2s;
+    }
+    .dropdown-menu a:hover { background: var(--cream); padding-left: 1.6rem; }
+    .hamburger {
+      display: none; flex-direction: column;
+      gap: 5px; cursor: pointer; padding: 4px;
+    }
+    .hamburger span { width: 26px; height: 2px; background: var(--crimson); border-radius: 2px; transition: 0.3s; }
+
+    /* Botones nav */
+    .btn { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: 6px; font-family: 'Lato', sans-serif; font-weight: 700; letter-spacing: 0.04em; padding: 0.65rem 1.4rem; transition: all 0.2s; font-size: 0.85rem; cursor: pointer; border: none; }
+    .btn-p { background: var(--crimson); color: #fff; box-shadow: 0 4px 16px rgba(125,21,53,0.3); }
+    .btn-p:hover { background: var(--crimson-dark); transform: translateY(-1px); box-shadow: 0 6px 22px rgba(125,21,53,0.4); }
+    .btn-g { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.7); }
+    .btn-g:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
+
+    /* ─── HERO ─────────────────────────────────── */
+    .page-hero {
+      min-height: 60vh;
+      background: linear-gradient(160deg, var(--crimson-dark) 0%, var(--crimson) 50%, var(--crimson-lt) 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 2rem 60px;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .page-hero > * { position: relative; z-index: 1; }
+
+    .hero-logo-wrap {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: #fff; border: 4px solid rgba(255,255,255,0.85);
+      display: flex; align-items: center; justify-content: center;
+      padding: 10px; margin: 0 auto 1.75rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.32);
+      animation: fadeInDown 0.8s ease both;
+    }
+    .hero-logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
+
+    @keyframes fadeInDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeInUp   { from { opacity:0; transform:translateY(20px);  } to { opacity:1; transform:translateY(0); } }
+
+    .hero-eyebrow {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold-light); margin-bottom: 0.5rem;
+      animation: fadeInUp 0.8s ease 0.15s both;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700; color: #fff;
+      line-height: 1.2; margin-bottom: 0.5rem;
+      animation: fadeInUp 0.8s ease 0.25s both;
+    }
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: var(--gold-light); font-weight: 300;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease 0.35s both;
+    }
+    .hero-badges {
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 0.8s ease 0.45s both;
+    }
+    .badge {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 100px; padding: 0.45rem 1.1rem;
+      color: #fff; font-size: 0.82rem;
+      display: flex; align-items: center; gap: 6px;
+      backdrop-filter: blur(6px);
+    }
+    .badge-live { background: rgba(74,222,128,0.2); border-color: rgba(74,222,128,0.4); }
+    .dot-pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #4ade80; flex-shrink: 0;
+      box-shadow: 0 0 0 0 rgba(74,222,128,.55);
+      animation: pdot 1.6s ease-in-out infinite;
+    }
+    @keyframes pdot {
+      0%  { box-shadow: 0 0 0 0   rgba(74,222,128,.55); }
+      70% { box-shadow: 0 0 0 7px rgba(74,222,128,0);   }
+      100%{ box-shadow: 0 0 0 0   rgba(74,222,128,0);   }
+    }
+
+    /* ─── CONTENIDO ─────────────────────────────── */
+    #agenda { background: var(--cream); }
+    .section-inner { max-width: 800px; margin: 0 auto; padding: 70px 2rem 80px; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      color: var(--crimson-dark); margin-bottom: 1rem; line-height: 1.2;
+    }
+    .section-lead { font-size: 1rem; color: var(--gray); line-height: 1.8; max-width: 620px; margin-bottom: 2.5rem; }
+    .divider { width: 60px; height: 3px; background: linear-gradient(90deg, var(--crimson), var(--gold)); margin-bottom: 2rem; border-radius: 2px; }
+
+    /* ─── TARJETA AGENDAR ─────────────────────── */
+    .agenda-card {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #E8E0D8;
+      box-shadow: 0 4px 24px rgba(125,21,53,.08);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .agenda-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(125,21,53,.13); }
+
+    .card-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .card-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: var(--light-gray);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+    }
+    .card-icon.verde { background: #e8f5e9; }
+    .card-icon.azul  { background: #e3f2fd; }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--crimson-dark); margin-bottom: 0.25rem;
+    }
+    .card-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.55; }
+
+    /* ─── BOTÓN AGENDAR ──────────────────────── */
+    .btn-agendar {
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+      width: 100%; padding: 1.05rem;
+      border-radius: 8px; border: none;
+      background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-dark) 100%);
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem; font-weight: 700; letter-spacing: 0.04em;
+      cursor: pointer; text-decoration: none;
+      box-shadow: 0 4px 18px rgba(125,21,53,.32);
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-agendar:hover  { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(125,21,53,.42); }
+    .btn-agendar:active { transform: translateY(0); }
+    .btn-agendar.loading { opacity: 0.7; pointer-events: none; }
+
+    /* ─── MÉDICOS GRID ───────────────────────── */
+    .medico-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 400px) { .medico-grid { grid-template-columns: 1fr; } }
+
+    .medico-card {
+      background: var(--cream);
+      border: 1px solid #E8E0D8;
+      border-radius: 12px;
+      padding: 1.25rem 1rem 1rem;
+      display: flex; flex-direction: column; gap: 0.85rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .medico-card:hover { box-shadow: 0 6px 22px rgba(125,21,53,.1); transform: translateY(-2px); }
+
+    .medico-foto {
+      width: 68px; height: 68px; border-radius: 50%;
+      object-fit: cover; object-position: center top;
+      border: 3px solid var(--gold);
+      display: block;
+    }
+    .medico-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--crimson-dark); line-height: 1.25; margin-bottom: 0.2rem;
+    }
+    .medico-role { font-size: 0.75rem; color: var(--gray); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    .btn-ir {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; padding: 0.65rem;
+      border-radius: 7px;
+      border: 1.5px solid var(--crimson);
+      background: #fff; color: var(--crimson);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-ir:hover, .btn-ir:active { background: var(--crimson); color: #fff; }
+
+    /* ─── INFO BOX ───────────────────────────── */
+    .info-box {
+      background: linear-gradient(135deg, #FBF6EE, #F5EDD8);
+      border: 1px solid var(--gold-light);
+      border-left: 5px solid var(--gold);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem; color: var(--dark); line-height: 1.7;
+    }
+    .info-box strong { color: var(--crimson-dark); }
+
+    /* ─── AVISO PRIVACIDAD ───────────────────── */
+    details.drop {
+      background: #fff; border: 1px solid #E8E0D8;
+      border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem;
+    }
+    summary.drop-sum {
+      list-style: none; cursor: pointer;
+      padding: 1rem 1.25rem;
+      display: flex; align-items: center; justify-content: space-between;
+      font-weight: 700; font-size: 0.88rem; color: var(--crimson-dark);
+      user-select: none; -webkit-tap-highlight-color: transparent;
+    }
+    summary.drop-sum::-webkit-details-marker { display: none; }
+    .chev {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1px solid #E8E0D8;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: var(--gray);
+      transition: transform .22s cubic-bezier(.2,.8,.2,1);
+    }
+    details[open] .chev { transform: rotate(180deg); }
+    .panel { height: 0; overflow: hidden; border-top: 1px solid #E8E0D8; transition: height .28s cubic-bezier(.2,.8,.2,1); }
+    .panel-in { padding: 1rem 1.25rem; }
+    .privacy { padding-left: 1rem; }
+    .privacy li { margin: 5px 0; color: rgba(0,0,0,.68); font-size: 0.84rem; line-height: 1.55; font-weight: 500; }
+    .privacy strong { color: #111; font-weight: 800; }
+    .fine { font-size: 0.8rem; color: var(--gray); line-height: 1.45; }
+
+    /* ─── OVERLAY ────────────────────────────── */
+    .overlay {
+      position: fixed; inset: 0;
+      background: rgba(26,26,26,.65);
+      backdrop-filter: blur(5px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 999;
+      opacity: 0; pointer-events: none;
+      transition: opacity .25s;
+    }
+    .overlay.show { opacity: 1; pointer-events: all; }
+    .ov-card {
+      background: #fff;
+      border-radius: 16px;
+      border-top: 4px solid var(--crimson);
+      padding: 2.5rem 2rem 2rem;
+      text-align: center;
+      width: min(340px, 92vw);
+      box-shadow: 0 20px 60px rgba(0,0,0,.2);
+      transform: scale(.93);
+      transition: transform .28s cubic-bezier(.2,.8,.2,1);
+    }
+    .overlay.show .ov-card { transform: scale(1); }
+    .ov-spinner {
+      width: 52px; height: 52px; border-radius: 50%;
+      border: 4px solid var(--light-gray); border-top-color: var(--crimson);
+      animation: spin .75s linear infinite;
+      margin: 0 auto 1.25rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .ov-check { font-size: 48px; margin-bottom: 0.75rem; }
+    .ov-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--crimson-dark); margin-bottom: 0.5rem;
+    }
+    .ov-msg  { font-size: 0.9rem; color: var(--gray); line-height: 1.6; }
+    .ov-sub  { font-size: 0.78rem; color: var(--gray); margin-top: 0.5rem; }
+    .ov-error { font-size: 0.82rem; color: #c0392b; margin-top: 0.75rem; }
+    .btn-retry {
+      margin-top: 1.1rem; padding: 0.8rem 1.25rem;
+      border-radius: 8px; border: none;
+      background: var(--crimson); color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.88rem; font-weight: 700;
+      cursor: pointer; width: 100%;
+    }
+
+    /* ─── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--crimson-dark);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 0.85rem; line-height: 1.8;
+    }
+    footer img { height: 60px; width: auto; margin-bottom: 1rem; opacity: 0.9; }
+    footer a { color: var(--gold-light); text-decoration: none; }
+    footer a:hover { color: #fff; }
+    footer p { margin-bottom: 0.25rem; }
+
+    /* ─── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: #fff; border-top: 2px solid var(--crimson); padding: 1rem 0; box-shadow: 0 8px 24px rgba(0,0,0,.1); }
+      .nav-links.open { display: flex; }
+      .nav-links > li > a, .nav-links > li > .nav-btn { padding: 0.75rem 1.5rem; width: 100%; justify-content: flex-start; }
+      .dropdown-menu { position: static; display: none; box-shadow: none; border-radius: 0; border-top: none; border-left: 4px solid var(--crimson); margin-left: 1rem; }
+      .dropdown.open .dropdown-menu { display: block; }
+      .hamburger { display: flex; }
+      .medico-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 400px) {
+      .medico-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── OVERLAY ─────────────────────────────── -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true">
+  <div class="ov-card">
+    <div id="ov-spinner" class="ov-spinner"></div>
+    <div id="ov-check"  class="ov-check"  style="display:none">✅</div>
+    <p class="ov-title" id="ov-title">Buscando médico disponible…</p>
+    <p class="ov-msg"   id="ov-msg">Un momento, estamos asignando tu turno.</p>
+    <p class="ov-sub"   id="ov-sub" style="display:none"></p>
+    <p class="ov-error" id="ov-error" style="display:none"></p>
+    <button class="btn-retry" id="btn-retry" style="display:none" onclick="closeOverlay()">Cerrar e intentar de nuevo</button>
+  </div>
+</div>
+
+<!-- ─── NAVBAR ───────────────────────────────── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20menu.png" alt="Psiquiatría CMN 20 de Noviembre" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/#sede">Sede</a></li>
+      <li><a href="/#adscritos">Equipo</a></li>
+      <li class="dropdown">
+        <button class="nav-btn" onclick="toggleDropdown(this)">Especialidades ▾</button>
+        <div class="dropdown-menu">
+          <a href="/#especialidades">Residencia en Psiquiatría</a>
+          <a href="/paido.html">Subespecialidad: Paidopsiquiatría</a>
+          <a href="/enlace.html">Alta Especialidad: Psiq. de Enlace</a>
+        </div>
+      </li>
+      <li><a href="/#cursos-mono">Cursos Monográficos</a></li>
+      <li><a href="/#publicaciones">Publicaciones</a></li>
+      <li><a href="/#codigo-morado">Código Morado</a></li>
+      <li><a href="/agenda-vespertina-psiquiatria/" class="active">Agenda Vespertina</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────── -->
+<section class="page-hero">
+  <div class="hero-logo-wrap">
+    <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" alt="Psiquiatría CMN 20 de Noviembre" />
+  </div>
+  <p class="hero-eyebrow">CMN 20 de Noviembre · ISSSTE</p>
+  <h1>Agenda Vespertina<br/>de Psiquiatría</h1>
+  <p class="hero-sub">Turno vespertino · 14:00 – 20:00 h</p>
+  <div class="hero-badges">
+    <span class="badge badge-live"><span class="dot-pulse"></span> Citas disponibles hoy</span>
+    <span class="badge">🏥 ISSSTE · Servicio de Psiquiatría</span>
+    <span class="badge">📍 Piso 8, Torre de Consulta Externa</span>
+  </div>
+</section>
+
+<!-- ─── CONTENIDO ────────────────────────────── -->
+<section id="agenda">
+  <div class="section-inner">
+
+    <div class="section-label">Turno vespertino · Primera cita</div>
+    <h2 class="section-title">¿Cómo agendar tu cita?</h2>
+    <div class="divider"></div>
+    <p class="section-lead">Presiona el botón para ser asignado automáticamente con el médico vespertino disponible. El sistema alterna entre los médicos adscritos para distribuir la carga de manera equitativa.</p>
+
+    <!-- INFO -->
+    <div class="info-box">
+      📋 <strong>Antes de agendar:</strong> Este servicio es exclusivo para <strong>derechohabientes del ISSSTE</strong>. Ten a la mano tu número de seguridad social y una identificación oficial.
+    </div>
+
+    <!-- PRIMERA VEZ -->
+    <div class="agenda-card">
+      <div class="card-head">
+        <div class="card-icon verde">🆕</div>
+        <div>
+          <p class="card-title">Agendar por primera vez</p>
+          <p class="card-desc">El sistema te asignará automáticamente con el médico vespertino disponible. Un solo toque — sin pasos intermedios.</p>
+        </div>
+      </div>
+      <button class="btn-agendar" id="btnAgendar" onclick="agendar()">
+        <span id="btn-icon">📅</span>
+        <span id="btn-text">Agendar mi primera cita</span>
+      </button>
+    </div>
+
+    <!-- REAGENDAR -->
+    <div class="section-label" style="margin-top:2.5rem;">¿Ya tienes cita y necesitas cambiarla?</div>
+    <div class="agenda-card">
+      <div class="card-head">
+        <div class="card-icon azul">🔄</div>
+        <div>
+          <p class="card-title">Reagendar</p>
+          <p class="card-desc">Si ya tienes una cita previa y necesitas cambiar de fecha o médico, elige directamente con quién deseas reagendar.</p>
+        </div>
+      </div>
+      <div class="medico-grid">
+
+        <!-- Dr. Alejandro Salazar -->
+        <div class="medico-card">
+          <img class="medico-foto"
+            src="https://lh3.googleusercontent.com/pw/AP1GczP-665u5Xl2PpTmAHRVMxLHKJik656KUn2jGMx_O81ycRNOGwTWRO51h9MIKfJIYwsaKSTdYselmD0jaESCBY2yryyimFEp5u0UW88vdl_KyMcRICi5eGEml0_A_RZ864JFLcpcLlVZd2xcsTkCVziuZA=w745-h745-s-no-gm?authuser=0"
+            alt="Dr. Alejandro Salazar Rodríguez" loading="lazy" />
+          <div>
+            <p class="medico-name">Dr. Alejandro Salazar Rodríguez</p>
+            <p class="medico-role">Médico Adscrito · Vespertino</p>
+          </div>
+          <a class="btn-ir" href="https://calendar.app.google/dD8MJjciFHAteY2d9" target="_blank" rel="noopener">
+            Ir a su agenda →
+          </a>
+        </div>
+
+        <!-- Dr. Nicolás Moya -->
+        <div class="medico-card">
+          <img class="medico-foto"
+            src="https://lh3.googleusercontent.com/pw/AP1GczMhQ6m9BOG6lddqce7vog3-dLP4_oifP2GShaWc1kbQsxyFwuxyweYIykWCzKl49n2yeeyuUfcq0CgMb0GxyAwyIYHLhg2T0wvQRXcQSMnMNY23HN21WoiiRFHgzEcq9zp-rdpo9dmaZmmy7XMgizvYOA=w1024-h1024-s-no-gm"
+            alt="Dr. D. Nicolás Moya S." loading="lazy" />
+          <div>
+            <p class="medico-name">Dr. D. Nicolás Moya S.</p>
+            <p class="medico-role">Médico Adscrito · Vespertino</p>
+          </div>
+          <a class="btn-ir" href="https://calendar.app.google/7FHRQn7Lp4XN7rVN7" target="_blank" rel="noopener">
+            Ir a su agenda →
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- HORARIOS -->
+    <div class="agenda-card" style="background:var(--cream);">
+      <div class="card-head">
+        <div class="card-icon">🕐</div>
+        <div>
+          <p class="card-title">Información del servicio</p>
+          <p class="card-desc">Datos útiles antes de tu cita</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;font-size:0.88rem;color:var(--gray);">
+        <div>
+          <p style="font-weight:700;color:var(--crimson-dark);margin-bottom:0.3rem;">🌇 Turno vespertino</p>
+          <p>14:00 – 20:00 h<br/>Lunes a viernes</p>
+        </div>
+        <div>
+          <p style="font-weight:700;color:var(--crimson-dark);margin-bottom:0.3rem;">📍 Ubicación</p>
+          <p>Torre de Consulta Externa<br/>Piso 8 · CMN 20 de Noviembre</p>
+        </div>
+        <div>
+          <p style="font-weight:700;color:var(--crimson-dark);margin-bottom:0.3rem;">📞 Teléfono</p>
+          <p>55 5200 5003 ext. 14575<br/><span style="font-size:0.78rem;">Horario: 8:00 – 14:00 h</span></p>
+        </div>
+        <div>
+          <p style="font-weight:700;color:var(--crimson-dark);margin-bottom:0.3rem;">🚇 Cómo llegar</p>
+          <p>Metro Insurgentes Sur<br/>Eje 3 Pte 1344, Col. del Valle Sur</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AVISO PRIVACIDAD -->
+    <details class="drop" id="dropPriv">
+      <summary class="drop-sum">
+        🔒 Aviso de privacidad
+        <span class="chev">▾</span>
+      </summary>
+      <div class="panel" id="privPanel">
+        <div class="panel-in">
+          <p class="fine" style="margin-bottom:0.75rem;font-weight:700;color:rgba(0,0,0,.70);">
+            En cumplimiento de la Ley Federal de Protección de Datos Personales:
+          </p>
+          <ul class="privacy">
+            <li><strong>Responsable:</strong> Servicio de Psiquiatría (CMN 20 de Noviembre, ISSSTE) / médico tratante.</li>
+            <li><strong>Datos recabados:</strong> identificación, contacto y datos de atención médica.</li>
+            <li><strong>Finalidad:</strong> gestionar citas y continuidad de atención.</li>
+            <li><strong>Tratamiento:</strong> medidas de seguridad razonables, limitado al personal autorizado.</li>
+            <li><strong>Transferencias:</strong> solo las necesarias para el servicio o por obligación legal.</li>
+            <li><strong>Derechos ARCO:</strong> Acceder, Rectificar, Cancelar u Oponerse mediante solicitud institucional.</li>
+          </ul>
+          <p class="fine" style="margin-top:0.75rem;">Al continuar, el usuario reconoce este aviso y otorga consentimiento.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- VOLVER -->
+    <div style="text-align:center;padding-top:1rem;">
+      <a href="/" class="btn btn-p" style="font-size:0.82rem;">← Volver al sitio principal</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────── -->
+<footer>
+  <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" alt="Logo Psiquiatría" />
+  <p><strong style="color:#fff;">Servicio de Psiquiatría</strong></p>
+  <p>Centro Médico Nacional "20 de Noviembre" · ISSSTE · Ciudad de México</p>
+  <p>psiquiatria@cmn20nov.issste.gob.mx · 55 5200 5003 ext. 14575</p>
+  <p>
+    <a href="https://www.instagram.com/psiquiacmn20nov" target="_blank">Instagram</a> ·
+    <a href="https://www.facebook.com/psiquiatriacmn20denoviembre" target="_blank">Facebook</a> ·
+    <a href="/">psiquiatria20nov.com</a>
+  </p>
+  <p style="font-size:0.73rem;opacity:0.45;margin-top:0.75rem;">© 2025 Servicio de Psiquiatría CMN 20 de Noviembre · Todos los derechos reservados</p>
+</footer>
+
+<script>
+  /* ─── FIREBASE ──────────────────────────────── */
+  var FB_URL = "https://agendacmn-f49a3-default-rtdb.firebaseio.com/agenda_vespertina/ultimo.json";
+  var MEDICOS = {
+    salazar: { nombre: "Dr. Alejandro Salazar Rodríguez", url: "https://calendar.app.google/dD8MJjciFHAteY2d9" },
+    moya:    { nombre: "Dr. D. Nicolás Moya Sánchez",    url: "https://calendar.app.google/7FHRQn7Lp4XN7rVN7" }
+  };
+
+  /* ─── OVERLAY ───────────────────────────────── */
+  function showOverlay() { document.getElementById("overlay").classList.add("show"); }
+  function closeOverlay() {
+    document.getElementById("overlay").classList.remove("show");
+    setTimeout(function() {
+      document.getElementById("ov-spinner").style.display = "block";
+      document.getElementById("ov-check").style.display   = "none";
+      document.getElementById("ov-title").textContent     = "Buscando médico disponible…";
+      document.getElementById("ov-msg").textContent       = "Un momento, estamos asignando tu turno.";
+      document.getElementById("ov-sub").style.display     = "none";
+      document.getElementById("ov-error").style.display   = "none";
+      document.getElementById("btn-retry").style.display  = "none";
+      var btn = document.getElementById("btnAgendar");
+      btn.classList.remove("loading");
+      document.getElementById("btn-icon").textContent = "📅";
+      document.getElementById("btn-text").textContent = "Agendar mi primera cita";
+    }, 300);
+  }
+
+  /* ─── LÓGICA PRINCIPAL ──────────────────────── */
+  function agendar() {
+    var btn = document.getElementById("btnAgendar");
+    btn.classList.add("loading");
+    document.getElementById("btn-icon").textContent = "⏳";
+    document.getElementById("btn-text").textContent = "Asignando turno…";
+    showOverlay();
+
+    fetch(FB_URL)
+      .then(function(r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+      .then(function(ultimo) {
+        var sig = (String(ultimo || "").trim().toLowerCase() === "salazar") ? "moya" : "salazar";
+        return fetch(FB_URL, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(sig)
+        }).then(function(r) {
+          if (!r.ok) throw new Error("No se pudo guardar el turno.");
+          return MEDICOS[sig];
+        });
+      })
+      .then(function(med) {
+        document.getElementById("ov-spinner").style.display = "none";
+        document.getElementById("ov-check").style.display   = "block";
+        document.getElementById("ov-title").textContent     = "¡Turno asignado!";
+        document.getElementById("ov-msg").textContent       = med.nombre;
+        document.getElementById("ov-sub").style.display     = "block";
+        document.getElementById("ov-sub").textContent       = "Redirigiendo a tu agenda en un momento…";
+        setTimeout(function() { window.location.href = med.url; }, 1400);
+      })
+      .catch(function(err) {
+        document.getElementById("ov-spinner").style.display = "none";
+        document.getElementById("ov-title").textContent     = "Error de conexión";
+        document.getElementById("ov-msg").textContent       = "No se pudo conectar. Verifica tu internet e intenta de nuevo.";
+        document.getElementById("ov-error").style.display   = "block";
+        document.getElementById("ov-error").textContent     = err.message || "";
+        document.getElementById("btn-retry").style.display  = "block";
+      });
+  }
+
+  /* ─── NAVBAR MOBILE ─────────────────────────── */
+  function toggleMenu() {
+    var links = document.getElementById("navLinks");
+    var ham   = document.getElementById("hamburger");
+    links.classList.toggle("open");
+    ham.classList.toggle("open");
+  }
+  function toggleDropdown(btn) {
+    btn.closest(".dropdown").classList.toggle("open");
+  }
+
+  /* ─── PRIVACIDAD ACCORDION ──────────────────── */
+  (function() {
+    var d = document.getElementById("dropPriv");
+    var p = document.getElementById("privPanel");
+    if (!d || !p) return;
+    p.style.height = d.open ? "auto" : "0px";
+    d.addEventListener("toggle", function() {
+      if (d.open) {
+        var h = p.scrollHeight;
+        p.style.height = "0px";
+        requestAnimationFrame(function() { p.style.height = h + "px"; });
+        p.addEventListener("transitionend", function fn(e) {
+          if (e.propertyName !== "height") return;
+          p.style.height = "auto";
+          p.removeEventListener("transitionend", fn);
+        });
+      } else {
+        p.style.height = p.scrollHeight + "px";
+        requestAnimationFrame(function() { p.style.height = "0px"; });
+      }
+    });
+  })();
+
+  /* Cerrar overlay tocando el fondo (solo si hay error) */
+  document.getElementById("overlay").addEventListener("click", function(e) {
+    if (e.target === this && document.getElementById("btn-retry").style.display !== "none") {
+      closeOverlay();
+    }
+  });
+</script>
+</body>
+</html>
