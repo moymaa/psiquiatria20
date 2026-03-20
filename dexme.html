@@ -256,11 +256,12 @@ input[type=number].big{font-size:1.38rem;font-family:'Playfair Display',serif;
 .itx{font-family:'Lato',monospace;font-size:.75rem;color:var(--dk);line-height:1.88;
      white-space:pre-wrap;word-break:break-word;background:var(--cr2);
      border:1px solid var(--bd);border-radius:6px;padding:.85rem;}
-.cbtn{width:100%;margin-top:.65rem;background:var(--cr);border:none;border-radius:7px;
-      color:#fff;font-family:'Lato',sans-serif;font-size:.76rem;font-weight:700;
-      padding:.62rem;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;
-      transition:background .18s;}
-.cbtn:hover{background:var(--cdk);}
+.cbtn{width:100%;margin-top:.65rem;background:var(--gn);border:none;border-radius:8px;
+      color:#fff;font-family:'Lato',sans-serif;font-size:.85rem;font-weight:700;
+      padding:.8rem;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;
+      transition:all .2s;box-shadow:0 4px 14px rgba(26,107,74,.3);}
+.cbtn:hover{background:#14532d;box-shadow:0 6px 20px rgba(26,107,74,.4);transform:translateY(-1px);}
+.cbtn:active{transform:translateY(0);}
 
 .empty{text-align:center;padding:2.2rem 1rem;color:var(--gy);}
 .empty p{font-family:'Playfair Display',serif;font-size:.92rem;
@@ -343,8 +344,7 @@ footer a{color:var(--gl);text-decoration:none;}
   <div class="h-chips">
     <span class="chip">🩺 Factores → dosis sugerida con evidencia</span>
     <span class="chip">⚗️ Dilución configurable</span>
-    <span class="chip">📋 Indicación para expediente</span>
-    <span class="chip">📚 PMID verificados</span>
+    <span class="chip">📚 PMID verificados · Fines académicos</span>
   </div>
 </div>
 
@@ -522,7 +522,7 @@ footer a{color:var(--gl);text-decoration:none;}
     <label class="fl" for="peso">Peso (kg)</label>
     <div class="ir">
       <input type="number" id="peso" class="big" min="30" max="250"
-             placeholder="70" inputmode="decimal" oninput="calc()">
+             placeholder="0" inputmode="decimal" oninput="calc()">
       <span class="ut">kg</span>
     </div>
   </div>
@@ -624,12 +624,15 @@ footer a{color:var(--gl);text-decoration:none;}
 
 <div class="ic">
   <div class="ih">
-    <span class="iht">📋 Indicación para expediente</span>
-    <span class="it">Listo para copiar</span>
+    <span class="iht">📋 Ejemplo de indicación</span>
+    <span class="it">Solo fines académicos</span>
   </div>
   <div class="ib">
     <div class="itx" id="indTx">—</div>
-    <button class="cbtn" onclick="copyInd()">Copiar indicación</button>
+    <button class="cbtn" onclick="copyInd()">Copiar ejemplo de indicación</button>
+    <div style="margin-top:.5rem;font-size:.68rem;color:var(--gy);line-height:1.5;text-align:center">
+      ⚠ <em>Ejemplo con fines académicos y de apoyo al razonamiento clínico.<br/>No transcribir directamente. Verifica cada dato antes de prescribir.</em>
+    </div>
   </div>
 </div>
 
@@ -659,17 +662,28 @@ footer a{color:var(--gl);text-decoration:none;}
 
   </div>
 
-  <!-- ESTADO VACÍO -->
+  <!-- ESTADO PENDIENTE -->
 
-  <div id="emSt" class="empty">
-    <div style="font-size:2.2rem;margin-bottom:.45rem">⚖️</div>
-    <p>Selecciona factores e ingresa el peso para calcular</p>
+  <div id="emSt">
+    <div style="background:#fef3c7;border:2px dashed #d97706;border-radius:12px;
+                padding:1.25rem 1.4rem;text-align:center;">
+      <div style="font-size:1.8rem;margin-bottom:.5rem">⚠️</div>
+      <div style="font-family:Playfair Display,serif;font-size:1rem;font-weight:700;
+                  color:#92600a;margin-bottom:.5rem;">Campos pendientes</div>
+      <div id="pendList" style="font-size:.78rem;color:#7c4e10;line-height:1.7;"></div>
+      <div style="margin-top:.75rem;font-size:.7rem;color:#a07030;font-style:italic;">
+        Completa todos los campos para ver los resultados y el ejemplo de indicación
+      </div>
+    </div>
   </div>
 
   <!-- ═══ BIBLIOGRAFÍA ═══ -->
 
-  <div style="margin-top:6px"><div class="sl">Evidencia</div>
-  <h2 class="st">Bibliografía y fuentes de dosificación</h2><div class="div"></div></div>
+  <div style="margin-top:12px;background:var(--cr2);border-radius:10px;padding:1rem 1.2rem .2rem;border:1px solid var(--bd);">
+    <div class="sl">Evidencia</div>
+    <h2 style="font-family:Playfair Display,serif;font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--cdk);margin-bottom:.6rem;line-height:1.25;">Bibliografía y fuentes de dosificación</h2>
+    <div class="div"></div>
+  </div>
 
   <div class="bw">
     <div class="bt" onclick="togBib()">
@@ -850,6 +864,7 @@ function selR(btn){
   else if(v <= 2) btn.classList.add('rl');
   else btn.classList.add('rh');
   upSug();
+  calc();
 }
 
 // ── FACTORES ─────────────────────────────────────────
@@ -1013,7 +1028,22 @@ function calc(){
   var rs = document.getElementById('resS');
   var es = document.getElementById('emSt');
 
-  if(!peso || isNaN(peso) || peso < 10){
+  // Calcular qué falta
+  var falta = [];
+  if(!peso || isNaN(peso) || peso < 10) falta.push('⚖️ Peso del paciente');
+  if(RASS === null) falta.push('📊 RASS actual');
+
+  // Actualizar la lista de pendientes
+  var pl = document.getElementById('pendList');
+  if(pl){
+    if(falta.length > 0){
+      pl.innerHTML = falta.map(function(f){
+        return '<div style="display:inline-block;background:rgba(217,119,6,.12);border:1px solid #d97706;border-radius:6px;padding:2px 10px;margin:2px 3px;">'+f+'</div>';
+      }).join('');
+    }
+  }
+
+  if(falta.length > 0){
     rs.style.display='none'; es.style.display='block'; return;
   }
   rs.style.display='block'; es.style.display='none';
@@ -1060,7 +1090,7 @@ function calc(){
   var sugStr  = sugDose !== null ? 'Dosis sugerida por factores: ' + sugDose.toFixed(2) + ' mcg/kg/h' : '';
 
   var ind =
-'── INDICACIÓN MÉDICA · '+fecha+' ─────────────────────\n\n'
+'── EJEMPLO DE INDICACIÓN · Solo fines académicos · '+fecha+' ───\n\n'
 +'Dx: Delirium en paciente crítico\n\n'
 +'DEXMEDETOMIDINA IV\n'
 +'─ Preparación ─────────────────────────────────────\n'
@@ -1106,6 +1136,7 @@ function togBib(){
 // ── INIT ───────────────────────────────────────────
 upDD();
 upDil();
+calc();
 </script>
 
 </body>
