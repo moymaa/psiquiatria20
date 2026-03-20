@@ -23,7 +23,6 @@
     html{scroll-behavior:smooth;overflow-x:hidden;}
     body{font-family:'Lato',sans-serif;color:var(--dk);background:#fff;padding-bottom:70px;}
 
-```
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;
     background:rgba(255,255,255,.97);backdrop-filter:blur(10px);
     border-bottom:2px solid var(--cr);box-shadow:0 2px 20px rgba(125,21,53,.1);}
@@ -315,7 +314,6 @@ footer img{height:46px;width:46px;object-fit:contain;
            margin-bottom:.6rem;border-radius:50%;}
 footer p{font-size:.76rem;line-height:1.78;}
 footer a{color:var(--gl);text-decoration:none;}
-```
 
   </style>
 </head>
@@ -340,11 +338,11 @@ footer a{color:var(--gl);text-decoration:none;}
   <div class="h-badge">💊 Psiquiatría de Enlace · UCI · PADIS 2025</div>
   <h1>Calculadora<br/>Dexmedetomidina</h1>
   <p class="h-sub">Delirium · Sedación por VM · Basado en evidencia</p>
-  <p class="h-desc">Selecciona factores clínicos del paciente y obtén una dosis de inicio fundamentada en evidencia. Configura tu dilución. La dosis es tuya — puedes moverla.</p>
+  <p class="h-desc">Selecciona factores clínicos del paciente y obtén una dosis de inicio fundamentada en evidencia. Configura tu dilución.</p>
   <div class="h-chips">
     <span class="chip">🩺 Factores → dosis sugerida con evidencia</span>
     <span class="chip">⚗️ Dilución configurable</span>
-    <span class="chip">📚 PMID verificados · Fines académicos</span>
+    <span class="chip">📚 PMID verificados</span>
   </div>
 </div>
 
@@ -433,7 +431,6 @@ footer a{color:var(--gl);text-decoration:none;}
       <button class="rb" data-v="4"  onclick="selR(this)">+4 Combativo</button>
     </div>
 
-```
 <div class="dthin"></div>
 
 <div class="ch" style="margin-bottom:.8rem;margin-top:.2rem">
@@ -508,7 +505,6 @@ footer a{color:var(--gl);text-decoration:none;}
 
 <!-- SUGERENCIA -->
 <div id="sugBox" style="display:none"></div>
-```
 
   </div><!-- /card -->
 
@@ -536,7 +532,6 @@ footer a{color:var(--gl);text-decoration:none;}
     <div class="ch"><div class="step">III</div>
     <div class="ct">Ajusta la dosis — puedes moverla libremente</div></div>
 
-```
 <div class="dd">
   <div class="dn" id="dD">0.40</div>
   <div class="du">mcg / kg / h</div>
@@ -556,7 +551,6 @@ footer a{color:var(--gl);text-decoration:none;}
          placeholder="0.40" inputmode="decimal" oninput="upFM()">
   <span class="ut">mcg/kg/h</span>
 </div>
-```
 
   </div>
 
@@ -605,7 +599,6 @@ footer a{color:var(--gl);text-decoration:none;}
 
   <div id="resS" style="display:none">
 
-```
 <div class="rc-card">
   <div class="rc-t">Resultados calculados</div>
   <div id="bRR"></div>
@@ -624,14 +617,13 @@ footer a{color:var(--gl);text-decoration:none;}
 
 <div class="ic">
   <div class="ih">
-    <span class="iht">📋 Ejemplo de indicación</span>
-    <span class="it">Solo fines académicos</span>
+    <span class="iht">📋 Indicación</span>
   </div>
   <div class="ib">
     <div class="itx" id="indTx">—</div>
-    <button class="cbtn" onclick="copyInd()">Copiar ejemplo de indicación</button>
+    <button class="cbtn" onclick="copyInd()">Copiar indicación</button>
     <div style="margin-top:.5rem;font-size:.68rem;color:var(--gy);line-height:1.5;text-align:center">
-      ⚠ <em>Ejemplo con fines académicos y de apoyo al razonamiento clínico.<br/>No transcribir directamente. Verifica cada dato antes de prescribir.</em>
+      ⚠ <em>Verifica peso, dilución real y estado hemodinámico antes de prescribir.</em>
     </div>
   </div>
 </div>
@@ -658,7 +650,6 @@ footer a{color:var(--gl);text-decoration:none;}
     <li><b>RASS +3/+4:</b> ECA A2B (JAMA 2025) — 64% requirió propofol suplementario; dexmedetomidina sola puede ser insuficiente en agitación severa.</li>
   </ul>
 </div>
-```
 
   </div>
 
@@ -687,13 +678,12 @@ footer a{color:var(--gl);text-decoration:none;}
 
   <div class="bw">
     <div class="bt" onclick="togBib()">
-      <span class="btt">Referencias · APA 7.ª ed. · PubMed verificadas</span>
+      <span class="btt">Referencias</span>
       <span class="bc" id="bCh">▼</span>
     </div>
     <div class="bb" id="bB">
-      <p class="bi">Fuentes que sustentan los rangos de dosis, los factores de riesgo cardiovascular y las recomendaciones de esta calculadora. Recuperadas de PubMed.</p>
+      
 
-```
   <div class="ref">
     <p class="rc2"><span class="rn2">1</span>
     <strong>Lewis, K., Balas, M. C., Stollings, J. L., McNett, M., Girard, T. D., &amp; Devlin, J. W. (2025).</strong>
@@ -765,7 +755,6 @@ footer a{color:var(--gl);text-decoration:none;}
   </div>
 
 </div>
-```
 
   </div>
 
@@ -831,7 +820,7 @@ function upDil(){
   var mcg  = amps * 200;
   var mLamp= amps * 2;
   var totV = vol + mLamp;
-  CONC = mcg / vol; // mcg/mL basado en vol diluyente
+  CONC = mcg / totV; // mcg/mL basado en vol total (diluyente + ampollas)
 
   document.getElementById('dA').textContent =
     amps + ' amp' + (amps>1?'s':'') + ' (' + mcg + ' mcg / ' + mLamp + ' mL)';
@@ -1090,7 +1079,7 @@ function calc(){
   var sugStr  = sugDose !== null ? 'Dosis sugerida por factores: ' + sugDose.toFixed(2) + ' mcg/kg/h' : '';
 
   var ind =
-'── EJEMPLO DE INDICACIÓN · Solo fines académicos · '+fecha+' ───\n\n'
+'── INDICACIÓN · '+fecha+' ───\n\n'
 +'Dx: Delirium en paciente crítico\n\n'
 +'DEXMEDETOMIDINA IV\n'
 +'─ Preparación ─────────────────────────────────────\n'
