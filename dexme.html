@@ -2,190 +2,318 @@
 
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculadora Dexmedetomidina · Delirium UCI · Psiquiatría de Enlace CMN 20 Nov</title>
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" />
-  <meta name="description" content="Calculadora clínica de dexmedetomidina para delirium en UCI. Psiquiatría de Enlace CMN 20 de Noviembre ISSSTE." />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Dexmedetomidina · Calculadora Clínica · Psiquiatría de Enlace</title>
+  <link rel="icon" type="image/png"
+    href="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --crimson: #7D1535;
-      --crimson-dark: #5A0F25;
-      --gold: #C9A45A;
-      --gold-light: #E8D5A3;
-      --cream: #F8F4EE;
-      --dark: #1A1A1A;
-      --gray: #6B6B6B;
-      --light-gray: #F0EDE8;
-      --green: #1a6b4a;
-      --green-bg: #edf7f2;
-      --amber-bg: #fef8ec;
-      --amber: #92600a;
-      --red-bg: #fef2f2;
-      --red: #9b1c1c;
+    :root{
+      --cr:#7D1535;--cdk:#5A0F25;
+      --go:#C9A45A;--gl:#E8D5A3;
+      --cr2:#F8F4EE;--dk:#1A1A1A;--gy:#6B6B6B;
+      --lg:#F0EDE8;--bd:#E0D8CF;
+      --gn:#1a6b4a;--gnb:#edf7f2;
+      --am:#92600a;--amb:#fef8ec;
+      --rd:#9b1c1c;--rdb:#fef2f2;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
-    body { font-family: 'Lato', sans-serif; color: var(--dark); background: #fff; overflow-x: hidden; max-width: 100vw; padding-bottom: 60px; }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;overflow-x:hidden;}
+    body{font-family:'Lato',sans-serif;color:var(--dk);background:#fff;padding-bottom:70px;}
 
 ```
-/* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-bottom: 2px solid var(--crimson); box-shadow: 0 2px 20px rgba(125,21,53,0.1); }
-.nav-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 1.5rem; height: 64px; }
-.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.nav-logo img { height: 40px; width: auto; }
-.nav-logo-text { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-weight: 700; color: var(--crimson-dark); line-height: 1.2; }
-.nav-logo-sub { font-size: 0.65rem; color: var(--gray); font-weight: 400; letter-spacing: 0.04em; }
-.nav-back { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--crimson); text-decoration: none; border: 1.5px solid var(--crimson); border-radius: 5px; padding: 0.38rem 0.9rem; transition: all 0.2s; }
-.nav-back:hover { background: var(--crimson); color: #fff; }
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;
+    background:rgba(255,255,255,.97);backdrop-filter:blur(10px);
+    border-bottom:2px solid var(--cr);box-shadow:0 2px 20px rgba(125,21,53,.1);}
+.nav-i{max-width:820px;margin:0 auto;display:flex;align-items:center;
+       justify-content:space-between;padding:0 1.25rem;height:62px;}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none;}
+.nav-logo img{height:38px;}
+.nlt{font-family:'Playfair Display',serif;font-size:.88rem;font-weight:700;
+     color:var(--cdk);line-height:1.2;}
+.nls{font-size:.6rem;color:var(--gy);}
+.nav-back{font-size:.73rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+          color:var(--cr);text-decoration:none;border:1.5px solid var(--cr);
+          border-radius:5px;padding:.32rem .8rem;transition:all .2s;}
+.nav-back:hover{background:var(--cr);color:#fff;}
 
-/* HERO */
-.hero { background: linear-gradient(160deg, var(--crimson-dark) 0%, var(--crimson) 55%, #9B2040 100%); padding: 100px 1.5rem 56px; text-align: center; position: relative; overflow: hidden; }
-.hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); border-radius: 100px; padding: 0.35rem 1rem; color: var(--gold-light); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.25rem; backdrop-filter: blur(6px); }
-.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 0.6rem; }
-.hero-sub { font-size: 1rem; color: var(--gold-light); font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem; }
-.hero-desc { max-width: 580px; margin: 0 auto 2rem; font-size: 0.97rem; color: rgba(255,255,255,0.82); line-height: 1.75; }
-.hero-chips { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-.chip { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 0.35rem 1rem; color: #fff; font-size: 0.78rem; backdrop-filter: blur(4px); }
+.hero{background:linear-gradient(160deg,var(--cdk) 0%,var(--cr) 55%,#9B2040 100%);
+      padding:94px 1.25rem 50px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;opacity:.6;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");}
+.h-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);
+         border:1px solid rgba(255,255,255,.28);border-radius:100px;
+         padding:.3rem .9rem;color:var(--gl);font-size:.7rem;font-weight:700;
+         letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.65rem);
+         font-weight:700;color:#fff;line-height:1.2;margin-bottom:.45rem;}
+.h-sub{font-size:.9rem;color:var(--gl);font-weight:300;
+       letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.3rem;}
+.h-desc{max-width:540px;margin:0 auto 1.5rem;font-size:.9rem;
+        color:rgba(255,255,255,.8);line-height:1.72;}
+.h-chips{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;}
+.chip{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.2);
+      border-radius:100px;padding:.28rem .85rem;color:#fff;font-size:.72rem;}
 
-/* DILUCIÓN BANNER */
-.dilution-wrap { max-width: 760px; margin: -28px auto 0; padding: 0 1.25rem; position: relative; z-index: 10; }
-.dilution-card { background: var(--crimson-dark); border-radius: 12px; padding: 1.25rem 1.5rem; border-left: 4px solid var(--gold); box-shadow: 0 8px 32px rgba(90,15,37,0.35); }
-.dilution-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
-.dilution-eq { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.d-pill { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #f0e8de; font-family: 'Lato', monospace; font-size: 0.82rem; font-weight: 700; padding: 5px 10px; border-radius: 5px; white-space: nowrap; }
-.d-pill.result { background: rgba(201,164,90,0.25); border-color: var(--gold); color: var(--gold-light); }
-.d-op { color: rgba(255,255,255,0.45); font-size: 1.1rem; font-weight: 300; }
+.dil-wrap{max-width:820px;margin:-26px auto 0;padding:0 1.25rem;position:relative;z-index:10;}
+.dil-card{background:var(--cdk);border-radius:12px;padding:1.1rem 1.4rem;
+          border-left:4px solid var(--go);box-shadow:0 8px 32px rgba(90,15,37,.35);}
+.dil-lbl{font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+         color:var(--go);margin-bottom:.35rem;}
+.dil-main{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;
+          color:var(--gl);margin-bottom:.4rem;}
+.dil-eq{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.dp{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);
+    color:#f0e8de;font-size:.76rem;font-weight:700;padding:3px 8px;border-radius:4px;}
+.dp.res{background:rgba(201,164,90,.22);border-color:var(--go);color:var(--gl);}
+.dop{color:rgba(255,255,255,.35);font-size:.95rem;}
 
-/* CONTAINER */
-.container { max-width: 760px; margin: 0 auto; padding: 36px 1.25rem 0; }
+.wrap{max-width:820px;margin:0 auto;padding:30px 1.25rem 0;}
 
-/* SECTION LABEL */
-.section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
-.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 2.5vw, 1.7rem); color: var(--crimson-dark); margin-bottom: 0.75rem; line-height: 1.25; }
-.divider { width: 50px; height: 3px; background: linear-gradient(90deg, var(--crimson), var(--gold)); margin-bottom: 1.5rem; border-radius: 2px; }
+.sl{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--go);margin-bottom:.22rem;}
+.st{font-family:'Playfair Display',serif;font-size:clamp(1.15rem,2.5vw,1.6rem);
+    color:var(--cdk);margin-bottom:.6rem;line-height:1.25;}
+.div{width:44px;height:3px;background:linear-gradient(90deg,var(--cr),var(--go));
+     margin-bottom:1.3rem;border-radius:2px;}
 
-/* CARDS */
-.calc-card { background: #fff; border: 1px solid #E8E0D8; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: 0 3px 16px rgba(125,21,53,0.07); }
-.calc-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1.25rem; }
-.step-circle { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--crimson-dark), var(--crimson)); color: #fff; font-family: 'Playfair Display', serif; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.step-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--crimson-dark); }
+.card{background:#fff;border:1px solid var(--bd);border-radius:12px;
+      padding:1.3rem;margin-bottom:1.1rem;
+      box-shadow:0 3px 16px rgba(125,21,53,.06);}
+.ch{display:flex;align-items:center;gap:9px;margin-bottom:1.1rem;}
+.step{width:26px;height:26px;border-radius:50%;flex-shrink:0;
+      background:linear-gradient(135deg,var(--cdk),var(--cr));color:#fff;
+      font-family:'Playfair Display',serif;font-size:.8rem;font-weight:700;
+      display:flex;align-items:center;justify-content:center;}
+.ct{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700;color:var(--cdk);}
 
-/* FIELD */
-.field { margin-bottom: 1.1rem; }
-.field:last-child { margin-bottom: 0; }
-.field-label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 6px; }
-.input-row { display: flex; gap: 8px; align-items: center; }
-input[type="number"] { flex: 1; background: var(--cream); border: 1.5px solid #DDD6CE; border-radius: 8px; color: var(--dark); font-size: 1.4rem; font-family: 'Playfair Display', serif; font-weight: 700; padding: 9px 13px; outline: none; transition: border-color .18s, box-shadow .18s; -webkit-appearance: none; }
-input[type="number"]:focus { border-color: var(--crimson); background: #fff; box-shadow: 0 0 0 3px rgba(125,21,53,0.08); }
-.unit-tag { background: var(--light-gray); border: 1px solid #DDD6CE; border-radius: 8px; padding: 9px 12px; font-size: 0.78rem; font-weight: 700; color: var(--gray); white-space: nowrap; letter-spacing: 0.05em; }
-select { width: 100%; background: var(--cream); border: 1.5px solid #DDD6CE; border-radius: 8px; color: var(--dark); font-size: 0.94rem; font-family: 'Lato', sans-serif; padding: 10px 12px; outline: none; cursor: pointer; transition: border-color .18s; }
-select:focus { border-color: var(--crimson); }
+.dg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;}
+@media(max-width:560px){.dg{grid-template-columns:1fr 1fr;}}
+@media(max-width:380px){.dg{grid-template-columns:1fr;}}
+.dg-lbl{display:block;font-size:.66rem;font-weight:700;letter-spacing:.08em;
+        text-transform:uppercase;color:var(--gy);margin-bottom:4px;}
+select,input[type=number]{
+  width:100%;background:var(--cr2);border:1.5px solid var(--bd);
+  border-radius:7px;color:var(--dk);font-size:.88rem;
+  font-family:'Lato',sans-serif;padding:8px 10px;outline:none;
+  transition:border-color .18s;cursor:pointer;}
+select:focus,input[type=number]:focus{border-color:var(--cr);}
+.cb-badge{margin-top:.8rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;}
+.cbv{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--cr);}
+.cbl{font-size:.75rem;color:var(--gy);}
+.cbw{font-size:.62rem;font-weight:700;padding:3px 7px;border-radius:4px;letter-spacing:.04em;}
+.w-ok{background:var(--gnb);color:var(--gn);}
+.w-hi{background:var(--amb);color:var(--am);}
+.w-vh{background:var(--rdb);color:var(--rd);}
 
-/* DOSE DISPLAY */
-.dose-display { text-align: center; margin-bottom: 1rem; }
-.dose-num { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 700; color: var(--crimson-dark); line-height: 1; }
-.dose-unit { font-size: 0.82rem; color: var(--gray); margin-top: 3px; letter-spacing: 0.04em; }
-.dose-zone { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 100px; margin-top: 6px; letter-spacing: 0.04em; }
+.rass-row{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.4rem;}
+.rb{padding:.38rem .65rem;border-radius:6px;border:1.5px solid var(--bd);
+    background:var(--cr2);font-size:.77rem;font-weight:700;cursor:pointer;
+    transition:all .18s;font-family:'Lato',sans-serif;white-space:nowrap;}
+.rb:hover{border-color:var(--cr);}
+.rb.rn{background:#eef4fc;border-color:#1e4a7a;color:#1e4a7a;}
+.rb.r0{background:var(--gnb);border-color:var(--gn);color:var(--gn);}
+.rb.rl{background:var(--amb);border-color:#d97706;color:var(--am);}
+.rb.rh{background:var(--rdb);border-color:var(--cr);color:var(--cdk);}
 
-/* SLIDER */
-.slider-labels { display: flex; justify-content: space-between; font-size: 0.68rem; color: var(--gray); letter-spacing: 0.04em; margin-bottom: 5px; }
-input[type="range"] { width: 100%; -webkit-appearance: none; height: 5px; border-radius: 5px; background: linear-gradient(90deg, #1a6b4a 0%, var(--gold) 50%, var(--crimson) 100%); outline: none; cursor: pointer; }
-input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 2.5px solid var(--crimson-dark); cursor: pointer; box-shadow: 0 2px 8px rgba(125,21,53,0.25); }
-.divider-thin { border: none; border-top: 1px solid #F0EDE8; margin: 1.1rem 0; }
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;}
+@media(max-width:480px){.fg{grid-template-columns:1fr;}}
+.fgt{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+     color:var(--gy);grid-column:1/-1;margin:.4rem 0 .15rem;}
+.fi{display:flex;align-items:flex-start;gap:.55rem;background:var(--cr2);
+    border:1.5px solid var(--bd);border-radius:8px;padding:.6rem .75rem;
+    cursor:pointer;transition:border-color .18s,background .18s;user-select:none;}
+.fi:hover{border-color:var(--cr);}
+.fi.sel{border-color:var(--cr);background:#fdf0f3;}
+.fi input{display:none;}
+.fb{width:17px;height:17px;border-radius:4px;flex-shrink:0;
+    border:2px solid var(--bd);background:#fff;
+    display:flex;align-items:center;justify-content:center;
+    transition:all .18s;margin-top:1px;}
+.fi.sel .fb{background:var(--cr);border-color:var(--cr);}
+.fck{color:#fff;font-size:.6rem;display:none;}
+.fi.sel .fck{display:block;}
+.fn{font-size:.8rem;font-weight:700;color:var(--dk);}
+.fs{font-size:.68rem;color:var(--gy);margin-top:1px;line-height:1.4;}
+.fr{font-size:.6rem;font-weight:700;padding:1px 5px;border-radius:3px;
+    letter-spacing:.05em;display:inline-block;margin-top:2px;}
+.rc{background:var(--rdb);color:var(--rd);}
+.ra{background:var(--amb);color:var(--am);}
+.rm{background:#eef4fc;color:#1e4a7a;}
 
-/* TOGGLE */
-.toggle-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 1rem; }
-.toggle-info h4 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--crimson-dark); }
-.toggle-info p { font-size: 0.78rem; color: var(--gray); margin-top: 3px; line-height: 1.5; }
-.toggle { position: relative; width: 46px; height: 26px; flex-shrink: 0; margin-top: 2px; }
-.toggle input { opacity: 0; width: 0; height: 0; }
-.tog-track { position: absolute; inset: 0; background: #DDD6CE; border-radius: 13px; cursor: pointer; transition: .2s; }
-.tog-track:before { content: ''; position: absolute; width: 20px; height: 20px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .2s; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
-.toggle input:checked + .tog-track { background: var(--crimson); }
-.toggle input:checked + .tog-track:before { transform: translateX(20px); }
-.bolo-fields { display: none; }
-.bolo-fields.active { display: block; }
+.sug{border-radius:10px;padding:.9rem 1rem;margin-top:.9rem;border-left:4px solid;}
+.sug.sg{background:var(--gnb);border-color:var(--gn);}
+.sug.sa{background:var(--amb);border-color:#d97706;}
+.sug.sr{background:var(--rdb);border-color:var(--cr);}
+.sug.sc{background:#f5e5e8;border-color:var(--cdk);}
+.st2{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;margin-bottom:.45rem;}
+.sug.sg .st2{color:var(--gn);}
+.sug.sa .st2{color:var(--am);}
+.sug.sr .st2{color:var(--cdk);}
+.sug.sc .st2{color:var(--cdk);}
+.sb2{font-size:.78rem;line-height:1.65;}
+.sug.sg .sb2{color:#14532d;}
+.sug.sa .sb2{color:#7c4e10;}
+.sug.sr .sb2{color:var(--cdk);}
+.sug.sc .sb2{color:#5a1020;}
+.sref{font-size:.66rem;margin-top:.45rem;opacity:.72;font-style:italic;line-height:1.5;}
+.ap-btn{margin-top:.65rem;background:var(--cr);color:#fff;border:none;
+        border-radius:6px;padding:.45rem 1.1rem;font-size:.76rem;font-weight:700;
+        letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
+        transition:background .18s;font-family:'Lato',sans-serif;}
+.ap-btn:hover{background:var(--cdk);}
 
-/* ALERTS */
-.alert { border-radius: 8px; padding: 1rem 1.1rem; margin-bottom: 1rem; border-left: 4px solid; }
-.alert.amber { background: var(--amber-bg); border-color: #d97706; }
-.alert.red { background: var(--red-bg); border-color: var(--crimson); }
-.alert.green { background: var(--green-bg); border-color: #059669; }
-.alert-title { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 700; margin-bottom: 6px; }
-.alert.amber .alert-title { color: var(--amber); }
-.alert.red .alert-title { color: var(--crimson-dark); }
-.alert.green .alert-title { color: var(--green); }
-.alert ul { list-style: none; padding: 0; }
-.alert ul li { font-size: 0.82rem; padding: 2px 0 2px 14px; position: relative; line-height: 1.55; }
-.alert ul li:before { content: '›'; position: absolute; left: 0; font-weight: 700; font-size: 1rem; line-height: 1.3; }
-.alert.amber ul li { color: #7c4e10; }
-.alert.amber ul li:before { color: #d97706; }
-.alert.red ul li { color: var(--crimson-dark); }
-.alert.red ul li:before { color: var(--crimson); }
-.alert.green ul li { color: #14532d; }
-.alert.green ul li:before { color: #059669; }
+.dd{text-align:center;margin-bottom:.85rem;}
+.dn{font-family:'Playfair Display',serif;font-size:2.9rem;font-weight:700;
+    color:var(--cdk);line-height:1;}
+.du{font-size:.75rem;color:var(--gy);margin-top:2px;}
+.dz{display:inline-block;font-size:.68rem;font-weight:700;
+    padding:3px 10px;border-radius:100px;margin-top:5px;}
+.sl2{display:flex;justify-content:space-between;font-size:.63rem;
+     color:var(--gy);margin-bottom:4px;}
+input[type=range]{width:100%;-webkit-appearance:none;height:5px;border-radius:5px;
+  background:linear-gradient(90deg,var(--gn) 0%,var(--go) 47%,var(--cr) 100%);
+  outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;
+  border-radius:50%;background:#fff;border:2.5px solid var(--cdk);cursor:pointer;
+  box-shadow:0 2px 8px rgba(125,21,53,.25);}
+.ir{display:flex;gap:7px;align-items:center;margin-bottom:.9rem;}
+.ir:last-child{margin-bottom:0;}
+input[type=number].big{font-size:1.38rem;font-family:'Playfair Display',serif;
+                        font-weight:700;padding:8px 11px;}
+.ut{background:var(--lg);border:1px solid var(--bd);border-radius:7px;
+    padding:8px 10px;font-size:.72rem;font-weight:700;color:var(--gy);white-space:nowrap;}
+.dthin{border:none;border-top:1px solid #F0EDE8;margin:.9rem 0;}
+.fl{display:block;font-size:.66rem;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--gy);margin-bottom:4px;}
 
-/* RESULTS */
-.results-card { background: linear-gradient(135deg, var(--crimson-dark), var(--crimson)); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: 0 8px 32px rgba(90,15,37,0.25); }
-.results-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold-light); margin-bottom: 1.1rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.12); }
-.result-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
-.result-row:last-child { border-bottom: none; padding-bottom: 0; }
-.result-lbl { font-size: 0.78rem; color: rgba(255,255,255,0.65); font-weight: 400; }
-.result-sub { font-size: 0.68rem; color: rgba(255,255,255,0.4); margin-top: 2px; letter-spacing: 0.03em; }
-.result-val { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #fff; text-align: right; line-height: 1; }
-.result-val.gold { color: var(--gold-light); }
-.result-val.small { font-size: 1.1rem; color: rgba(255,255,255,0.7); }
-.result-val-unit { font-size: 0.68rem; color: rgba(255,255,255,0.4); text-align: right; margin-top: 2px; }
+.tr{display:flex;align-items:flex-start;justify-content:space-between;
+    gap:10px;margin-bottom:.85rem;}
+.ti h4{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;color:var(--cdk);}
+.ti p{font-size:.72rem;color:var(--gy);margin-top:2px;line-height:1.42;}
+.tgl{position:relative;width:44px;height:24px;flex-shrink:0;margin-top:2px;}
+.tgl input{opacity:0;width:0;height:0;}
+.tt{position:absolute;inset:0;background:#DDD6CE;border-radius:12px;
+    cursor:pointer;transition:.2s;}
+.tt:before{content:'';position:absolute;width:18px;height:18px;left:3px;top:3px;
+           background:#fff;border-radius:50%;transition:.2s;
+           box-shadow:0 1px 4px rgba(0,0,0,.2);}
+.tgl input:checked+.tt{background:var(--cr);}
+.tgl input:checked+.tt:before{transform:translateX(20px);}
+.bf{display:none;}
+.bf.on{display:block;}
 
-/* INDICACIÓN */
-.ind-card { background: #fff; border: 1px solid #E8E0D8; border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; box-shadow: 0 3px 16px rgba(125,21,53,0.07); }
-.ind-header { background: var(--cream); border-bottom: 1px solid #E8E0D8; padding: 0.85rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
-.ind-header-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--crimson-dark); }
-.ind-tag { font-size: 0.65rem; font-weight: 700; color: var(--gray); background: #fff; border: 1px solid #DDD6CE; padding: 2px 7px; border-radius: 3px; letter-spacing: 0.06em; text-transform: uppercase; }
-.ind-body { padding: 1.1rem 1.25rem; }
-.ind-text { font-family: 'Lato', monospace; font-size: 0.8rem; color: var(--dark); line-height: 1.9; white-space: pre-wrap; word-break: break-word; background: var(--cream); border: 1px solid #E8E0D8; border-radius: 6px; padding: 1rem; }
-.copy-btn { width: 100%; margin-top: 0.75rem; background: var(--crimson); border: none; border-radius: 7px; color: #fff; font-family: 'Lato', sans-serif; font-size: 0.82rem; font-weight: 700; padding: 0.7rem; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; transition: background .18s; }
-.copy-btn:hover { background: var(--crimson-dark); }
-.copy-btn:active { background: #3a0918; }
+.al{border-radius:8px;padding:.85rem .95rem;margin-bottom:.95rem;border-left:4px solid;}
+.al.am{background:var(--amb);border-color:#d97706;}
+.al.rd{background:var(--rdb);border-color:var(--cr);}
+.al.gn{background:var(--gnb);border-color:#059669;}
+.al.nv{background:#f0f4ff;border-color:#3b5fc0;}
+.alt{font-family:'Playfair Display',serif;font-size:.86rem;font-weight:700;margin-bottom:4px;}
+.al.am .alt{color:var(--am);}
+.al.rd .alt{color:var(--cdk);}
+.al.gn .alt{color:var(--gn);}
+.al.nv .alt{color:#1e3a8a;}
+.al ul{list-style:none;padding:0;}
+.al ul li{font-size:.77rem;padding:2px 0 2px 12px;position:relative;line-height:1.52;}
+.al ul li:before{content:'›';position:absolute;left:0;font-weight:700;
+                 font-size:.9rem;line-height:1.3;}
+.al.am ul li{color:#7c4e10;}
+.al.am ul li:before{color:#d97706;}
+.al.rd ul li{color:var(--cdk);}
+.al.rd ul li:before{color:var(--cr);}
+.al.gn ul li{color:#14532d;}
+.al.gn ul li:before{color:#059669;}
+.al.nv ul li{color:#1e3a8a;}
+.al.nv ul li:before{color:#3b5fc0;}
 
-/* EMPTY */
-.empty-state { text-align: center; padding: 2.5rem 1.5rem; color: var(--gray); }
-.empty-icon { font-size: 2.5rem; margin-bottom: 0.6rem; }
-.empty-state p { font-family: 'Playfair Display', serif; font-size: 1rem; font-style: italic; color: var(--gray); }
+.rc-card{background:linear-gradient(135deg,var(--cdk),var(--cr));border-radius:12px;
+         padding:1.3rem;margin-bottom:1.1rem;box-shadow:0 8px 32px rgba(90,15,37,.25);}
+.rc-t{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;
+      color:var(--gl);margin-bottom:.9rem;padding-bottom:.65rem;
+      border-bottom:1px solid rgba(255,255,255,.12);}
+.rr{display:flex;justify-content:space-between;align-items:center;
+    padding:7px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+.rr:last-child{border-bottom:none;padding-bottom:0;}
+.rl2{font-size:.73rem;color:rgba(255,255,255,.6);}
+.rs2{font-size:.63rem;color:rgba(255,255,255,.37);margin-top:2px;}
+.rv{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;
+    color:#fff;text-align:right;line-height:1;}
+.rv.g{color:var(--gl);}
+.rv.s{font-size:.95rem;color:rgba(255,255,255,.6);}
+.rvu{font-size:.63rem;color:rgba(255,255,255,.37);text-align:right;margin-top:2px;}
 
-/* BIBLIOGRAFÍA */
-.biblio-wrap { background: #fff; border: 1px solid #E8E0D8; border-radius: 12px; overflow: hidden; margin-bottom: 1.25rem; box-shadow: 0 3px 16px rgba(125,21,53,0.07); }
-.biblio-toggle { background: linear-gradient(135deg, var(--crimson-dark), var(--crimson)); padding: 1rem 1.25rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
-.biblio-toggle-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--gold-light); }
-.biblio-chev { color: var(--gold); font-size: 0.85rem; transition: transform .2s; }
-.biblio-chev.open { transform: rotate(180deg); }
-.biblio-body { display: none; padding: 1.5rem; }
-.biblio-body.open { display: block; }
-.biblio-intro { font-size: 0.83rem; color: var(--gray); margin-bottom: 1.1rem; line-height: 1.65; font-style: italic; }
-.ref-item { padding: 1rem 0; border-bottom: 1px solid var(--light-gray); }
-.ref-item:last-child { border-bottom: none; padding-bottom: 0; }
-.ref-num { display: inline-block; font-size: 0.65rem; font-weight: 700; color: var(--gold); background: var(--crimson-dark); padding: 1px 6px; border-radius: 3px; margin-right: 5px; letter-spacing: 0.04em; }
-.ref-cite { font-size: 0.82rem; color: var(--dark); line-height: 1.72; }
-.ref-cite strong { color: var(--crimson-dark); }
-.ref-relevance { font-size: 0.75rem; color: var(--gray); margin-top: 5px; padding: 6px 10px; background: var(--cream); border-radius: 5px; line-height: 1.6; border-left: 3px solid var(--gold); }
-.ref-relevance b { color: var(--crimson-dark); }
-.ref-doi { font-family: 'Lato', monospace; font-size: 0.68rem; color: var(--gray); margin-top: 4px; word-break: break-all; opacity: 0.75; }
+.ic{background:#fff;border:1px solid var(--bd);border-radius:12px;
+    overflow:hidden;margin-bottom:1.1rem;box-shadow:0 3px 16px rgba(125,21,53,.06);}
+.ih{background:var(--cr2);border-bottom:1px solid var(--bd);padding:.75rem 1.1rem;
+    display:flex;align-items:center;justify-content:space-between;}
+.iht{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--cdk);}
+.it{font-size:.6rem;font-weight:700;color:var(--gy);background:#fff;
+    border:1px solid var(--bd);padding:2px 6px;border-radius:3px;
+    letter-spacing:.06em;text-transform:uppercase;}
+.ib{padding:.95rem 1.1rem;}
+.itx{font-family:'Lato',monospace;font-size:.75rem;color:var(--dk);line-height:1.88;
+     white-space:pre-wrap;word-break:break-word;background:var(--cr2);
+     border:1px solid var(--bd);border-radius:6px;padding:.85rem;}
+.cbtn{width:100%;margin-top:.65rem;background:var(--cr);border:none;border-radius:7px;
+      color:#fff;font-family:'Lato',sans-serif;font-size:.76rem;font-weight:700;
+      padding:.62rem;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;
+      transition:background .18s;}
+.cbtn:hover{background:var(--cdk);}
 
-/* FOOTER */
-footer { background: var(--crimson-dark); color: rgba(255,255,255,0.7); text-align: center; padding: 2rem 1.5rem; margin-top: 2rem; }
-footer img { height: 52px; width: 52px; object-fit: contain; margin-bottom: 0.75rem; border-radius: 50%; }
-footer p { font-size: 0.8rem; line-height: 1.8; }
-footer a { color: var(--gold-light); text-decoration: none; }
+.empty{text-align:center;padding:2.2rem 1rem;color:var(--gy);}
+.empty p{font-family:'Playfair Display',serif;font-size:.92rem;
+         font-style:italic;color:var(--gy);}
 
-@media (max-width: 520px) {
-  .dose-num { font-size: 2.5rem; }
-  .result-val { font-size: 1.5rem; }
-  .hero h1 { font-size: 1.7rem; }
-}
+.bw{background:#fff;border:1px solid var(--bd);border-radius:12px;
+    overflow:hidden;margin-bottom:1.1rem;box-shadow:0 3px 16px rgba(125,21,53,.06);}
+.bt{background:linear-gradient(135deg,var(--cdk),var(--cr));padding:.9rem 1.1rem;
+    cursor:pointer;display:flex;justify-content:space-between;
+    align-items:center;user-select:none;}
+.btt{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;color:var(--gl);}
+.bc{color:var(--go);font-size:.8rem;transition:transform .2s;}
+.bc.op{transform:rotate(180deg);}
+.bb{display:none;padding:1.3rem;}
+.bb.op{display:block;}
+.bi{font-size:.78rem;color:var(--gy);margin-bottom:.9rem;line-height:1.6;font-style:italic;}
+.ref{padding:.85rem 0;border-bottom:1px solid var(--lg);}
+.ref:last-child{border-bottom:none;padding-bottom:0;}
+.rn2{display:inline-block;font-size:.6rem;font-weight:700;color:var(--go);
+     background:var(--cdk);padding:1px 5px;border-radius:3px;margin-right:4px;}
+.rc2{font-size:.78rem;color:var(--dk);line-height:1.68;}
+.rc2 strong{color:var(--cdk);}
+.rrel{font-size:.7rem;color:var(--gy);margin-top:4px;padding:5px 8px;
+      background:var(--cr2);border-radius:5px;line-height:1.55;
+      border-left:3px solid var(--go);}
+.rrel b{color:var(--cdk);}
+.doi{font-family:'Lato',monospace;font-size:.63rem;color:var(--gy);
+     margin-top:3px;word-break:break-all;opacity:.7;}
+
+/* CRÉDITOS */
+.credits{background:linear-gradient(135deg,var(--cdk) 0%,#3a0918 100%);
+         border-radius:12px;padding:1.4rem;margin-bottom:1.1rem;
+         border:1px solid rgba(201,164,90,.3);}
+.cred-t{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;
+        color:var(--gl);margin-bottom:.6rem;
+        border-bottom:1px solid rgba(201,164,90,.25);padding-bottom:.5rem;}
+.cred-body{font-size:.78rem;color:rgba(255,255,255,.8);line-height:1.75;}
+.cred-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;
+           color:#fff;margin-bottom:.3rem;}
+.cred-role{font-size:.74rem;color:var(--gl);margin-bottom:.7rem;}
+.disclaimer{margin-top:.85rem;background:rgba(255,71,87,.12);
+            border:1px solid rgba(255,71,87,.3);border-radius:8px;
+            padding:.75rem .9rem;}
+.disc-t{font-family:'Playfair Display',serif;font-size:.82rem;font-weight:700;
+        color:#ff9999;margin-bottom:.35rem;}
+.disc-b{font-size:.73rem;color:rgba(255,180,180,.88);line-height:1.6;}
+
+footer{background:var(--cdk);color:rgba(255,255,255,.65);
+       text-align:center;padding:1.75rem 1.25rem;margin-top:1.5rem;}
+footer img{height:46px;width:46px;object-fit:contain;
+           margin-bottom:.6rem;border-radius:50%;}
+footer p{font-size:.76rem;line-height:1.78;}
+footer a{color:var(--gl);text-decoration:none;}
 ```
 
   </style>
@@ -195,13 +323,11 @@ footer a { color: var(--gold-light); text-decoration: none; }
 <!-- NAV -->
 
 <nav>
-  <div class="nav-inner">
+  <div class="nav-i">
     <a href="https://cmn.psiquiatria20.org" class="nav-logo">
-      <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20menu.png" alt="Psiquiatría CMN 20 Nov" />
-      <div>
-        <div class="nav-logo-text">Psiquiatría CMN 20 Nov</div>
-        <div class="nav-logo-sub">Calculadora Clínica</div>
-      </div>
+      <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20menu.png" alt="Logo"/>
+      <div><div class="nlt">Psiquiatría CMN 20 Nov</div>
+           <div class="nls">Calculadora Clínica · Enlace</div></div>
     </a>
     <a href="https://cmn.psiquiatria20.org" class="nav-back">← Inicio</a>
   </div>
@@ -210,197 +336,323 @@ footer a { color: var(--gold-light); text-decoration: none; }
 <!-- HERO -->
 
 <div class="hero">
-  <div class="hero-badge">💊 Psiquiatría de Enlace · Herramienta Clínica</div>
+  <div class="h-badge">💊 Psiquiatría de Enlace · UCI · PADIS 2025</div>
   <h1>Calculadora<br/>Dexmedetomidina</h1>
-  <p class="hero-sub">Delirium en UCI · Por peso</p>
-  <p class="hero-desc">Calcula velocidades de infusión y bolo de carga basadas en evidencia. Genera indicación lista para copiar al expediente. Incluye bibliografía y resumen de guías PADIS 2025.</p>
-  <div class="hero-chips">
-    <span class="chip">📐 Por peso (mcg/kg/h)</span>
-    <span class="chip">🔢 Bolo opcional</span>
-    <span class="chip">📋 Indicación lista para copiar</span>
-    <span class="chip">📚 Guías SCCM PADIS 2025</span>
+  <p class="h-sub">Delirium · Sedación por VM · Basado en evidencia</p>
+  <p class="h-desc">Selecciona factores clínicos del paciente y obtén una dosis de inicio fundamentada en evidencia. Configura tu dilución. La dosis es tuya — puedes moverla.</p>
+  <div class="h-chips">
+    <span class="chip">🩺 Factores → dosis sugerida con evidencia</span>
+    <span class="chip">⚗️ Dilución configurable</span>
+    <span class="chip">📋 Indicación para expediente</span>
+    <span class="chip">📚 PMID verificados</span>
   </div>
 </div>
 
-<!-- DILUCIÓN BANNER -->
+<!-- BANNER DILUCIÓN ACTIVA -->
 
-<div class="dilution-wrap">
-  <div class="dilution-card">
-    <div class="dilution-label">Dilución estándar de trabajo</div>
-    <div class="dilution-eq">
-      <span class="d-pill">1 amp · 200 mcg / 2 mL</span>
-      <span class="d-op">+</span>
-      <span class="d-pill">100 mL SF 0.9%</span>
-      <span class="d-op">=</span>
-      <span class="d-pill result">2 mcg / mL · 102 mL total</span>
+<div class="dil-wrap">
+  <div class="dil-card">
+    <div class="dil-lbl">Dilución configurada</div>
+    <div class="dil-main" id="dilMain">2.00 mcg/mL</div>
+    <div class="dil-eq">
+      <span class="dp" id="dA">1 amp (200 mcg)</span>
+      <span class="dop">+</span>
+      <span class="dp" id="dV">100 mL SF 0.9%</span>
+      <span class="dop">=</span>
+      <span class="dp res" id="dR">2.00 mcg/mL · 102 mL total</span>
     </div>
   </div>
 </div>
 
-<!-- MAIN CONTAINER -->
+<div class="wrap">
 
-<div class="container">
+  <!-- ═══ 0. DILUCIÓN ═══ -->
 
-  <!-- BLOQUE CALCULADORA -->
+  <div style="margin:30px 0 0"><div class="sl">Paso 0</div>
+  <h2 class="st">Configurar dilución</h2><div class="div"></div></div>
 
-  <div style="margin-bottom:0.5rem; margin-top: 2rem;">
-    <div class="section-label">Herramienta de cálculo</div>
-    <h2 class="section-title">Parámetros de dosificación</h2>
-    <div class="divider"></div>
-  </div>
-
-  <!-- 1. PESO -->
-
-  <div class="calc-card">
-    <div class="calc-card-header">
-      <div class="step-circle">I</div>
-      <div class="step-title">Datos del paciente</div>
-    </div>
-    <div class="field">
-      <label class="field-label" for="peso">Peso corporal</label>
-      <div class="input-row">
-        <input type="number" id="peso" min="30" max="250" placeholder="70" inputmode="decimal" oninput="calcular()">
-        <span class="unit-tag">kg</span>
+  <div class="card">
+    <div class="ch"><div class="step">0</div>
+    <div class="ct">Preparación de la mezcla</div></div>
+    <div class="dg">
+      <div>
+        <label class="dg-lbl" for="nA">Número de ampollas</label>
+        <select id="nA" onchange="upDil()">
+          <option value="1" selected>1 amp (200 mcg / 2 mL)</option>
+          <option value="2">2 amps (400 mcg / 4 mL)</option>
+        </select>
       </div>
-    </div>
-  </div>
-
-  <!-- 2. MANTENIMIENTO -->
-
-  <div class="calc-card">
-    <div class="calc-card-header">
-      <div class="step-circle">II</div>
-      <div class="step-title">Dosis de mantenimiento</div>
-    </div>
-    <div class="dose-display">
-      <div class="dose-num" id="doseDisplay">0.40</div>
-      <div class="dose-unit">mcg / kg / h</div>
-      <div><span class="dose-zone" id="doseZoneTag"></span></div>
-    </div>
-    <div class="slider-labels">
-      <span>0.2</span><span>0.5</span><span>0.7</span><span>1.0</span><span>1.5</span>
-    </div>
-    <input type="range" id="doseSlider" min="0.2" max="1.5" step="0.05" value="0.4"
-           oninput="updateDoseDisplay(); calcular()">
-    <div class="divider-thin"></div>
-    <div class="field" style="margin-bottom:0">
-      <label class="field-label" for="doseManual">O ingresa la dosis manualmente</label>
-      <div class="input-row">
-        <input type="number" id="doseManual" min="0.1" max="1.5" step="0.05"
-               placeholder="0.40" inputmode="decimal" oninput="updateFromManual()">
-        <span class="unit-tag">mcg/kg/h</span>
+      <div>
+        <label class="dg-lbl" for="dVol">Volumen diluyente (mL)</label>
+        <select id="dVol" onchange="upDil()">
+          <option value="50">50 mL</option>
+          <option value="100" selected>100 mL</option>
+          <option value="200">200 mL</option>
+          <option value="250">250 mL</option>
+        </select>
       </div>
-    </div>
-  </div>
-
-  <!-- 3. BOLO -->
-
-  <div class="calc-card">
-    <div class="calc-card-header">
-      <div class="step-circle">III</div>
-      <div class="step-title">Dosis de carga (bolo)</div>
-    </div>
-    <div class="toggle-row">
-      <div class="toggle-info">
-        <h4>Incluir bolo inicial</h4>
-        <p>0.5–1.0 mcg/kg · 10–20 min IV lento<br/>Ver controversia documentada abajo</p>
-      </div>
-      <label class="toggle">
-        <input type="checkbox" id="boloToggle" onchange="toggleBolo()">
-        <span class="tog-track"></span>
-      </label>
-    </div>
-    <div class="alert amber" style="margin-bottom:0">
-      <div class="alert-title">⚠ Controversia sobre el bolo de carga</div>
-      <ul>
-        <li>El SmPC (Orion Pharma/Hospira 2023) permite bolo <em>opcional</em> 0.5–1 mcg/kg en 10–20 min.</li>
-        <li>Los ECAs MENDS (JAMA 2007) y DahLIA (JAMA 2016) <em>no utilizaron</em> bolo de carga en sus protocolos.</li>
-        <li>Las guías SICU 2024 explícitamente <em>no recomiendan</em> bolo previo a la infusión continua por riesgo de hipotensión y bradicardia por vasodilatación aguda.</li>
-        <li>Si se indica: monitorizar FC y TA cada 2 min, tener atropina disponible, documentar decisión clínica en expediente.</li>
-      </ul>
-    </div>
-    <div class="bolo-fields" id="boloFields" style="margin-top:1rem">
-      <div class="field">
-        <label class="field-label" for="boloDosis">Dosis de bolo</label>
-        <div class="input-row">
-          <input type="number" id="boloDosis" min="0.5" max="1.0" step="0.05"
-                 value="0.5" inputmode="decimal" oninput="calcular()">
-          <span class="unit-tag">mcg/kg</span>
-        </div>
-      </div>
-      <div class="field" style="margin-bottom:0">
-        <label class="field-label" for="boloTiempo">Pasar en</label>
-        <select id="boloTiempo" onchange="calcular()">
-          <option value="10">10 minutos</option>
-          <option value="20" selected>20 minutos</option>
+      <div>
+        <label class="dg-lbl" for="dTy">Tipo de diluyente</label>
+        <select id="dTy" onchange="upDil()">
+          <option value="SF 0.9%">SF 0.9%</option>
+          <option value="Glucosa 5%">Glucosa 5%</option>
+          <option value="Ringer Lactato">Ringer Lactato</option>
         </select>
       </div>
     </div>
+    <div class="cb-badge">
+      <span class="cbv" id="cV">2.00</span>
+      <span class="cbl">mcg/mL</span>
+      <span class="cbw w-ok" id="cW">Rango habitual ✓</span>
+    </div>
+    <div style="font-size:.7rem;color:var(--gy);margin-top:.35rem;line-height:1.5">
+      Concentraciones recomendadas: 0.8 – 4 mcg/mL · Diluyentes permitidos: SF 0.9%, Glucosa 5%, Ringer Lactato
+      <em>(Orion SmPC 2023)</em>
+    </div>
   </div>
 
-  <!-- RESULTADOS -->
+  <!-- ═══ I. FACTORES CLÍNICOS ═══ -->
 
-  <div id="resultSection" style="display:none">
+  <div style="margin-top:6px"><div class="sl">Sección I</div>
+  <h2 class="st">Factores clínicos → dosis de inicio</h2><div class="div"></div></div>
+
+  <div class="card">
+    <div class="ch"><div class="step" style="background:linear-gradient(135deg,#1e3a8a,#2c5fc0)">I-A</div>
+    <div class="ct">RASS actual del paciente</div></div>
+    <div style="font-size:.76rem;color:var(--gy);margin-bottom:.65rem">
+      Selecciona el nivel de agitación/sedación actual:
+    </div>
+    <div class="rass-row">
+      <button class="rb" data-v="-3" onclick="selR(this)">−3 Sedado</button>
+      <button class="rb" data-v="-2" onclick="selR(this)">−2 Ligero</button>
+      <button class="rb" data-v="-1" onclick="selR(this)">−1 Somnoliento</button>
+      <button class="rb" data-v="0"  onclick="selR(this)">0 Alerta/calmo</button>
+      <button class="rb" data-v="1"  onclick="selR(this)">+1 Inquieto</button>
+      <button class="rb" data-v="2"  onclick="selR(this)">+2 Agitado</button>
+      <button class="rb" data-v="3"  onclick="selR(this)">+3 Muy agitado</button>
+      <button class="rb" data-v="4"  onclick="selR(this)">+4 Combativo</button>
+    </div>
 
 ```
-<div class="results-card">
-  <div class="results-title">Resultados calculados</div>
-  <div id="boloResultRow"></div>
-  <div class="result-row">
-    <div>
-      <div class="result-lbl">Infusión de mantenimiento</div>
-      <div class="result-sub" id="maintSubLabel">—</div>
-    </div>
-    <div>
-      <div class="result-val gold" id="maintRate">—</div>
-      <div class="result-val-unit">mL / h</div>
+<div class="dthin"></div>
+
+<div class="ch" style="margin-bottom:.8rem;margin-top:.2rem">
+  <div class="step" style="background:linear-gradient(135deg,#1e3a8a,#2c5fc0)">I-B</div>
+  <div class="ct">Factores de riesgo cardiovascular y ajuste</div>
+</div>
+
+<div class="fg" id="fgrid">
+  <div class="fgt">⛔ Contraindicaciones relativas fuertes</div>
+
+  <div class="fi" data-k="bradi" onclick="togF(this)">
+    <div class="fb"><span class="fck">✓</span></div>
+    <div><div class="fn">Bradicardia basal</div>
+         <div class="fs">FC &lt; 55 lpm en reposo</div>
+         <span class="fr rc">CONTRAINDICACIÓN</span></div>
+  </div>
+
+  <div class="fi" data-k="bav" onclick="togF(this)">
+    <div class="fb"><span class="fck">✓</span></div>
+    <div><div class="fn">BAV 2°–3° sin marcapasos</div>
+         <div class="fs">Bloqueo AV de alto grado</div>
+         <span class="fr rc">CONTRAINDICACIÓN</span></div>
+  </div>
+
+  <div class="fgt">🔴 Riesgo hemodinámico alto</div>
+
+  <div class="fi" data-k="hipo" onclick="togF(this)">
+    <div class="fb"><span class="fck">✓</span></div>
+    <div><div class="fn">Hipotensión activa</div>
+         <div class="fs">TAS &lt; 90 mmHg en este momento</div>
+         <span class="fr ra">RIESGO ALTO</span></div>
+  </div>
+
+  <div class="fi" data-k="vaso" onclick="togF(this)">
+    <div class="fb"><span class="fck">✓</span></div>
+    <div><div class="fn">Vasopresores activos</div>
+         <div class="fs">Noradrenalina, vasopresina u otro</div>
+         <span class="fr ra">RIESGO ALTO</span></div>
+  </div>
+
+  <div class="fi" data-k="icc" onclick="togF(this)">
+    <div class="fb"><span class="fck">✓</span></div>
+    <div><div class="fn">ICC / FEVI &lt;40% / BNP elevado</div>
+         <div class="fs">Disfunción ventricular documentada</div>
+         <span class="fr ra">RIESGO ALTO</span></div>
+  </div>
+
+  <div class="fi" data-k="tasl" onclick="togF(this)">
+    <div class="fb"><span class="fck">✓</span></div>
+    <div><div class="fn">TA basal límite</div>
+         <div class="fs">TAS 90–100 mmHg sin choque franco</div>
+         <span class="fr ra">RIESGO ALTO</span></div>
+  </div>
+
+  <div class="fgt">🟡 Modificadores de dosis</div>
+
+  <div class="fi" data-k="edad" onclick="togF(this)">
+    <div class="fb"><span class="fck">✓</span></div>
+    <div><div class="fn">Edad ≥ 65 años</div>
+         <div class="fs">HR 1.23 por c/10 años adicionales (Ice 2016)</div>
+         <span class="fr rm">MODIFICADOR</span></div>
+  </div>
+
+  <div class="fi" data-k="hepa" onclick="togF(this)">
+    <div class="fb"><span class="fck">✓</span></div>
+    <div><div class="fn">Insuf. hepática Child-Pugh C</div>
+         <div class="fs">Metabolismo hepático muy reducido</div>
+         <span class="fr rm">MODIFICADOR</span></div>
+  </div>
+
+</div><!-- /fg -->
+
+<!-- SUGERENCIA -->
+<div id="sugBox" style="display:none"></div>
+```
+
+  </div><!-- /card -->
+
+  <!-- ═══ II. PESO ═══ -->
+
+  <div style="margin-top:6px"><div class="sl">Sección II</div>
+  <h2 class="st">Datos del paciente</h2><div class="div"></div></div>
+
+  <div class="card">
+    <div class="ch"><div class="step">II</div><div class="ct">Peso corporal</div></div>
+    <label class="fl" for="peso">Peso (kg)</label>
+    <div class="ir">
+      <input type="number" id="peso" class="big" min="30" max="250"
+             placeholder="70" inputmode="decimal" oninput="calc()">
+      <span class="ut">kg</span>
     </div>
   </div>
-  <div class="result-row">
-    <div>
-      <div class="result-lbl">Concentración de trabajo</div>
-      <div class="result-sub">200 mcg / 100 mL SF</div>
+
+  <!-- ═══ III. DOSIS MANTENIMIENTO ═══ -->
+
+  <div style="margin-top:6px"><div class="sl">Sección III</div>
+  <h2 class="st">Dosis de mantenimiento</h2><div class="div"></div></div>
+
+  <div class="card">
+    <div class="ch"><div class="step">III</div>
+    <div class="ct">Ajusta la dosis — puedes moverla libremente</div></div>
+
+```
+<div class="dd">
+  <div class="dn" id="dD">0.40</div>
+  <div class="du">mcg / kg / h</div>
+  <div><span class="dz" id="dZ"></span></div>
+</div>
+
+<div class="sl2">
+  <span>0.2</span><span>0.5</span><span>0.7</span><span>1.0</span><span>1.5</span>
+</div>
+<input type="range" id="dSlider" min="0.2" max="1.5" step="0.05" value="0.4"
+       oninput="upDD();calc()">
+
+<div class="dthin"></div>
+<label class="fl" for="dMan">O ingresa la dosis manualmente</label>
+<div class="ir" style="margin-bottom:0">
+  <input type="number" id="dMan" min="0.1" max="1.5" step="0.05"
+         placeholder="0.40" inputmode="decimal" oninput="upFM()">
+  <span class="ut">mcg/kg/h</span>
+</div>
+```
+
+  </div>
+
+  <!-- ═══ IV. BOLO ═══ -->
+
+  <div style="margin-top:6px"><div class="sl">Sección IV</div>
+  <h2 class="st">Dosis de carga (bolo)</h2><div class="div"></div></div>
+
+  <div class="card">
+    <div class="ch"><div class="step">IV</div><div class="ct">Bolo inicial opcional</div></div>
+    <div class="tr">
+      <div class="ti">
+        <h4>Incluir bolo de carga</h4>
+        <p>0.5–1.0 mcg/kg · 10–20 min IV lento<br/>Ver controversia documentada abajo</p>
+      </div>
+      <label class="tgl">
+        <input type="checkbox" id="bT" onchange="togB()">
+        <span class="tt"></span>
+      </label>
     </div>
-    <div>
-      <div class="result-val small">2 mcg/mL</div>
+    <div class="al am" style="margin-bottom:0">
+      <div class="alt">⚠ Controversia sobre el bolo de carga</div>
+      <ul>
+        <li>SmPC Orion (2023): bolo <em>opcional</em> 0.5–1 mcg/kg en 10–20 min.</li>
+        <li>ECAs MENDS (JAMA 2007) y DahLIA (JAMA 2016): protocolos sin bolo.</li>
+        <li>SICU Guidelines 2024: no recomiendan bolo previo — riesgo de hipotensión/bradicardia por vasodilatación aguda.</li>
+        <li>Si se indica: monitorizar FC/TA c/2 min, atropina disponible, documentar decisión.</li>
+      </ul>
     </div>
+    <div class="bf" id="bF" style="margin-top:.9rem">
+      <label class="fl" for="bD">Dosis de bolo</label>
+      <div class="ir">
+        <input type="number" id="bD" min="0.5" max="1.0" step="0.05"
+               value="0.5" inputmode="decimal" oninput="calc()">
+        <span class="ut">mcg/kg</span>
+      </div>
+      <label class="fl" for="bTm">Pasar en</label>
+      <select id="bTm" onchange="calc()" style="margin-bottom:0">
+        <option value="10">10 minutos</option>
+        <option value="20" selected>20 minutos</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- ═══ RESULTADOS ═══ -->
+
+  <div id="resS" style="display:none">
+
+```
+<div class="rc-card">
+  <div class="rc-t">Resultados calculados</div>
+  <div id="bRR"></div>
+  <div class="rr">
+    <div><div class="rl2">Infusión de mantenimiento</div>
+         <div class="rs2" id="mSL">—</div></div>
+    <div><div class="rv g" id="mR">—</div>
+         <div class="rvu">mL / h</div></div>
+  </div>
+  <div class="rr">
+    <div><div class="rl2">Concentración</div>
+         <div class="rs2" id="cRL">—</div></div>
+    <div><div class="rv s" id="cRV">—</div></div>
   </div>
 </div>
 
-<!-- INDICACIÓN -->
-<div class="ind-card">
-  <div class="ind-header">
-    <span class="ind-header-title">📋 Indicación para expediente</span>
-    <span class="ind-tag">Listo para copiar</span>
+<div class="ic">
+  <div class="ih">
+    <span class="iht">📋 Indicación para expediente</span>
+    <span class="it">Listo para copiar</span>
   </div>
-  <div class="ind-body">
-    <div class="ind-text" id="indicacionText">—</div>
-    <button class="copy-btn" onclick="copiarIndicacion()">Copiar indicación</button>
+  <div class="ib">
+    <div class="itx" id="indTx">—</div>
+    <button class="cbtn" onclick="copyInd()">Copiar indicación</button>
   </div>
 </div>
 
-<!-- MONITORIZACIÓN -->
-<div class="alert red">
-  <div class="alert-title">🔴 Monitorización obligatoria</div>
+<div class="al rd">
+  <div class="alt">🔴 Monitorización obligatoria</div>
   <ul>
-    <li>FC y TA cada 15 min durante bolo; cada 1 h en mantenimiento</li>
+    <li>FC y TA c/15 min durante bolo · c/1 h en mantenimiento</li>
     <li>Suspender o reducir si FC &lt; 50 lpm o TAS &lt; 90 mmHg</li>
-    <li>No sustituye tratamiento de la causa subyacente del delirium</li>
+    <li>No sustituye el tratamiento de la causa del delirium</li>
     <li>Ajuste en insuficiencia hepática severa (Child-Pugh C)</li>
-    <li>Uso &gt; 24 h: vigilancia estrecha, evidencia limitada para uso prolongado</li>
-    <li>RASS meta delirium hiperactivo: −1 a +1 · RASS meta delirium hipoactivo: 0</li>
+    <li>Uso &gt; 24 h: vigilancia estrecha; evidencia limitada para uso prolongado</li>
+    <li>RASS meta hiperactivo: −1 a +1 · RASS meta hipoactivo: 0</li>
   </ul>
 </div>
 
-<!-- PADIS 2025 RESUMEN -->
-<div class="alert green">
-  <div class="alert-title">✦ Recomendaciones PADIS 2025 (SCCM) — Delirium</div>
+<div class="al gn">
+  <div class="alt">✦ SCCM PADIS 2025 — Recomendaciones clave</div>
   <ul>
-    <li><b>Sedación en VM:</b> dexmedetomidina sobre propofol cuando la prioridad es sedación ligera o reducción de delirium (recomendación condicional, evidencia moderada).</li>
-    <li><b>Delirium con agitación:</b> indicada cuando la agitación impide el destete o la extubación (condicional, evidencia baja).</li>
-    <li><b>Prevención de delirium:</b> <em>no usar</em> de forma rutinaria en todos los pacientes críticos (condicional).</li>
-    <li><b>Antipsicóticos:</b> no se emite recomendación a favor ni en contra para el tratamiento del delirium en UCI (evidencia insuficiente).</li>
-    <li><b>Propofol vs benzodiacepinas:</b> preferir dexmedetomidina o propofol sobre benzodiacepinas en VM (condicional, evidencia baja, guías 2018).</li>
+    <li><b>Sedación en VM:</b> dexmedetomidina sobre propofol cuando la prioridad es sedación ligera o reducción de delirium (condicional, evidencia moderada).</li>
+    <li><b>Delirium con agitación que impide extubación:</b> indicada (condicional, evidencia baja).</li>
+    <li><b>Prevención universal:</b> NO usar rutinariamente (condicional).</li>
+    <li><b>Antipsicóticos:</b> sin recomendación a favor ni en contra para delirium en UCI.</li>
+    <li><b>RASS +3/+4:</b> ECA A2B (JAMA 2025) — 64% requirió propofol suplementario; dexmedetomidina sola puede ser insuficiente en agitación severa.</li>
   </ul>
 </div>
 ```
@@ -409,112 +661,93 @@ footer a { color: var(--gold-light); text-decoration: none; }
 
   <!-- ESTADO VACÍO -->
 
-  <div id="emptyState" class="empty-state">
-    <div class="empty-icon">⚖️</div>
-    <p>Ingresa el peso del paciente para calcular</p>
+  <div id="emSt" class="empty">
+    <div style="font-size:2.2rem;margin-bottom:.45rem">⚖️</div>
+    <p>Selecciona factores e ingresa el peso para calcular</p>
   </div>
 
-  <!-- ─── BIBLIOGRAFÍA ─── -->
+  <!-- ═══ BIBLIOGRAFÍA ═══ -->
 
-  <div style="margin-top: 1rem; margin-bottom: 0.5rem;">
-    <div class="section-label">Evidencia de soporte</div>
-    <h2 class="section-title">Bibliografía y guías de dosificación</h2>
-    <div class="divider"></div>
-  </div>
+  <div style="margin-top:6px"><div class="sl">Evidencia</div>
+  <h2 class="st">Bibliografía y fuentes de dosificación</h2><div class="div"></div></div>
 
-  <div class="biblio-wrap">
-    <div class="biblio-toggle" onclick="toggleBiblio()">
-      <span class="biblio-toggle-title">Referencias · Formato APA 7.ª ed.</span>
-      <span class="biblio-chev" id="biblioChev">▼</span>
+  <div class="bw">
+    <div class="bt" onclick="togBib()">
+      <span class="btt">Referencias · APA 7.ª ed. · PubMed verificadas</span>
+      <span class="bc" id="bCh">▼</span>
     </div>
-    <div class="biblio-body" id="biblioBody">
+    <div class="bb" id="bB">
+      <p class="bi">Fuentes que sustentan los rangos de dosis, los factores de riesgo cardiovascular y las recomendaciones de esta calculadora. Recuperadas de PubMed.</p>
 
 ```
-  <p class="biblio-intro">Fuentes que sustentan la dilución, rango de dosis, uso del bolo y las recomendaciones de monitorización incluidas en esta calculadora.</p>
-
-  <!-- 1 -->
-  <div class="ref-item">
-    <p class="ref-cite">
-      <span class="ref-num">1</span>
-      <strong>Lewis, K., Balas, M. C., Stollings, J. L., McNett, M., Girard, T. D., Devlin, J. W., et al. (2025).</strong> A focused update to the clinical practice guidelines for the prevention and management of pain, anxiety, agitation/sedation, delirium, immobility, and sleep disruption in adult patients in the ICU. <em>Critical Care Medicine, 53</em>(3), e711–e727.
-    </p>
-    <div class="ref-relevance">
-      <b>Guías PADIS 2025 (SCCM) — referencia principal.</b> Actualización focal de las guías PADIS. Recomienda condicionalmente dexmedetomidina sobre propofol en ventilación mecánica cuando la meta es sedación ligera o reducción de delirium (evidencia moderada). Sugiere dexmedetomidina cuando la agitación del delirium impide el destete o la extubación (evidencia baja). No emite recomendación para uso profiláctico universal. Rango de dosis implícito en la evidencia: 0.2–1.5 mcg/kg/h.
-    </div>
-    <div class="ref-doi">DOI: 10.1097/CCM.0000000000006574 · PMID: 39982143 · Crit Care Med. 2025 Mar 1;53(3):e711–e727.</div>
+  <div class="ref">
+    <p class="rc2"><span class="rn2">1</span>
+    <strong>Lewis, K., Balas, M. C., Stollings, J. L., McNett, M., Girard, T. D., &amp; Devlin, J. W. (2025).</strong>
+    A focused update to the clinical practice guidelines for the prevention and management of pain, anxiety, agitation/sedation, delirium, immobility, and sleep disruption in adult patients in the ICU.
+    <em>Critical Care Medicine, 53</em>(3), e711–e727.</p>
+    <div class="rrel"><b>Guías PADIS 2025 (SCCM).</b> Dexmedetomidina sobre propofol en VM para sedación ligera o reducción de delirium (condicional, evidencia moderada). Indicada cuando agitación impide extubación (condicional, baja). No profilaxis universal.</div>
+    <div class="doi">DOI: <a href="https://doi.org/10.1097/CCM.0000000000006574" target="_blank">10.1097/CCM.0000000000006574</a> · PMID 39982143</div>
   </div>
 
-  <!-- 2 -->
-  <div class="ref-item">
-    <p class="ref-cite">
-      <span class="ref-num">2</span>
-      <strong>Devlin, J. W., Skrobik, Y., Gélinas, C., Needham, D. M., Slooter, A. J. C., Pandharipande, P. P., et al. (2018).</strong> Clinical practice guidelines for the prevention and management of pain, agitation/sedation, delirium, immobility, and sleep disruption in adult patients in the ICU. <em>Critical Care Medicine, 46</em>(9), e825–e873.
-    </p>
-    <div class="ref-relevance">
-      <b>Guías PADIS 2018 (SCCM) — guía base.</b> Establecen rango habitual 0.2–0.7 mcg/kg/h con máximo 1.5 mcg/kg/h. Recomiendan dexmedetomidina o propofol sobre benzodiacepinas (condicional, evidencia baja). Indican dexmedetomidina específicamente cuando la agitación del delirium impide la extubación. Estas recomendaciones son la base de las zonas de dosis del slider de esta calculadora.
-    </div>
-    <div class="ref-doi">DOI: 10.1097/CCM.0000000000003299 · PMID: 30113379</div>
+  <div class="ref">
+    <p class="rc2"><span class="rn2">2</span>
+    <strong>Walsh, T. S., Parker, R. A., Aitken, L. M., et al. (2025).</strong>
+    Dexmedetomidine- or clonidine-based sedation compared with propofol in critically ill patients: The A2B Randomized Clinical Trial.
+    <em>JAMA, 334</em>(1), 32–45.</p>
+    <div class="rrel"><b>ECA A2B — RASS +3/+4 y bradicardia.</b> 1,404 pacientes. Bradicardia severa con dexmedetomidina vs propofol RR 1.62 (IC95% 1.36–1.93). Agitación más frecuente con dexmedetomidina (RR 1.54); 64% requirió propofol suplementario. Sin superioridad en tiempo a extubación. Fuente de la nota sobre agitación severa.</div>
+    <div class="doi">DOI: <a href="https://doi.org/10.1001/jama.2025.7200" target="_blank">10.1001/jama.2025.7200</a> · PMID 40388916</div>
   </div>
 
-  <!-- 3 -->
-  <div class="ref-item">
-    <p class="ref-cite">
-      <span class="ref-num">3</span>
-      <strong>Pandharipande, P. P., Pun, B. T., Herr, D. L., Maze, M., Girard, T. D., Miller, R. R., et al. (2007).</strong> Effect of sedation with dexmedetomidine vs lorazepam on acute brain dysfunction in mechanically ventilated patients: The MENDS randomized controlled trial. <em>JAMA, 298</em>(22), 2644–2653.
-    </p>
-    <div class="ref-relevance">
-      <b>ECA MENDS — rango de dosis y ausencia de bolo.</b> Dexmedetomidina 0.15–1.5 mcg/kg/h sin bolo de carga en pacientes con VM. Más días libres de coma y delirium vs lorazepam. Fundamento del rango hasta 1.5 mcg/kg/h y argumento para omitir bolo de carga en el protocolo estándar.
-    </div>
-    <div class="ref-doi">DOI: 10.1001/jama.298.22.2644 · PMID: 18073361</div>
+  <div class="ref">
+    <p class="rc2"><span class="rn2">3</span>
+    <strong>Ice, C. J., Personett, H. A., Frazee, E. N., Dierkhising, R. A., Kashyap, R., &amp; Oeckler, R. A. (2016).</strong>
+    Risk factors for dexmedetomidine-associated hemodynamic instability in noncardiac intensive care unit patients.
+    <em>Anesthesia &amp; Analgesia, 122</em>(2), 462–469.</p>
+    <div class="rrel"><b>Fuente principal de los factores edad y TA baja.</b> 300 pacientes UCI. Inestabilidad hemodinámica en 71% a 24 h. Predictores independientes: <b>edad avanzada</b> (HR 1.23/10 años, IC95% 1.10–1.38) y <b>TA basal baja</b> (HR 2.42, IC95% 1.68–3.49). Tasas &gt;0.7 mcg/kg/h no fueron predictor independiente.</div>
+    <div class="doi">DOI: <a href="https://doi.org/10.1213/ANE.0000000000001125" target="_blank">10.1213/ANE.0000000000001125</a> · PMID 26702868</div>
   </div>
 
-  <!-- 4 -->
-  <div class="ref-item">
-    <p class="ref-cite">
-      <span class="ref-num">4</span>
-      <strong>Reade, M. C., Eastwood, G. M., Bellomo, R., Bailey, M., Bersten, A., Bhatt, S., et al. (2016).</strong> Effect of dexmedetomidine added to standard care on ventilator-free time in patients with agitated delirium: A randomized clinical trial. <em>JAMA, 315</em>(14), 1460–1468.
-    </p>
-    <div class="ref-relevance">
-      <b>ECA DahLIA — delirium agitado con agitación que impide destete.</b> Dexmedetomidina 0.1–1.5 mcg/kg/h sin bolo de carga en delirium agitado. Incremento significativo de horas libres de ventilación mecánica. Confirma la indicación principal de esta calculadora (delirium que impide extubación) y el rango de dosis. Protocolo sin bolo de carga.
-    </div>
-    <div class="ref-doi">DOI: 10.1001/jama.2016.2707 · PMID: 26975647</div>
+  <div class="ref">
+    <p class="rc2"><span class="rn2">4</span>
+    <strong>Adie, S. K., Farina, N., Abdul-Aziz, A. A., Lee, R., Thomas, M. P., &amp; Konerman, M. C. (2021).</strong>
+    Safety of dexmedetomidine in the cardiac intensive care unit.
+    <em>European Heart Journal: Acute Cardiovascular Care, 10</em>(4), 422–426.</p>
+    <div class="rrel"><b>Fuente del factor ICC/BNP.</b> 197 pacientes UCI cardiaca. Eventos adversos en 106 (53.8%): hipotensión 60%, bradicardia 18.9%, asistolia en 2. BNP significativamente mayor en quienes presentaron evento (848 vs 431 pg/mL, p=0.03).</div>
+    <div class="doi">DOI: <a href="https://doi.org/10.1093/ehjacc/zuaa009" target="_blank">10.1093/ehjacc/zuaa009</a> · PMID 33620428</div>
   </div>
 
-  <!-- 5 -->
-  <div class="ref-item">
-    <p class="ref-cite">
-      <span class="ref-num">5</span>
-      <strong>Prescott, H. C., Angus, D. C. (2018).</strong> Enhancing recovery from sepsis: A review. <em>JAMA, 319</em>(1), 62–75. [Contexto: MIND-USA Trial]
-    </p>
-    <div class="ref-cite" style="margin-top:4px">
-      <strong>Hughes, C. G., Mailloux, P. T., Devlin, J. W., Swan, J. T., Sanders, R. D., Anzueto, A., et al. (2021).</strong> Dexmedetomidine or propofol for sedation in mechanically ventilated adults with sepsis. <em>New England Journal of Medicine, 384</em>(15), 1424–1436. [MICU Trial, contexto MIND-USA]
-    </div>
-    <div class="ref-relevance">
-      <b>Contexto MIND-USA / sedación en sepsis.</b> Dexmedetomidina y propofol equivalentes en sedación ligera en pacientes sépticos con VM. Rango de dosis validado en contexto de delirium séptico.
-    </div>
-    <div class="ref-doi">DOI: 10.1056/NEJMoa2024922 · PMID: 33528922</div>
+  <div class="ref">
+    <p class="rc2"><span class="rn2">5</span>
+    <strong>Skrobik, Y., Duprey, M. S., Hill, N. S., &amp; Devlin, J. W. (2018).</strong>
+    Low-dose nocturnal dexmedetomidine prevents ICU delirium: A randomized, placebo-controlled trial.
+    <em>American Journal of Respiratory and Critical Care Medicine, 197</em>(9), 1147–1156.</p>
+    <div class="rrel"><b>Protocolo de titulación gradual validado.</b> Inicio 0.2 mcg/kg/h → +0.1 c/15 min hasta RASS –1 o máx 0.7 mcg/kg/h. 80% libre de delirium vs 54% placebo (p=0.006). Sin diferencia en bradicardia/hipotensión. Fundamento de la titulación conservadora.</div>
+    <div class="doi">DOI: <a href="https://doi.org/10.1164/rccm.201710-1995OC" target="_blank">10.1164/rccm.201710-1995OC</a> · PMID 29498534</div>
   </div>
 
-  <!-- 6 -->
-  <div class="ref-item">
-    <p class="ref-cite">
-      <span class="ref-num">6</span>
-      <strong>Orion Corporation. (2023).</strong> <em>Dexdor 200 mcg/2 mL concentrate for solution for infusion — Summary of Product Characteristics (SmPC)</em>. European Medicines Agency. https://www.ema.europa.eu/en/medicines/human/EPAR/dexdor
-    </p>
-    <div class="ref-relevance">
-      <b>Ficha técnica oficial (SmPC) — dilución y bolo.</b> Sustenta la dilución estándar de esta calculadora: 1 amp (200 mcg) + 100 mL SF = 2 mcg/mL. Bolo de carga <em>opcional</em>: 0.5–1 mcg/kg en 10–20 min (puede producir bradicardia e hipotensión transitorias). Mantenimiento: 0.2–1.4 mcg/kg/h. Precaución explícita en insuficiencia hepática severa (Child-Pugh C).
-    </div>
+  <div class="ref">
+    <p class="rc2"><span class="rn2">6</span>
+    <strong>Pandharipande, P. P., Pun, B. T., Herr, D. L., et al. (2007).</strong>
+    Effect of sedation with dexmedetomidine vs lorazepam on acute brain dysfunction in mechanically ventilated patients: The MENDS randomized controlled trial.
+    <em>JAMA, 298</em>(22), 2644–2653.</p>
+    <div class="rrel"><b>ECA MENDS — rango hasta 1.5, sin bolo.</b> Protocolo 0.15–1.5 mcg/kg/h sin bolo. Más días libres de coma y delirium vs lorazepam. Fundamento del límite superior y de omitir bolo.</div>
+    <div class="doi">DOI: <a href="https://doi.org/10.1001/jama.298.22.2644" target="_blank">10.1001/jama.298.22.2644</a> · PMID 18073361</div>
   </div>
 
-  <!-- 7 -->
-  <div class="ref-item">
-    <p class="ref-cite">
-      <span class="ref-num">7</span>
-      <strong>Surgical Critical Care.net. (2024).</strong> <em>Analgosedation in the intensive care unit: Practice guidelines (SICU, Surgical Critical Care)</em>. https://www.surgicalcriticalcare.net/Guidelines/Analgosedation%202024.pdf
-    </p>
-    <div class="ref-relevance">
-      <b>Guías SICU 2024 — base de la alerta sobre el bolo.</b> Señalan explícitamente que el bolo de carga previo a la infusión continua <em>no se recomienda</em> por vasodilatación aguda con riesgo de hipotensión y bradicardia. Esta guía es la fuente primaria de la advertencia sobre el bolo incluida en la calculadora.
-    </div>
+  <div class="ref">
+    <p class="rc2"><span class="rn2">7</span>
+    <strong>Reade, M. C., Eastwood, G. M., Bellomo, R., et al. (2016).</strong>
+    Effect of dexmedetomidine added to standard care on ventilator-free time in patients with agitated delirium.
+    <em>JAMA, 315</em>(14), 1460–1468.</p>
+    <div class="rrel"><b>ECA DahLIA — delirium que impide destete.</b> Protocolo 0.1–1.5 mcg/kg/h sin bolo. Mayor tiempo libre de VM. Confirma indicación principal y rango.</div>
+    <div class="doi">DOI: <a href="https://doi.org/10.1001/jama.2016.2707" target="_blank">10.1001/jama.2016.2707</a> · PMID 26975647</div>
+  </div>
+
+  <div class="ref">
+    <p class="rc2"><span class="rn2">8</span>
+    <strong>Orion Corporation. (2023).</strong>
+    <em>Dexdor 200 mcg/2 mL concentrate for solution for infusion — SmPC.</em> European Medicines Agency.</p>
+    <div class="rrel"><b>Ficha técnica oficial.</b> Diluyentes permitidos y concentraciones. Bolo opcional 0.5–1 mcg/kg/10–20 min con precaución. Mantenimiento 0.2–1.4 mcg/kg/h. Precaución Child-Pugh C. Fuente de las opciones de dilución.</div>
   </div>
 
 </div>
@@ -522,169 +755,357 @@ footer a { color: var(--gold-light); text-decoration: none; }
 
   </div>
 
-</div><!-- /container -->
+  <!-- ═══ CRÉDITOS ═══ -->
 
-<!-- FOOTER -->
+  <div class="credits">
+    <div class="cred-t">🏥 Sobre esta herramienta</div>
+    <div class="cred-body">
+      <div class="cred-name">Dr. Deldhy Nicolás Moya Sánchez</div>
+      <div class="cred-role">
+        Médico Adscrito · Psiquiatría de Enlace<br/>
+        CMN "20 de Noviembre" · ISSSTE · CDMX<br/>
+        Alta Especialidad en Psiquiatría de Enlace (avalada por UNAM)<br/>
+        Cédula Profesional: 12152669 · Especialidad: 14788885
+      </div>
+      <div>
+        Calculadora construida para los <strong style="color:#fff">residentes del Servicio de Psiquiatría
+        del CMN "20 de Noviembre"</strong> como apoyo clínico en interconsultas que involucran
+        sedación y manejo de delirium en UCI. Todas las dosis y recomendaciones están
+        referenciadas a literatura indexada con PMID verificable.
+      </div>
+      <div class="disclaimer">
+        <div class="disc-t">⚠ AVISO IMPORTANTE PARA RESIDENTES</div>
+        <div class="disc-b">
+          Esta herramienta es un <strong>apoyo de cálculo</strong>, no un sustituto del criterio clínico.
+          <strong>Verifica siempre dos veces</strong> cualquier dosis antes de indicarla:
+          confirma el peso del paciente, la dilución real preparada por enfermería,
+          las contraindicaciones actuales y el estado hemodinámico al momento de la indicación.
+          El médico tratante es responsable de toda indicación médica.
+          Ante cualquier duda, consulta a tu médico adscrito o tutor antes de proceder.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
 
 <footer>
-  <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" alt="Logo Psiquiatría CMN 20 Nov" />
+  <img src="https://raw.githubusercontent.com/moymaa/psiquiatria20/main/logo%20psiquia%20grande%20favicon.png" alt="Logo"/>
   <p>
-    <strong style="color:#fff;">Psiquiatría de Enlace · CMN 20 de Noviembre</strong><br/>
-    Centro Médico Nacional "20 de Noviembre" · ISSSTE · Ciudad de México<br/>
+    <strong style="color:#fff">Psiquiatría de Enlace · CMN "20 de Noviembre" · ISSSTE</strong><br/>
     <a href="https://cmn.psiquiatria20.org">cmn.psiquiatria20.org</a><br/>
-    <span style="font-size:0.72rem;opacity:0.45;display:block;margin-top:0.4rem;">Herramienta de apoyo clínico — no sustituye el juicio clínico ni la valoración individualizada</span>
+    <span style="font-size:.68rem;opacity:.4;display:block;margin-top:.3rem">
+      Herramienta de apoyo clínico — no sustituye el juicio clínico ni la valoración individualizada
+    </span>
   </p>
 </footer>
 
+<!-- ═══ JAVASCRIPT ═══ -->
+
 <script>
-  function getDose() {
-    return parseFloat(document.getElementById('doseSlider').value) || 0.4;
+// ── ESTADO ──────────────────────────────────────────
+var RASS = null;
+var FACTORS = new Set();
+var CONC = 2.0; // mcg/mL activo
+var sugDose = null; // dosis sugerida por factores
+
+// ── DILUCIÓN ────────────────────────────────────────
+function upDil(){
+  var amps = parseInt(document.getElementById('nA').value);
+  var vol  = parseInt(document.getElementById('dVol').value);
+  var ty   = document.getElementById('dTy').value;
+  var mcg  = amps * 200;
+  var mLamp= amps * 2;
+  var totV = vol + mLamp;
+  CONC = mcg / vol; // mcg/mL basado en vol diluyente
+
+  document.getElementById('dA').textContent =
+    amps + ' amp' + (amps>1?'s':'') + ' (' + mcg + ' mcg / ' + mLamp + ' mL)';
+  document.getElementById('dV').textContent = vol + ' mL ' + ty;
+  document.getElementById('dR').textContent =
+    CONC.toFixed(2) + ' mcg/mL · ' + totV + ' mL total';
+  document.getElementById('dilMain').textContent = CONC.toFixed(2) + ' mcg/mL';
+  document.getElementById('cV').textContent = CONC.toFixed(2);
+
+  var w = document.getElementById('cW');
+  if(CONC < 0.8){
+    w.className='cbw w-vh'; w.textContent='Muy diluido ⚠';
+  } else if(CONC <= 4){
+    w.className='cbw w-ok'; w.textContent='Rango habitual ✓';
+  } else {
+    w.className='cbw w-vh'; w.textContent='Concentración alta ⚠';
+  }
+  calc();
+}
+
+// ── RASS ─────────────────────────────────────────────
+function selR(btn){
+  document.querySelectorAll('.rb').forEach(b=>{
+    b.classList.remove('rn','r0','rl','rh');
+  });
+  var v = parseInt(btn.getAttribute('data-v'));
+  RASS = v;
+  if(v <= -1) btn.classList.add('rn');
+  else if(v === 0) btn.classList.add('r0');
+  else if(v <= 2) btn.classList.add('rl');
+  else btn.classList.add('rh');
+  upSug();
+}
+
+// ── FACTORES ─────────────────────────────────────────
+function togF(el){
+  el.classList.toggle('sel');
+  var k = el.getAttribute('data-k');
+  if(FACTORS.has(k)) FACTORS.delete(k);
+  else FACTORS.add(k);
+  upSug();
+}
+
+// ── LÓGICA DE SUGERENCIA ─────────────────────────────
+function upSug(){
+  var box = document.getElementById('sugBox');
+
+  var contra = FACTORS.has('bradi') || FACTORS.has('bav');
+  var hiRisk = FACTORS.has('hipo') || FACTORS.has('vaso') ||
+               FACTORS.has('icc')  || FACTORS.has('tasl');
+  var mod    = FACTORS.has('edad') || FACTORS.has('hepa');
+  var rassHigh = RASS !== null && RASS >= 3;
+  var rassLow  = RASS !== null && RASS <= 1;
+
+  var cls='', titulo='', cuerpo='', refs='', dose=null, showApply=true;
+
+  if(contra){
+    cls='sc';
+    titulo='⛔ Considerar alternativa — riesgo muy alto';
+    cuerpo='<b>Bradicardia basal o BAV sin marcapasos</b> son contraindicaciones relativas fuertes.<br/>'
+      +'Si clínicamente es imprescindible usar dexmedetomidina, iniciar a la <b>dosis mínima posible: 0.2 mcg/kg/h</b> '
+      +'con monitorización continua de FC. Tener atropina disponible. Documentar decisión y consentimiento del equipo tratante.';
+    refs='Ice et al. Anesth Analg 2016 (PMID 26702868) · Adie et al. Eur Heart J Acute Cardiovasc Care 2021 (PMID 33620428) · Orion SmPC 2023';
+    dose=0.2;
+  } else if(hiRisk){
+    cls='sr';
+    var factDesc=[];
+    if(FACTORS.has('icc')) factDesc.push('ICC/disfunción ventricular (BNP elevado)');
+    if(FACTORS.has('hipo')) factDesc.push('hipotensión activa (TAS &lt;90)');
+    if(FACTORS.has('vaso')) factDesc.push('vasopresores activos');
+    if(FACTORS.has('tasl')) factDesc.push('TA basal límite (90–100 mmHg)');
+    titulo='🔴 Iniciar a dosis mínima: 0.2 mcg/kg/h';
+    cuerpo='Factores presentes: <b>' + factDesc.join(', ') + '</b>.<br/>'
+      +'Adie et al. (2021) mostraron que BNP elevado y disfunción ventricular son los principales predictores de evento adverso en UCI cardiaca. '
+      +'Ice et al. (2016) identificaron TA basal baja como predictor independiente de inestabilidad hemodinámica (HR 2.42). '
+      +'<br/><b>Iniciar a 0.2 mcg/kg/h y titular +0.1 c/30 min según respuesta y tolerancia hemodinámica.</b>';
+    refs='Ice et al. Anesth Analg 2016 (PMID 26702868) · Adie et al. Eur Heart J Acute Cardiovasc Care 2021 (PMID 33620428)';
+    dose=0.2;
+  } else if(rassHigh){
+    cls='sa';
+    titulo='🟡 RASS +3/+4: iniciar 0.4 mcg/kg/h — puede ser insuficiente solo';
+    cuerpo='En agitación severa sin factores de riesgo CV, puede iniciarse a <b>0.4 mcg/kg/h</b> y titular hasta 0.7–1.0.<br/>'
+      +'<b>Importante:</b> el ECA A2B (JAMA 2025, n=1,404) mostró que el 64% de los pacientes con dexmedetomidina requirió '
+      +'propofol suplementario para lograr sedación adecuada en VM. '
+      +'Considera si el propofol debe ser el agente principal en agitación severa que requiere sedación profunda.';
+    refs='Walsh et al. JAMA 2025 (PMID 40388916) · PADIS 2025 (PMID 39982143) · DahLIA JAMA 2016 (PMID 26975647)';
+    dose=0.4;
+  } else if(mod){
+    cls='sa';
+    var mDesc=[];
+    if(FACTORS.has('edad')) mDesc.push('edad ≥65 años (HR 1.23/10 años para inestabilidad, Ice 2016)');
+    if(FACTORS.has('hepa')) mDesc.push('insuficiencia hepática Child-Pugh C (metabolismo reducido)');
+    titulo='🟡 Modificadores presentes: iniciar 0.2 mcg/kg/h';
+    cuerpo='Modificador(es) activo(s): <b>' + mDesc.join(', ') + '</b>.<br/>'
+      +'Se recomienda iniciar conservadoramente a <b>0.2 mcg/kg/h</b> y titular +0.1 mcg/kg/h cada 30 min según RASS. '
+      +'El protocolo de Skrobik et al. (2018) validó esta titulación gradual con 80% de pacientes libres de delirium y sin aumento en bradicardia/hipotensión.';
+    refs='Ice et al. Anesth Analg 2016 (PMID 26702868) · Skrobik et al. Am J Respir Crit Care Med 2018 (PMID 29498534)';
+    dose=0.2;
+  } else if(rassLow && RASS !== null){
+    cls='sg';
+    titulo='✦ Sin factores de riesgo · Delirium hipoactivo o leve: iniciar 0.2–0.3 mcg/kg/h';
+    cuerpo='Paciente sin factores CV significativos con RASS ≤ +1. '
+      +'El protocolo validado (Skrobik 2018) inicia a <b>0.2 mcg/kg/h</b> con titulación +0.1 c/15 min hasta RASS meta. '
+      +'Este rango fue suficiente para prevenir delirium en el 80% de pacientes en UCI.';
+    refs='Skrobik et al. Am J Respir Crit Care Med 2018 (PMID 29498534) · PADIS 2025 (PMID 39982143)';
+    dose=0.2;
+  } else if(RASS !== null){
+    cls='sg';
+    titulo='✦ Sin factores de riesgo · Delirium moderado: iniciar 0.4 mcg/kg/h';
+    cuerpo='Paciente sin factores de riesgo CV con RASS +2. Rango habitual de inicio en UCI según PADIS 2018/2025: '
+      +'<b>0.2–0.7 mcg/kg/h</b>. Para agitación moderada, <b>0.4 mcg/kg/h</b> es el punto de inicio estándar, '
+      +'titulando según respuesta clínica. El ECA MENDS y DahLIA usaron 0.1–1.5 mcg/kg/h sin bolo.';
+    refs='PADIS 2018 (PMID 30113379) · PADIS 2025 (PMID 39982143) · MENDS JAMA 2007 (PMID 18073361)';
+    dose=0.4;
+  } else {
+    box.style.display='none';
+    sugDose=null;
+    return;
   }
 
-  function updateDoseDisplay() {
-    const d = getDose();
-    document.getElementById('doseDisplay').textContent = d.toFixed(2);
-    document.getElementById('doseManual').value = d.toFixed(2);
-    updateZone(d);
+  sugDose = dose;
+  var applyBtn = showApply && dose !== null ?
+    '<button class="ap-btn" onclick="applyDose('+dose+')">Aplicar '+dose.toFixed(2)+' mcg/kg/h al slider</button>' : '';
+
+  box.style.display='block';
+  box.innerHTML = '<div class="sug '+cls+'">'
+    +'<div class="st2">'+titulo+'</div>'
+    +'<div class="sb2">'+cuerpo+'</div>'
+    +'<div class="sref">📚 '+refs+'</div>'
+    + applyBtn
+    +'</div>';
+}
+
+function applyDose(d){
+  document.getElementById('dSlider').value = d;
+  document.getElementById('dMan').value = d.toFixed(2);
+  document.getElementById('dD').textContent = d.toFixed(2);
+  upZone(d);
+  calc();
+  document.getElementById('dSlider').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// ── DOSIS DISPLAY ──────────────────────────────────
+function upDD(){
+  var d = parseFloat(document.getElementById('dSlider').value) || 0.4;
+  document.getElementById('dD').textContent = d.toFixed(2);
+  document.getElementById('dMan').value = d.toFixed(2);
+  upZone(d);
+}
+
+function upFM(){
+  var v = parseFloat(document.getElementById('dMan').value);
+  if(!isNaN(v) && v >= 0.1 && v <= 1.5){
+    document.getElementById('dSlider').value = v;
+    document.getElementById('dD').textContent = v.toFixed(2);
+    upZone(v);
+    calc();
   }
+}
 
-  function updateFromManual() {
-    const v = parseFloat(document.getElementById('doseManual').value);
-    if (!isNaN(v) && v >= 0.1 && v <= 1.5) {
-      document.getElementById('doseSlider').value = v;
-      document.getElementById('doseDisplay').textContent = v.toFixed(2);
-      updateZone(v);
-      calcular();
-    }
+function upZone(d){
+  var t = document.getElementById('dZ');
+  if(d <= 0.4){
+    t.textContent='Inicio / delirium leve-moderado';
+    t.style.cssText='background:#edf7f2;color:#1a6b4a;border:1px solid #a7f3d0';
+  } else if(d <= 0.7){
+    t.textContent='Rango habitual UCI';
+    t.style.cssText='background:#fef8ec;color:#92600a;border:1px solid #fde68a';
+  } else if(d <= 1.0){
+    t.textContent='Dosis moderada-alta';
+    t.style.cssText='background:#fff7ed;color:#9a3412;border:1px solid #fed7aa';
+  } else {
+    t.textContent='Dosis máxima — vigilancia estricta';
+    t.style.cssText='background:#fef2f2;color:#7D1535;border:1px solid #fecaca';
   }
+}
 
-  function updateZone(d) {
-    const tag = document.getElementById('doseZoneTag');
-    if (d <= 0.4) {
-      tag.textContent = 'Inicio · delirium leve-moderado';
-      tag.style.cssText = 'background:#edf7f2;color:#1a6b4a;border:1px solid #a7f3d0';
-    } else if (d <= 0.7) {
-      tag.textContent = 'Rango habitual UCI';
-      tag.style.cssText = 'background:#fef8ec;color:#92600a;border:1px solid #fde68a';
-    } else if (d <= 1.0) {
-      tag.textContent = 'Dosis moderada-alta';
-      tag.style.cssText = 'background:#fff7ed;color:#9a3412;border:1px solid #fed7aa';
-    } else {
-      tag.textContent = 'Dosis máxima — vigilancia estricta';
-      tag.style.cssText = 'background:#fef2f2;color:#7D1535;border:1px solid #fecaca';
-    }
+function getDose(){
+  return parseFloat(document.getElementById('dSlider').value) || 0.4;
+}
+
+// ── BOLO ───────────────────────────────────────────
+function togB(){
+  var on = document.getElementById('bT').checked;
+  document.getElementById('bF').classList.toggle('on', on);
+  calc();
+}
+
+// ── CÁLCULO PRINCIPAL ──────────────────────────────
+function calc(){
+  var peso = parseFloat(document.getElementById('peso').value);
+  var dose = getDose();
+  var rs = document.getElementById('resS');
+  var es = document.getElementById('emSt');
+
+  if(!peso || isNaN(peso) || peso < 10){
+    rs.style.display='none'; es.style.display='block'; return;
   }
+  rs.style.display='block'; es.style.display='none';
 
-  function toggleBolo() {
-    const on = document.getElementById('boloToggle').checked;
-    document.getElementById('boloFields').classList.toggle('active', on);
-    calcular();
+  var mRate = (dose * peso) / CONC;
+  document.getElementById('mR').textContent = mRate.toFixed(1);
+  document.getElementById('mSL').textContent =
+    dose.toFixed(2) + ' mcg/kg/h · ' + peso + ' kg · ' + CONC.toFixed(2) + ' mcg/mL';
+  document.getElementById('cRV').textContent = CONC.toFixed(2) + ' mcg/mL';
+
+  // Nombre diluyente para indicación
+  var dTy = document.getElementById('dTy').value;
+  var dVol2 = document.getElementById('dVol').value;
+  var nA2 = document.getElementById('nA').value;
+  var totMcg = parseInt(nA2)*200;
+  var totVol2 = parseInt(dVol2) + parseInt(nA2)*2;
+  document.getElementById('cRL').textContent =
+    totMcg + ' mcg / ' + totVol2 + ' mL (' + dVol2 + ' mL ' + dTy + ')';
+
+  // BOLO
+  var boloOn = document.getElementById('bT').checked;
+  var boloTxt = '';
+  var boloHTML = '';
+  if(boloOn){
+    var bD2 = parseFloat(document.getElementById('bD').value) || 0.5;
+    var bTm2 = parseInt(document.getElementById('bTm').value) || 20;
+    var bVol = (bD2 * peso) / CONC;
+    var bRate = bVol / (bTm2 / 60);
+    boloHTML = '<div class="rr">'
+      +'<div><div class="rl2">Bolo de carga</div>'
+      +'<div class="rs2">'+bD2+' mcg/kg · '+bTm2+' min · '+bVol.toFixed(1)+' mL total</div></div>'
+      +'<div><div class="rv" style="font-size:1.4rem;color:#E8D5A3">'+bRate.toFixed(0)+'</div>'
+      +'<div class="rvu">mL/h durante bolo</div></div></div>';
+    boloTxt = 'Bolo de carga:\n'
+      +'  '+bD2+' mcg/kg = '+bVol.toFixed(1)+' mL → pasar a '+bRate.toFixed(0)+' mL/h en '+bTm2+' min\n'
+      +'  ⚠ FC/TA c/2 min · Atropina disponible\n\n';
   }
+  document.getElementById('bRR').innerHTML = boloHTML;
 
-  function calcular() {
-    const peso = parseFloat(document.getElementById('peso').value);
-    const dose = getDose();
-    const conc = 2; // mcg/mL
+  // INDICACIÓN
+  var fecha = new Date().toLocaleDateString('es-MX',{day:'2-digit',month:'2-digit',year:'numeric'});
+  var rassStr = RASS !== null ? 'RASS basal de inicio: ' + (RASS >= 0 ? '+' : '') + RASS : '';
+  var factStr = FACTORS.size > 0 ? 'Factores considerados: ' + Array.from(FACTORS).join(', ') : '';
+  var sugStr  = sugDose !== null ? 'Dosis sugerida por factores: ' + sugDose.toFixed(2) + ' mcg/kg/h' : '';
 
-    const rs = document.getElementById('resultSection');
-    const es = document.getElementById('emptyState');
+  var ind =
+'── INDICACIÓN MÉDICA · '+fecha+' ─────────────────────\n\n'
++'Dx: Delirium en paciente crítico\n\n'
++'DEXMEDETOMIDINA IV\n'
++'─ Preparación ─────────────────────────────────────\n'
++'  '+nA2+' amp'+(parseInt(nA2)>1?'s':'')+' ('+totMcg+' mcg) + '+dVol2+' mL '+dTy+'\n'
++'  Concentración: '+CONC.toFixed(2)+' mcg/mL · '+totVol2+' mL totales\n\n'
++ (boloTxt ? boloTxt : '')
++'─ Infusión de mantenimiento ───────────────────────\n'
++'  '+mRate.toFixed(1)+' mL/h IV en bomba\n'
++'  → '+dose.toFixed(2)+' mcg/kg/h · Peso: '+peso+' kg\n\n'
++(rassStr ? '─ Evaluación clínica ──────────────────────────────\n  '+rassStr+'\n'+(factStr?'  '+factStr+'\n':'')+(sugStr?'  '+sugStr+'\n':'') + '\n' : '')
++'─ Titulación ──────────────────────────────────────\n'
++'  RASS meta: −1 a +1 (delirium hiperactivo)\n'
++'             0     (delirium hipoactivo)\n'
++'  Ajustar ±0.1 mcg/kg/h c/30 min según RASS\n\n'
++'─ Vigilar ─────────────────────────────────────────\n'
++'  FC < 50 lpm o TAS < 90 → reducir/suspender\n'
++'  FC y TA c/1 h en mantenimiento';
 
-    if (!peso || isNaN(peso) || peso < 10) {
-      rs.style.display = 'none';
-      es.style.display = 'block';
-      return;
-    }
+  document.getElementById('indTx').textContent = ind;
+}
 
-    rs.style.display = 'block';
-    es.style.display = 'none';
-
-    const maintRate = (dose * peso) / conc;
-    document.getElementById('maintRate').textContent = maintRate.toFixed(1);
-    document.getElementById('maintSubLabel').textContent =
-      dose.toFixed(2) + ' mcg/kg/h · ' + peso + ' kg';
-
-    const boloOn = document.getElementById('boloToggle').checked;
-    let boloHTML = '';
-    let boloTexto = '';
-
-    if (boloOn) {
-      const boloDosis = parseFloat(document.getElementById('boloDosis').value) || 0.5;
-      const boloMin = parseInt(document.getElementById('boloTiempo').value) || 20;
-      const boloVol = (boloDosis * peso) / conc;
-      const boloRate = boloVol / (boloMin / 60);
-
-      boloHTML = `
-        <div class="result-row">
-          <div>
-            <div class="result-lbl">Bolo de carga</div>
-            <div class="result-sub">${boloDosis} mcg/kg · ${boloMin} min · ${boloVol.toFixed(1)} mL total</div>
-          </div>
-          <div>
-            <div class="result-val" style="font-size:1.5rem;color:#E8D5A3">${boloRate.toFixed(0)}</div>
-            <div class="result-val-unit">mL/h durante bolo</div>
-          </div>
-        </div>`;
-
-      boloTexto = 'Bolo de carga:\n' +
-        '  ' + boloDosis + ' mcg/kg = ' + boloVol.toFixed(1) + ' mL → pasar a ' + boloRate.toFixed(0) +
-        ' mL/h en ' + boloMin + ' min\n' +
-        '  ⚠ Monitorizar FC y TA c/2 min · Atropina disponible\n\n';
-    }
-
-    document.getElementById('boloResultRow').innerHTML = boloHTML;
-
-    const fecha = new Date().toLocaleDateString('es-MX', {
-      day: '2-digit', month: '2-digit', year: 'numeric'
+function copyInd(){
+  var t = document.getElementById('indTx').textContent;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(t).then(function(){
+      var b = document.querySelector('.cbtn');
+      var o = b.textContent;
+      b.textContent = '✓  Copiado';
+      b.style.background = '#1a6b4a';
+      setTimeout(function(){ b.textContent=o; b.style.background=''; }, 2400);
     });
-
-    const ind =
-'── INDICACIÓN MÉDICA · ' + fecha + ' ─────────────────\n\n' +
-'Dx: Delirium en paciente crítico\n\n' +
-'DEXMEDETOMIDINA IV\n' +
-'─ Preparación ──────────────────────────────\n' +
-'  1 amp (200 mcg / 2 mL) + 100 mL SF 0.9%\n' +
-'  Concentración: 2 mcg/mL · 102 mL totales\n\n' +
-boloTexto +
-'─ Infusión de mantenimiento ────────────────\n' +
-'  ' + maintRate.toFixed(1) + ' mL/h IV en bomba de infusión\n' +
-'  → ' + dose.toFixed(2) + ' mcg/kg/h · Peso: ' + peso + ' kg\n\n' +
-'─ Titulación ───────────────────────────────\n' +
-'  RASS meta: -1 a +1 (hiperactivo)\n' +
-'             0     (hipoactivo)\n' +
-'  Ajustar ±0.1 mcg/kg/h c/30 min según RASS\n\n' +
-'─ Vigilar ──────────────────────────────────\n' +
-'  FC < 50 lpm o TAS < 90 → reducir/suspender\n' +
-'  FC y TA c/1 h en mantenimiento';
-
-    document.getElementById('indicacionText').textContent = ind;
   }
+}
 
-  function copiarIndicacion() {
-    const text = document.getElementById('indicacionText').textContent;
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = document.querySelector('.copy-btn');
-        const orig = btn.textContent;
-        btn.textContent = '✓  Indicación copiada';
-        btn.style.background = '#1a6b4a';
-        setTimeout(() => {
-          btn.textContent = orig;
-          btn.style.background = '';
-        }, 2500);
-      });
-    }
-  }
+function togBib(){
+  var b = document.getElementById('bB');
+  var c = document.getElementById('bCh');
+  var op = b.classList.contains('op');
+  b.classList.toggle('op', !op);
+  c.classList.toggle('op', !op);
+}
 
-  function toggleBiblio() {
-    const body = document.getElementById('biblioBody');
-    const chev = document.getElementById('biblioChev');
-    const open = body.classList.contains('open');
-    body.classList.toggle('open', !open);
-    chev.classList.toggle('open', !open);
-  }
-
-  // Init
-  updateDoseDisplay();
+// ── INIT ───────────────────────────────────────────
+upDD();
+upDil();
 </script>
 
 </body>
